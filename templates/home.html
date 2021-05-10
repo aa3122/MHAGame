@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+  {% if user.is_staff %}
+  Hi Admininstrator {{ user.username}}!
+  {% else %}
+  Hi {{ user.username }}!
+  {% endif %}
+  <p><a href="{% url 'logout' %}">Log Out</a></p>
+  <p><a href="{% url 'userdash' %}">Resume Existing Game</a></p>
+  </button>
+{% else %}
+  <p>You are not logged in</p>
+  <p><a href="{% url 'login' %}">Log In</a></p>
+  <p><a href="{% url 'signup' %}">Register</a></p>
+  <p><a href="{% url 'password_reset' %}">Reset Password</a></p>
+{% endif %}
+{% endblock %}
