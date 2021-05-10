@@ -8,12 +8,12 @@ from django.contrib.auth import authenticate, login, logout
 
 
 def login(request):
-    return HttpResponse("you're at the login page :)")
-    #return render(request, 'studentDashboard.html')
+    #return HttpResponse("you're at the login page :)")
+    return render(request, 'login.html')
 
 def forgotpassword(request):
-    return HttpResponse("you forgot your password :(")
-    #return render(request, 'studentDashboard.html')
+    #return HttpResponse("you forgot your password :(")
+    return render(request, 'forgotpassword.html')
 
 def loginpage(request):
     logout(request)
