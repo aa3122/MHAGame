@@ -17,5 +17,9 @@ def studentGameOverview(request):
     #return HttpResponse("You're at the student view of the Game Overview")
     return render(request, 'studentGameOverview.html')
 
+def profile(request):
+    #return HttpResponse("You're at the student view of the Game Overview")
+    return render(request, 'studentprofile.html')
+
 
 

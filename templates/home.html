@@ -9,8 +9,7 @@
   {% else %}
   Hi {{ user.username }}!
   {% endif %}
-  <p><a href="{% url 'logout' %}">Log Out</a></p>
-  <p><a href="{% url 'userdash' %}">Resume Existing Game</a></p>
+  <p><a href="{% url 'login' %}">Log Out</a></p>
   </button>
 {% else %}
   <p>You are not logged in</p>

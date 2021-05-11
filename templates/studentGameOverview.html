@@ -36,7 +36,7 @@
 			<div class="logo-header">
 				
 				<a href="index.html" class="logo">
-					<img src="{% static '/assets/img/logoazzara.svg' %}" alt="navbar brand" class="navbar-brand">
+					<img src="{% static '/assets/img/Logo.png' %}" alt="navbar brand" class="navbar-brand">
 				</a>
 				<button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon">
@@ -163,8 +163,12 @@
 						<div class="info">
 							<a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
 								<span>
-									Student name
+									{{user.first_name}} {{user.last_name}}
+									{% if user.is_staff %}
+									<span class="user-level">Staff</span>
+									{% else %}
 									<span class="user-level">Student</span>
+									{% endif %}
 									<span class="caret"></span>
 								</span>
 							</a>
