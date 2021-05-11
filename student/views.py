@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from student.models import Student
+
 
 def studentDashboard(request):
     #return HttpResponse("You're at the student dashboard")
@@ -15,7 +17,12 @@ def gameInput(request):
 
 def studentGameOverview(request):
     #return HttpResponse("You're at the student view of the Game Overview")
-    return render(request, 'studentGameOverview.html')
+    data = Student.objects.all()
+
+    stu = {
+        "student_number": data
+    }
+    return render(request, 'studentGameOverview.html',stu)
 
 def profile(request):
     #return HttpResponse("You're at the student view of the Game Overview")
