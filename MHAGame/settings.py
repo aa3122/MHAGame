@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'student',
     'game',
     'login',
-    'administration
+    'administration'
 ]
 
 MIDDLEWARE = [
