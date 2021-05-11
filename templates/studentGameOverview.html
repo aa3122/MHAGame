@@ -35,8 +35,8 @@
 			<!-- Logo Header -->
 			<div class="logo-header">
 				
-				<a href="index.html" class="logo">
-					<img src="{% static '/assets/img/Logo.png' %}" alt="navbar brand" class="navbar-brand">
+				<a href="/student" class="logo">
+					<img src="{% static '/assets/img/icon.png' %}" alt="navbar brand" class="navbar-brand">
 				</a>
 				<button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon">
@@ -197,7 +197,7 @@
 					</div>
 					<ul class="nav">
 						<li class="nav-item active">
-							<a href="index.html">
+							<a href="/student">
 								<i class="fas fa-home"></i>
 								<p>Dashboard</p>
 								<span class="badge badge-count"></span>
@@ -218,18 +218,34 @@
 							<div class="collapse" id="base">
 								<ul class="nav nav-collapse">
 									<li>
-										<a href="creategame.html">
-											<span class="sub-item">Create Game</span>
+										<a href="gameoverview">
+											<span class="sub-item">Game Overview</span>
 										</a>
 									</li>
 									<li>
-										<a href="viewgames.html">
-											<span class="sub-item">View Game</span>
+										<a href="gameinput">
+											<span class="sub-item">Game Input</span>
 										</a>
 									</li>
 								</ul>
 							</div>
-						</li>		
+						</li>
+						<li class="nav-item">
+							<a data-toggle="collapse" href="#tables">
+								<i class="fas fa-table"></i>
+								<p>Calender</p>
+								<span class="caret"></span>
+							</a>
+							<div class="collapse" id="tables">
+								<ul class="nav nav-collapse">
+									<li>
+										<a href="calender">
+											<span class="sub-item">Calender</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</li>	
 					</ul>
 				</div>
 			</div>
@@ -241,7 +257,7 @@
 			<div class="content">
 				<div class="page-inner">
 					<div class="page-header">
-						<h4 class="page-title">Student Dashboard</h4>
+						<h4 class="page-title">Student Game Overview</h4>
 						<div class="btn-group btn-group-page-header ml-auto">
 							<button type="button" class="btn btn-light btn-round btn-page-header-dropdown dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								<i class="fa fa-ellipsis-h"></i>
@@ -259,9 +275,10 @@
 					<div class="row">
 					</div>
 				</div>
+			<h1> test </h1>
 			</div>
-			
 		</div>
+
 		
 		<!-- Custom template | don't include it in your project! -->
 		<div class="custom-template">
@@ -296,6 +313,7 @@
 		<!-- End Custom template -->
 	</div>
 </div>
+
 <!--   Core JS Files   -->
 <script src="{% static '/assets/js/core/jquery.3.2.1.min.js' %}"></script>
 <script src="{% static '/assets/js/core/popper.min.js' %}"></script>
