@@ -13,9 +13,6 @@ def adminViewGame(request):
 
 def adminViewStudents(request):
 	return render(request, 'adminViewStudents.html')
-<<<<<<< HEAD
 
 def test(request):
 	return render(request, 'test.html')
-=======
->>>>>>> 1360cf667157ff4ed5f76ab389bf7044c6fcb126
