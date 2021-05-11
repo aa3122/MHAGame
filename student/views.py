@@ -3,7 +3,9 @@ from django.http import HttpResponse
 from student.models import Student
 
 
-
+def studentDashboard(request):
+    #return HttpResponse("You're at the student dashboard")
+    return render(request, 'studentDashboard.html')
 
 def calender(request):
     #return HttpResponse("You're on the Student view of the Calender page")
