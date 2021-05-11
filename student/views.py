@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from student.models import Student
+from django.contrib.auth import logout
 
 
 def studentDashboard(request):
@@ -28,5 +29,5 @@ def profile(request):
     #return HttpResponse("You're at the student view of the Game Overview")
     return render(request, 'studentprofile.html')
 
-
-
+def logout(request):
+    logout(request)
