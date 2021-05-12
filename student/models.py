@@ -10,3 +10,5 @@ class Student(models.Model):
     class Meta:
         managed = False
         db_table = 'student'
+
+	
