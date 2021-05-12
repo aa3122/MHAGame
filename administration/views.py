@@ -18,4 +18,4 @@ def adminViewStudents(request):
 
 def test(request):
 	x = Student.objects.all()
-	return render(request, 'test.html', locals())
+	return render(request, 'test.html', {'x':x})

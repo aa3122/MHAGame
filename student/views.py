@@ -18,12 +18,8 @@ def gameInput(request):
 
 def studentGameOverview(request):
     #return HttpResponse("You're at the student view of the Game Overview")
-    data = Student.objects.all()
-
-    stu = {
-        "student_number": data
-    }
-    return render(request, 'studentGameOverview.html',stu)
+    query_results = Student.objects.all()
+    return render(request, 'studentGameOverview.html', {'query_results':query_results})
 
 def profile(request):
     #return HttpResponse("You're at the student view of the Game Overview")
