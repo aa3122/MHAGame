@@ -7,6 +7,10 @@ class Student(models.Model):
     student_fname = models.CharField(max_length=40)
     student_lname = models.CharField(max_length=40)
 
+    def __str__(self):
+        return '%s %s %s %s' % (self.stud_email, self.password, self.student_fname, self.student_lname)
+
+
     class Meta:
         managed = False
         db_table = 'student'
