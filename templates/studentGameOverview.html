@@ -22,6 +22,8 @@
 	<!-- CSS Files -->
 	<link rel="stylesheet" href="{% static '/assets/css/bootstrap.min.css' %}">
 	<link rel="stylesheet" href="{% static '/assets/css/azzara.min.css' %}">
+    <!-- CSS for datatable.net -->
+    <link rel="stylesheet" href="{% static '/assets/js/datatables.min.css' %}">
 
 	<!-- CSS Just for demo purpose, don't include it in your project -->
 	<link rel="stylesheet" href="{% static '/assets/css/demo.css' %}">
@@ -68,6 +70,27 @@
 							</div>
 						</form>
 					</div>
+					<div> <!-- added this whole section -->
+						<ul class="breadcrumbs">
+							<li class="nav-home">
+								<a href="#">
+									<i class="flaticon-home"></i>
+								</a>
+							</li>
+							<li class="separator">
+								<i class="flaticon-right-arrow"></i>
+							</li>
+							<li class="nav-item">
+								<a href="#">Base</a>
+							</li>
+							<li class="separator">
+								<i class="flaticon-right-arrow"></i>
+							</li>
+							<li class="nav-item">
+								<a href="#">Next</a>
+							</li>
+						</ul>
+					</div>	<!-- end added code -->
 					<ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
 						<li class="nav-item toggle-nav-search hidden-caret">
 							<a class="nav-link" data-toggle="collapse" href="#search-nav" role="button" aria-expanded="false" aria-controls="search-nav">
@@ -276,9 +299,31 @@
 					</div>
 				</div>
 			<h1> test </h1>
+                #testing out a table here
+            <table id="table_id" class = "display-4">
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                </tr>
+                <tbody>
+{#                <tr>#}
+                    {% for student in query_results %}
+                        <tr>
+                        <td>{{ student.student_fname}}</td>
+                        <td> {{ student.student_lname }}</td>
+                        <tr>
+                    {% endfor %}
+{#                </tr>#}
+                </tbody>
+            </table>
 			</div>
 		</div>
-
+        <!-- script for rendering the datatable.net -->
+    <script>
+        $(document).ready( function () {
+            $('table_id').DataTable();
+        } );
+    </script>
 		
 		<!-- Custom template | don't include it in your project! -->
 		<div class="custom-template">
@@ -313,7 +358,6 @@
 		<!-- End Custom template -->
 	</div>
 
-</div>
 
 <!--   Core JS Files   -->
 <script src="{% static '/assets/js/core/jquery.3.2.1.min.js' %}"></script>
@@ -360,6 +404,9 @@
 
 <!-- Azzara JS -->
 <script src="{% static '/assets/js/ready.min.js' %}"></script>
+
+<!-- DataTable.net jquery -->
+<script  type="text/javascript" charset="utf8" src="{%  static '/assets/js/datatables.min.js' %}"></script>
 
 <!-- Azzara DEMO methods, don't include it in your project! 
 <script src="{% static '/assets/js/setting-demo.js' %}"></script>

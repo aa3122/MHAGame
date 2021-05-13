@@ -1,20 +1,48 @@
-{% extends 'base.html' %}
+<html lang="en">
+{% load static %}
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<title>Home Page</title>
+	<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
+	<link rel="icon" href="{% static '/assets/img/icon.ico' %}" type="image/x-icon"/>
 
-{% block title %}Home{% endblock %}
-
-{% block content %}
-{% if user.is_authenticated %}
-  {% if user.is_staff %}
-  Hi Admininstrator {{ user.username}}!
-  {% else %}
-  Hi {{ user.username }}!
-  {% endif %}
-  <p><a href="{% url 'login' %}">Log Out</a></p>
-  </button>
-{% else %}
-  <p>You are not logged in</p>
-  <p><a href="{% url 'login' %}">Log In</a></p>
-  <p><a href="{% url 'signup' %}">Register</a></p>
-  <p><a href="{% url 'password_reset' %}">Reset Password</a></p>
-{% endif %}
-{% endblock %}
+	<!-- Fonts and icons -->
+	<script src="{% static '/assets/js/plugin/webfont/webfont.min.js' %}"></script>
+	<script>
+		WebFont.load({
+			google: {"families":["Open+Sans:300,400,600,700"]},
+			custom: {"families":["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands"], urls: ["{% static '/assets/css/fonts.css' %}"]},
+			active: function() {
+				sessionStorage.fonts = true;
+			}
+		});
+	</script>
+	
+	<!-- CSS Files -->
+	<link rel="stylesheet" href="{% static '/assets/css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static '/assets/css/azzara.min.css' %}">
+</head>
+<body class="page-not-found">
+	<div class="wrapper not-found">
+		<h1 style="text-align: center" class="animated fadeIn">MHA Game</h1>
+		<div class="desc animated fadeIn"><span>Welcome To The Game</span><br/>What Would You Like To Do?</div>
+		<a href="/login" class="btn btn-primary btn-back-home mt-4 animated fadeInUp">
+			<span class="btn-label mr-2">
+				<i class="flaticon-home"></i>
+			</span>
+			Go To Login
+		</a>
+        <a href="/signup" class="btn btn-primary btn-back-home mt-4 animated fadeInUp">
+			<span class="btn-label mr-2">
+				<i class="flaticon-home"></i>
+			</span>
+			Register An Account
+		</a>
+	</div>
+	<script src="{% static '/assets/js/core/jquery.3.2.1.min.js' %}"></script>
+	<script src="{% static '/assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js' %}"></script>
+	<script src="{% static '/assets/js/core/popper.min.js' %}"></script>
+	<script src="{% static '/assets/js/core/bootstrap.min.js' %}"></script>
+	<script src="{% static '/assets/js/ready.js' %}"></script>
+</body>
+</html>

@@ -36,8 +36,8 @@
 			<!-- Logo Header -->
 			<div class="logo-header">
 				
-				<a href="index.html" class="logo">
-					<img src="{% static '/assets/img/icon.png' %}" alt="navbar brand" class="navbar-brand">
+				<a href="/student/" class="logo">
+					<img src="{% static '/assets/img/logoazzara.svg' %}" alt="navbar brand" class="navbar-brand">
 				</a>
 				<button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon">
@@ -86,7 +86,7 @@
 								<i class="flaticon-right-arrow"></i>
 							</li>
 							<li class="nav-item">
-								<a href="#">Buttons</a>
+								<a href="#">Next</a>
 							</li>
 						</ul>
 					</div>	<!-- end added code -->
@@ -149,7 +149,7 @@
 										<div class="avatar-lg"><img src="{% static '/assets/img/profile.jpg' %}" alt="image profile" class="avatar-img rounded"></div>
 										<div class="u-text">
 											<h4>{{ user.first_name }}</h4>
-											<p class="text-muted">hello@example.com</p><a href="profile" class="btn btn-rounded btn-danger btn-sm">View Profile</a>
+											<p class="text-muted">{{user.email}}</p><a href="profile" class="btn btn-rounded btn-danger btn-sm">View Profile</a>
 										</div>
 									</div>
 								</li>
@@ -198,7 +198,7 @@
 							<div class="collapse in" id="collapseExample">
 								<ul class="nav">
 									<li>
-										<a href="#profile">
+										<a href="profile">
 											<span class="link-collapse">My Profile</span>
 										</a>
 									</li>
@@ -218,7 +218,7 @@
 					</div>
 					<ul class="nav">
 						<li class="nav-item active">
-							<a href="index.html">
+							<a href="/student/">
 								<i class="fas fa-home"></i>
 								<p>Dashboard</p>
 								<span class="badge badge-count"></span>
