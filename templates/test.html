@@ -1,67 +1,29 @@
 <!DOCTYPE html>
 {% load static %}
 <html>
-<head>
-<<<<<<< HEAD
-</head>
+<head>  
+    <title>Using Jquery Datatable</title>  
+  
+    <head>  
+        <script src="https://code.jquery.com/jquery-3.5.1.js" type="text/javascript"></script>  
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css" />  
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css" />  
+	
+        <script type="text/javascript"> 
 
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.2.4/css/buttons.dataTables.min.css">
-=======
 
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
-	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css">
-
-	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-	<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
-	<script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
-
-	<script>
-		$(document).ready(function() {
-    		$('#example').DataTable();
-		} );
-	</script>
-</head>
->>>>>>> 5f2acfd9036e68a7056ed2a43dcec6dae7927395
-
+$(document).ready(function ()  
+{  
+    $('#example').dataTable(  
+    {});  
+});  
+        </script>   
+    </head>  
 <body>
 <div>
 
-<table id="example" class=display" cellspacing="0" style="width:100%">
-        <thead>
-            <tr>
-                <th>Student e-mail</th>
-	        <th>Password</th>
-		<th>First Name</th>
-                <th>Last Name</th>
-            </tr>
-        </thead>
-        <tbody>
-                <tr>
-                    {% for student in x %}
-			<tr>
-			<td>{{student.stud_email}}</td>
-			<td>{{student.password}}</td>
-                        <td>{{student.student_fname}}</td>
-                        <td> {{student.student_lname }}</td>
-			</tr>
-                    {% endfor %}
-                </tr>
-
-<<<<<<< HEAD
-        </tbody>
-        <tfoot>
-            <tr>
-                <th>Student e-mail</th>
-                <th>Password</th>
-		<th>First Name</th>
-	        <th>Last Name</th>
-            </tr>
-        </tfoot>
-</table>
-
-</div>
-=======
+<div class="container">
+<div class="row">
 <table id="example" class="table table-striped table-bordered" style="width:100%">
         <thead>
             <tr>
@@ -92,7 +54,10 @@
             </tr>
         </tfoot>
     </table>
->>>>>>> 5f2acfd9036e68a7056ed2a43dcec6dae7927395
+</div>
+</div>
+        <script src="https:////cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js" type="text/javascript"></script>  
+        <script src="https://code.jquery.com/jquery-3.5.1.js" type="text/javascript"></script>  
 </body>
 
 </html>

@@ -35,7 +35,7 @@
 			<!-- Logo Header -->
 			<div class="logo-header">
 				
-				<a href="index.html" class="logo">
+				<a href="/student/" class="logo">
 					<img src="{% static '/assets/img/logoazzara.svg' %}" alt="navbar brand" class="navbar-brand">
 				</a>
 				<button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -74,80 +74,15 @@
 								<i class="fa fa-search"></i>
 							</a>
 						</li>
-						<li class="nav-item dropdown hidden-caret">
+						<!-- <li class="nav-item dropdown hidden-caret">
 							<a class="nav-link dropdown-toggle" href="#" id="messageDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								<i class="fa fa-envelope"></i>
-							</a>
-							<ul class="dropdown-menu messages-notif-box animated fadeIn" aria-labelledby="messageDropdown">
-								<li>
-									<div class="dropdown-title d-flex justify-content-between align-items-center">
-										Messages 									
-										<a href="#" class="small">Mark all as read</a>
-									</div>
-								</li>
-								<li>
-									<div class="message-notif-scroll scrollbar-outer">
-										<div class="notif-center">
-											<a href="#">
-												<div class="notif-img"> 
-													<img src="{% static '/assets/img/jm_denis.jpg' %}" alt="Img Profile">
-												</div>
-												<div class="notif-content">
-													<span class="subject">Jimmy Denis</span>
-													<span class="block">
-														How are you ?
-													</span>
-													<span class="time">5 minutes ago</span> 
-												</div>
-											</a>
-											<a href="#">
-												<div class="notif-img"> 
-													<img src="{% static '/assets/img/chadengle.jpg' %}" alt="Img Profile">
-												</div>
-												<div class="notif-content">
-													<span class="subject">Chad</span>
-													<span class="block">
-														Ok, Thanks !
-													</span>
-													<span class="time">12 minutes ago</span> 
-												</div>
-											</a>
-											<a href="#">
-												<div class="notif-img"> 
-													<img src="{% static '/assets/img/mlane.jpg' %}" alt="Img Profile">
-												</div>
-												<div class="notif-content">
-													<span class="subject">Jhon Doe</span>
-													<span class="block">
-														Ready for the meeting today...
-													</span>
-													<span class="time">12 minutes ago</span> 
-												</div>
-											</a>
-											<a href="#">
-												<div class="notif-img"> 
-													<img src="{% static '/assets/img/talha.jpg' %}" alt="Img Profile">
-												</div>
-												<div class="notif-content">
-													<span class="subject">Talha</span>
-													<span class="block">
-														Hi, Apa Kabar ?
-													</span>
-													<span class="time">17 minutes ago</span> 
-												</div>
-											</a>
-										</div>
-									</div>
-								</li>
-								<li>
-									<a class="see-all" href="javascript:void(0);">See all messages<i class="fa fa-angle-right"></i> </a>
-								</li>
-							</ul>
+							</a> -->
 						</li>
 						<li class="nav-item dropdown hidden-caret">
 							<a class="nav-link dropdown-toggle" href="#" id="notifDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								<i class="fa fa-bell"></i>
-								<span class="notification">4</span>
+								<!-- <span class="notification"></span> -->
 							</a>
 							<ul class="dropdown-menu notif-box animated fadeIn" aria-labelledby="notifDropdown">
 								<li>
@@ -218,7 +153,7 @@
 								</li>
 								<li>
 									<div class="dropdown-divider"></div>
-									<a class="dropdown-item" href="#">My Profile</a>
+									<a class="dropdown-item" href="/student/profile">My Profile</a>
 									<a class="dropdown-item" href="#">My Balance</a>
 									<a class="dropdown-item" href="#">Inbox</a>
 									<div class="dropdown-divider"></div>
@@ -283,7 +218,7 @@
 					</div>
 					<ul class="nav">
 						<li class="nav-item active">
-							<a href="index.html">
+							<a href="/student/">
 								<i class="fas fa-home"></i>
 								<p>Dashboard</p>
 								<span class="badge badge-count"></span>
@@ -304,18 +239,34 @@
 							<div class="collapse" id="base">
 								<ul class="nav nav-collapse">
 									<li>
-										<a href="creategame.html">
-											<span class="sub-item">Create Game</span>
+										<a href="gameOverview">
+											<span class="sub-item">Game Overview</span>
 										</a>
 									</li>
 									<li>
-										<a href="viewgames.html">
-											<span class="sub-item">View Game</span>
+										<a href="gameinput">
+											<span class="sub-item">Game Input</span>
 										</a>
 									</li>
 								</ul>
 							</div>
-						</li>		
+						</li>	
+                        <li class="nav-item">
+							<a data-toggle="collapse" href="#tables">
+								<i class="fas fa-table"></i>
+								<p>Calender</p>
+								<span class="caret"></span>
+							</a>
+							<div class="collapse" id="tables">
+								<ul class="nav nav-collapse">
+									<li>
+										<a href="calender">
+											<span class="sub-item">Calender</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</li>r
 					</ul>
 				</div>
 			</div>
@@ -350,45 +301,6 @@
 											</div>
 										</div>
 									</div>
-									<div class="row mt-3">
-										<div class="col-md-4">
-											<div class="form-group form-group-default">
-												<label>Birth Date</label>
-												<input type="text" class="form-control" id="datepicker" name="datepicker" value="03/21/1998" placeholder="Birth Date">
-											</div>
-										</div>
-										<div class="col-md-4">
-											<div class="form-group form-group-default">
-												<label>Gender</label>
-												<select class="form-control" id="gender">
-													<option>Male</option>
-													<option>Female</option>
-												</select>
-											</div>
-										</div>
-										<div class="col-md-4">
-											<div class="form-group form-group-default">
-												<label>Phone</label>
-												<input type="text" class="form-control" value="+62008765678" name="phone" placeholder="Phone">
-											</div>
-										</div>
-									</div>
-									<div class="row mt-3">
-										<div class="col-md-12">
-											<div class="form-group form-group-default">
-												<label>Address</label>
-												<input type="text" class="form-control" value="st Merdeka Putih, Jakarta Indonesia" name="address" placeholder="Address">
-											</div>
-										</div>
-									</div>
-									<div class="row mt-3 mb-1">
-										<div class="col-md-12">
-											<div class="form-group form-group-default">
-												<label>About Me</label>
-												<textarea class="form-control" name="about" placeholder="About Me" rows="3">A man who hates loneliness</textarea>
-											</div>
-										</div>
-									</div>
 									<div class="text-right mt-3 mb-3">
 										<button class="btn btn-success">Save</button>
 										<button class="btn btn-danger">Reset</button>
@@ -398,7 +310,7 @@
 						</div>
 						<div class="col-md-4">
 							<div class="card card-profile card-secondary">
-								<div class="card-header" style="background-image: url('{% static "/assets/img/blogpost.jpg" %}')">
+								<div class="card-header" style="background-image: url('{% static '/assets/img/blogpost.jpg' %}')">
 									<div class="profile-picture">
 										<div class="avatar avatar-xl">
 											<img src="{% static '/assets/img/profile.jpg' %}" alt="..." class="avatar-img rounded-circle">
@@ -412,20 +324,6 @@
 									</div>
 								</div>
 								<div class="card-footer">
-									<div class="row user-stats text-center">
-										<div class="col">
-											<div class="number">125</div>
-											<div class="title">Post</div>
-										</div>
-										<div class="col">
-											<div class="number">25K</div>
-											<div class="title">Followers</div>
-										</div>
-										<div class="col">
-											<div class="number">134</div>
-											<div class="title">Following</div>
-										</div>
-									</div>
 								</div>
 							</div>
 						</div>

@@ -5,7 +5,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<title>Login</title>
 	<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
-	<link rel="icon" href="{% static '/assets/img/icon.ico" type="image/x-icon"/>
+	<link rel="icon" href="{% static '/assets/img/icon.ico' %}" type="image/x-icon"/>
 
 	<!-- Fonts and icons -->
 	<script src="{% static '/assets/js/plugin/webfont/webfont.min.js' %}"></script>
@@ -23,6 +23,7 @@
 	<link rel="stylesheet" href="{% static '/assets/css/bootstrap.min.css' %}">
 	<link rel="stylesheet" href="{% static '/assets/css/azzara.min.css' %}">
 </head>
+<div  class="page-not-found">  
 <body class="login" method="post">
 	<div class="wrapper wrapper-login">
 		<div class="container container-login animated fadeIn">
@@ -43,7 +44,7 @@
 						<label class="custom-control-label" for="rememberme">Remember Me</label>
 					</div>
 					
-					<a href="#" class="link float-right">Forget Password ?</a>
+					<a href="/accounts/password_reset/" class="link float-right">Forget Password ?</a>
 				</div>
 				<div class="form-action mb-3">
 					<button class="btn btn-primary btn-rounded btn-login">Sign In</button>
@@ -59,5 +60,5 @@
 	<script src="{% static '/assets/js/core/popper.min.js' %}"></script>
 	<script src="{% static '/assets/js/core/bootstrap.min.js' %}"></script>
 	<script src="{% static '/assets/js/ready.js' %}"></script>
-</body>
+        </body></div>
 </html>
