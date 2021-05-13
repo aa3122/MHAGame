@@ -31,7 +31,7 @@
 		<!--
 			Tip 1: You can change the background color of the main header using: data-background-color="blue | purple | light-blue | green | orange | red"
 		-->
-		<div class="main-header" data-background-color="purple">
+		<div class="main-header" data-background-color="red">
 			<!-- Logo Header -->
 			<div class="logo-header">
 				
@@ -184,8 +184,12 @@
 						<div class="info">
 							<a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
 								<span>
-									Mr Anderson
-									<span class="user-level">Administrator</span>
+									{{user.first_name}} {{user.last_name}}
+									{% if user.is_staff %}
+									<span class="user-level">Staff</span>
+									{% else %}
+									<span class="user-level">Student</span>
+									{% endif %}
 									<span class="caret"></span>
 								</span>
 							</a>
@@ -269,7 +273,7 @@
 		</div>
 		<!-- End Sidebar -->
 
-		<div class="main-panel">
+		<div class="main-panel" data-background-color="bg3">
 
 			<div class="content">
 				<div class="page-inner">
