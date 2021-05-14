@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% extends 'base.html' %}
 {% load static %}
 <html lang="en">
 <head>
@@ -280,8 +281,8 @@
 					</div>
 					<div class="row">
                         <ul>
-                            {%  for user in all_users %}
-                                <li>{{ user.username }}</li>
+                            {% for result in displayusername %}
+                                <li>{{ result.username }}</li>
                             {% endfor %}
                         </ul>
 					</div>

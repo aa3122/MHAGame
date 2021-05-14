@@ -10,3 +10,6 @@ class Instructor(models.Model):
     class Meta:
         managed = False
         db_table = 'instructor'
+
+class displayusername(models.Model):
+	username=models.CharField(max_length=100)
