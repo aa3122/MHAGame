@@ -32,7 +32,7 @@
 		<!--
 			Tip 1: You can change the background color of the main header using: data-background-color="blue | purple | light-blue | green | orange | red"
 		-->
-		<div class="main-header" data-background-color="purple">
+		<div class="main-header" data-background-color="light-blue">
 			<!-- Logo Header -->
 			<div class="logo-header">
 				
@@ -161,7 +161,7 @@
 									<div class="dropdown-divider"></div>
 									<a class="dropdown-item" href="#">Account Setting</a>
 									<div class="dropdown-divider"></div>
-									<a class="dropdown-item" href="logout">Logout</a>
+									<a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
 								</li>
 							</ul>
 						</li>
@@ -274,25 +274,15 @@
 		<!-- End Sidebar -->
 
 		<div class="main-panel">
-
 			<div class="content">
 				<div class="page-inner">
 					<div class="page-header">
-						<div class="btn-group btn-group-page-header ml-auto">
-							<button type="button" class="btn btn-light btn-round btn-page-header-dropdown dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								<i class="fa fa-ellipsis-h"></i>
-							</button>
-							<div class="dropdown-menu">
-								<div class="arrow"></div>
-								<a class="dropdown-item" href="#">Action</a>
-								<a class="dropdown-item" href="#">Another action</a>
-								<a class="dropdown-item" href="#">Something else here</a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="#">Separated link</a>
-							</div>
-						</div>
+						{% block title %}
+                        {% endblock %}
 					</div>
 					<div class="row">
+                        {% block content %}
+                        {% endblock %}
 					</div>
 				</div>
 			</div>

@@ -35,8 +35,8 @@
 			<!-- Logo Header -->
 			<div class="logo-header">
 
-				<a href="index.html" class="logo">
-					<img src="{% static '/assets/img/MHALogoTest.svg' %}" alt="navbar brand" class="navbar-brand"> <!-- changed azzara logo to MHALogoTest -->
+				<a href="/administration/" class="logo">
+					<img src="{% static '/assets/img/logoazzara.svg' %}" alt="navbar brand" class="navbar-brand"> <!-- changed azzara logo to MHALogoTest -->
 				</a>
 				<button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon">
@@ -133,13 +133,13 @@
 								</li>
 								<li>
 									<div class="dropdown-divider"></div>
-									<a class="dropdown-item" href="#">My Profile</a>
+									<a class="dropdown-item" href="profile">My Profile</a>
 									<a class="dropdown-item" href="#">My Balance</a>
 									<a class="dropdown-item" href="#">Inbox</a>
 									<div class="dropdown-divider"></div>
 									<a class="dropdown-item" href="#">Account Setting</a>
 									<div class="dropdown-divider"></div>
-									<a class="dropdown-item" href="accounts/login">Logout</a>
+									<a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
 								</li>
 							</ul>
 						</li>
@@ -163,8 +163,12 @@
 						<div class="info">
 							<a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
 								<span>
-									Mr Anderson
-									<span class="user-level">Administrator</span>
+									{{user.first_name}} {{user.last_name}}
+									{% if user.is_staff %}
+									<span class="user-level">Staff</span>
+									{% else %}
+									<span class="user-level">Student</span>
+									{% endif %}
 									<span class="caret"></span>
 								</span>
 							</a>
@@ -173,7 +177,7 @@
 							<div class="collapse in" id="collapseExample">
 								<ul class="nav">
 									<li>
-										<a href="#profile">
+										<a href="profile">
 											<span class="link-collapse">My Profile</span>
 										</a>
 									</li>
@@ -193,7 +197,7 @@
 					</div>
 					<ul class="nav">
 						<li class="nav-item active">
-							<a href="">
+							<a href="/administration/">
 								<i class="fas fa-home"></i>
 								<p>Dashboard</p>
 								<span class="badge badge-count"></span>
@@ -249,30 +253,18 @@
 		<!-- End Sidebar -->
 
 		<div class="main-panel">
-
 			<div class="content">
 				<div class="page-inner">
 					<div class="page-header">
-						<h4 class="page-title">Admin Dashboard</h4>
-						<div class="btn-group btn-group-page-header ml-auto">
-							<button type="button" class="btn btn-light btn-round btn-page-header-dropdown dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								<i class="fa fa-ellipsis-h"></i>
-							</button>
-							<div class="dropdown-menu">
-								<div class="arrow"></div>
-								<a class="dropdown-item" href="#">Action</a>
-								<a class="dropdown-item" href="#">Another action</a>
-								<a class="dropdown-item" href="#">Something else here</a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="#">Separated link</a>
-							</div>
-						</div>
+						{% block title %}
+                        {% endblock %}
 					</div>
 					<div class="row">
+                        {% block content %}
+                        {% endblock %}
 					</div>
 				</div>
 			</div>
-
 		</div>
 
 		<!-- Custom template | don't include it in your project! -->

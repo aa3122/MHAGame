@@ -29,3 +29,8 @@ def test(request):
 
 def testcalender(request):
     return render(request, 'testcalender.html')
+
+@staff_member_required(login_url="/student")
+def adminProfile(request):
+	return render(request, 'adminProfile.html')
+
