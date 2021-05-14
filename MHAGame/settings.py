@@ -122,7 +122,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/MHAGame/static/'
-STATIC_ROOT = 'staticfiles'
+#STATIC_ROOT = 'staticfiles'
 
 STATICFILES_DIR = (
 	os.path.join(BASE_DIR, "static"),

@@ -1,125 +1,126 @@
-/* initialize the calendar
------------------------------------------------------------------*/
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
 
-var date = new Date();
-var d = date.getDate();
-var m = date.getMonth();
-var y = date.getFullYear();
-var className = Array('fc-primary', 'fc-danger', 'fc-default', 'fc-success', 'fc-info', 'fc-warning', 'fc-danger-solid', 'fc-warning-solid', 'fc-success-solid', 'fc-default-solid', 'fc-success-solid', 'fc-primary-solid');
+<meta charset='utf-8' />
+<link href="{% static 'lib/main.css' %}" rel='stylesheet' />
+<script src="{% static 'lib/lib/main.js' %}"></script>
+<script>
 
-$calendar = $('#calendar');
-$calendar.fullCalendar({
-	header: {
-		left: 'prev,next today',
-		center: 'title',
-		right: 'month,agendaWeek,agendaDay,listWeek'
-	},
-	selectable : true,
-	selectHelper: true,
-	select: function(start, end) {
+  document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
 
-		// on select we show the Sweet Alert modal with an input
-		swal({
-			title: 'Create an Event',
-			html: '',
-			content: {
-				element: "input",
-				attributes: {
-					placeholder: "Event Title",
-					type: "text",
-					id: "input-field",
-					className: "form-control"
-				},
-			},
-			buttons: {
-				cancel: true,
-				confirm: true,
-			},
-		}).then(
-		function() {
-			var eventData;
-			var classRandom = className[Math.floor(Math.random()*className.length)];
-			event_title = $('#input-field').val();
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      headerToolbar: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'dayGridMonth,timeGridWeek,timeGridDay'
+      },
+      initialDate: '2020-09-12',
+      navLinks: true, // can click day/week names to navigate views
+      selectable: true,
+      selectMirror: true,
+      select: function(arg) {
+        var title = prompt('Event Title:');
+        if (title) {
+          calendar.addEvent({
+            title: title,
+            start: arg.start,
+            end: arg.end,
+            allDay: arg.allDay
+          })
+        }
+        calendar.unselect()
+      },
+      eventClick: function(arg) {
+        if (confirm('Are you sure you want to delete this event?')) {
+          arg.event.remove()
+        }
+      },
+      editable: true,
+      dayMaxEvents: true, // allow "more" link when too many events
+      events: [
+        {
+          title: 'All Day Event',
+          start: '2020-09-01'
+        },
+        {
+          title: 'Long Event',
+          start: '2020-09-07',
+          end: '2020-09-10'
+        },
+        {
+          groupId: 999,
+          title: 'Repeating Event',
+          start: '2020-09-09T16:00:00'
+        },
+        {
+          groupId: 999,
+          title: 'Repeating Event',
+          start: '2020-09-16T16:00:00'
+        },
+        {
+          title: 'Conference',
+          start: '2020-09-11',
+          end: '2020-09-13'
+        },
+        {
+          title: 'Meeting',
+          start: '2020-09-12T10:30:00',
+          end: '2020-09-12T12:30:00'
+        },
+        {
+          title: 'Lunch',
+          start: '2020-09-12T12:00:00'
+        },
+        {
+          title: 'Meeting',
+          start: '2020-09-12T14:30:00'
+        },
+        {
+          title: 'Happy Hour',
+          start: '2020-09-12T17:30:00'
+        },
+        {
+          title: 'Dinner',
+          start: '2020-09-12T20:00:00'
+        },
+        {
+          title: 'Birthday Party',
+          start: '2020-09-13T07:00:00'
+        },
+        {
+          title: 'Click for Google',
+          url: 'http://google.com/',
+          start: '2020-09-28'
+        }
+      ]
+    });
 
-			if (event_title) {
-				eventData = {
-					title: event_title,
-					start: start,
-					className: classRandom,
-					end: end
-				};
-				$calendar.fullCalendar('renderEvent', eventData, true); // stick? = true
-			}
+    calendar.render();
+  });
 
-			$calendar.fullCalendar('unselect');
-		}
-		);
-	},
-	events: [
-	{
-		title: 'All Day Event',
-		start: new Date(y, m, 1),
-		className: 'fc-default'
-	},
-	{
-		id: 999,
-		title: 'Repeating Event',
-		start: new Date(y, m, d - 3, 16, 0),
-		allDay: false,
-		className: 'fc-warning'
-	},
-	{
-		id: 999,
-		title: 'Repeating Event',
-		start: new Date(y, m, d + 4, 16, 0),
-		allDay: false,
-		className: 'fc-info'
-	},
-	{
-		title: 'Meeting',
-		start: new Date(y, m, d, 10, 30),
-		allDay: false,
-		className: 'fc-danger'
-	},
-	{
-		title: 'Lunch',
-		start: new Date(y, m, d, 12, 0),
-		end: new Date(y, m, d, 14, 0),
-		allDay: false,
-		className: 'fc-primary',
-		description: 'Eat Bro'
-	},
-	{
-		title: 'Meeting',
-		start: new Date(y, m, d + 3, 13, 30),
-		allDay: false,
-		className: 'fc-primary-solid',
-		description: 'Meeting'
-	},
-	{
-		title: 'Birthday Party',
-		start: new Date(y, m, d + 1, 19, 0),
-		end: new Date(y, m, d + 1, 22, 30),
-		allDay: false,
-		className: 'fc-success',
-		description: 'Coba Googling dulu'
-	},
-	{
-		title: 'Lunch',
-		start: new Date(y, m, d + 6, 13, 30),
-		allDay: false,
-		className: 'fc-success-solid',
-		description: 'Lunch'
-	},
-	{
-		title: 'Click for Google',
-		start: new Date(y, m, 28),
-		end: new Date(y, m, 29),
-		allDay: false,
-		url: 'http://google.com/',
-		className: 'fc-info-solid',
-	}
-	],
+</script>
+<style>
 
+  body {
+    margin: 40px 10px;
+    padding: 0;
+    font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+    font-size: 14px;
+  }
 
-});
+  #calendar {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+</style>
+</head>
+<body>
+
+  <div id='calendar'></div>
+
+</body>
+</html>

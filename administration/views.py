@@ -3,9 +3,12 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 from login.models import Student 
+from django.contrib.auth import get_user_model
 
 @staff_member_required(login_url="/student")
 def adminDashboard(request):
+	User = get_user_model()
+	users = User.objects.all()
 	#return HttpResponse("you're at the administration dashboard :)")
 	return render(request, 'adminDashboard.html')
 @staff_member_required(login_url="/student")
@@ -21,3 +24,6 @@ def adminViewStudents(request):
 def test(request):
 	x = Student.objects.all()
 	return render(request, 'test.html', {'x':x})
+
+def testcalender(request):
+    return render(request, 'testcalender.html')
