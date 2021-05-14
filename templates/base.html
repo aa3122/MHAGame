@@ -117,17 +117,30 @@
 						</li>
 						<li class="nav-item dropdown hidden-caret">
 							<a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false">
-								<div class="avatar-sm">
-									<img src="{% static '/assets/img/profile.jpg' %}" alt="..." class="avatar-img rounded-circle">
-								</div>
+								<div class="avatar">
+        <span id = "initial1" class="avatar-title rounded-circle"></span>
+    <script>
+let first = '{{user.first_name}}';
+let last = '{{user.last_name}}';
+let first1 = first.charAt(0);
+let last1 = last.charAt(0);
+let initials = first1 + last1;
+document.getElementById("initial1").innerHTML = initials;
+</script>
+    </div>
 							</a>
 							<ul class="dropdown-menu dropdown-user animated fadeIn">
 								<li>
 									<div class="user-box">
-										<div class="avatar-lg"><img src="{% static '/assets/img/profile.jpg' %}" alt="image profile" class="avatar-img rounded"></div>
+										<div class="avatar">
+        <span id = "initial2" class="avatar-title rounded-circle border border-white"></span>
+    <script>
+document.getElementById("initial2").innerHTML = initials;
+</script>
+    </div>
 										<div class="u-text">
-											<h4>Hizrian</h4>
-											<p class="text-muted">hello@example.com</p><a href="profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a>
+											<h4>{{user.first_name}}</h4>
+											<p class="text-muted">{{user.email}}</p><a href="profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a>
 										</div>
 									</div>
 								</li>
@@ -158,7 +171,12 @@
 				<div class="sidebar-content">
 					<div class="user">
 						<div class="avatar-sm float-left mr-2">
-							<img src="{% static '/assets/img/profile.jpg' %}" alt="..." class="avatar-img rounded-circle">
+							<div class="avatar">
+        <span id = "initial" class="avatar-title rounded-circle border border-white"></span>
+    <script>
+document.getElementById("initial").innerHTML = initials;
+</script>
+    </div>
 						</div>
 						<div class="info">
 							<a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
