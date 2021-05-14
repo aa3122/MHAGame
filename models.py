@@ -184,7 +184,7 @@ class Game(models.Model):
     cost = models.DecimalField(max_digits=12,decimal_places=2)
     initial_pop = models.IntegerField()
     access_ScoreFunctiob = models.DecimalField(max_digits=12,decimal_places=3)
-    email = models.ForeignKey('AuthUser', models.DO_NOTHING)
+    email = models.ForeignKey('AuthUser', models.DO_NOTHING, db_column='email')
 
     class Meta:
         managed = False
