@@ -6,6 +6,195 @@
     <h4 class="page-title">Student Dashboard</h4>
     {% endblock %}
     {% block content %}
-    <h2>All the small things</h2>
+    <script src="{% static '/assets/js/plugin/chart.js/chart.min.js' %}"></script>
+    <div class="col-md-6">
+							<div class="card">
+								<div class="card-header">
+									<div class="card-title">Satisfaction Score Vs. Class Average</div>
+								</div>
+								<div class="card-body">
+									<div class="chart-container">
+										<canvas id="multipleLineChart"></canvas>
+									</div>
+								</div>
+							</div>
+						</div>
+                        <div class="col-md-6">
+							<div class="card">
+								<div class="card-header">
+									<div class="card-title">Radar Chart</div>
+								</div>
+								<div class="card-body">
+									<div class="chart-container">
+										<canvas id="radarChart"></canvas>
+									</div>
+								</div>
+							</div>
+						</div>
+                        <div class="col-sm-6 col-md-3">
+							<div class="card card-stats card-round">
+								<div class="card-body ">
+									<div class="row">
+										<div class="col-5">
+											<div class="icon-big text-center">
+												<i class="flaticon-coins text-success"></i>
+											</div>
+										</div>
+										<div class="col col-stats">
+											<div class="numbers">
+												<p class="card-category">Tobacco Products</p>
+												<h4 class="card-title">X%</h4>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+                        <div class="col-sm-6 col-md-3">
+							<div class="card card-stats card-round">
+								<div class="card-body ">
+									<div class="row">
+										<div class="col-5">
+											<div class="icon-big text-center">
+												<i class="flaticon-coins text-success"></i>
+											</div>
+										</div>
+										<div class="col col-stats">
+											<div class="numbers">
+												<p class="card-category">Alcohol</p>
+												<h4 class="card-title">X%</h4>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+                        <div class="col-sm-6 col-md-3">
+							<div class="card card-stats card-round">
+								<div class="card-body ">
+									<div class="row">
+										<div class="col-5">
+											<div class="icon-big text-center">
+												<i class="flaticon-coins text-success"></i>
+											</div>
+										</div>
+										<div class="col col-stats">
+											<div class="numbers">
+												<p class="card-category">Fatty Foods</p>
+												<h4 class="card-title">X%</h4>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+                        <div class="col-sm-6 col-md-3">
+							<div class="card card-stats card-round">
+								<div class="card-body ">
+									<div class="row">
+										<div class="col-5">
+											<div class="icon-big text-center">
+												<i class="flaticon-coins text-success"></i>
+											</div>
+										</div>
+										<div class="col col-stats">
+											<div class="numbers">
+												<p class="card-category">Sugary Foods</p>
+												<h4 class="card-title">X%</h4>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+<script>
+    var multipleLineChart = document.getElementById('multipleLineChart').getContext('2d');
+    var myMultipleLineChart = new Chart(multipleLineChart, {
+			type: 'line',
+			data: {
+				labels: ["Start", "Deadline 1", "Deadline 2", "Deadline 3", "Deadline 4", "Deadline 5", "Deadline 6", "Deadline 7", "Deadline 8", "Deadline 9", "Deadline 10", "Finish"],
+				datasets: [{
+					label: "Your Satisfaction Score",
+					borderColor: "#1d7af3",
+					pointBorderColor: "#FFF",
+					pointBackgroundColor: "#1d7af3",
+					pointBorderWidth: 2,
+					pointHoverRadius: 4,
+					pointHoverBorderWidth: 1,
+					pointRadius: 4,
+					backgroundColor: 'transparent',
+					fill: true,
+					borderWidth: 2,
+					data: [0, 7, 6, 4, 3, 8, 9, 2, 5, 4, 6,10]
+				},{
+					label: "Average Satisfaction Score",
+					borderColor: "#f3545d",
+					pointBorderColor: "#FFF",
+					pointBackgroundColor: "#f3545d",
+					pointBorderWidth: 2,
+					pointHoverRadius: 4,
+					pointHoverBorderWidth: 1,
+					pointRadius: 4,
+					backgroundColor: 'transparent',
+					fill: true,
+					borderWidth: 2,
+					data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 9.5, 9.5,10]
+				}]
+			},
+			options : {
+				responsive: true, 
+				maintainAspectRatio: false,
+				legend: {
+					position: 'top',
+				},
+				tooltips: {
+					bodySpacing: 4,
+					mode:"nearest",
+					intersect: 0,
+					position:"nearest",
+					xPadding:10,
+					yPadding:10,
+					caretPadding:10
+				},
+				layout:{
+					padding:{left:15,right:15,top:15,bottom:15}
+				}
+			}
+    });
+    </script>
+    <script>
+    var radarChart = document.getElementById('radarChart').getContext('2d')
+    var myRadarChart = new Chart(radarChart, {
+			type: 'radar',
+			data: {
+				labels: ["Preventive Services", "Acute Care Services", "Ambulatory Care Services", "Long Term Care Services", "Pharmacy Benefits"],
+				datasets: [{
+					data: [20, 10, 30, 2, 30],
+					borderColor: "#1d111",
+					backgroundColor : 'rgba(29, 122, 243, 0.25)',
+					pointBackgroundColor: "#1d7af3",
+					pointHoverRadius: 4,
+					pointRadius: 3,
+					label: 'Team 1'
+				}, {
+					data: [10, 20, 15, 30, 22],
+					borderColor: '#716aca',
+					backgroundColor: 'rgba(113, 106, 202, 0.25)',
+					pointBackgroundColor: "#716aca",
+					pointHoverRadius: 4,
+					pointRadius: 3,
+					label: 'Team 2'
+				},
+				]
+			},
+			options : {
+				responsive: true, 
+				maintainAspectRatio: false,
+				legend : {
+					position: 'bottom'
+				}
+			}
+		});
+    </script>
     {% endblock %}
 </html>
