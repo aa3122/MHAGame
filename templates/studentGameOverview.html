@@ -84,54 +84,54 @@
         </div>
     </div>
     <div>
-        <td style="width: 40%; vertical-align: middle;">By passing a parameter, you can execute something else for cancel</td>
-        <td>
-            <button type="button" class="btn btn-danger" id="alert_demo_8">Show me</button>
-        </td>
+        <button type="button" class="btn btn-danger" id="alert_demo_8">Lock in answers</button>
     </div>
     <script>
 		//== Class definition
 		var SweetAlert2Demo = function() {
-        var initDemos = function() {
-            $('#alert_demo_8').click(function(e) {
-                swal({
-                    title: 'Are you sure?',
-                    text: "You won't be able to revert this!",
-                    type: 'warning',
-                    buttons:{
-                        cancel: {
-                            visible: true,
-                            text : 'No, cancel!',
-                            className: 'btn btn-danger'
-                        },
-                        confirm: {
-                            text : 'Yes, delete it!',
-                            className : 'btn btn-success'
-                        }
-                    }
-                }).then((willDelete) => {
-                    if (willDelete) {
-                        swal("Poof! Your imaginary file has been deleted!", {
-                            icon: "success",
-                            buttons : {
-                                confirm : {
-                                    className: 'btn btn-success'
-                                }
-                            }
-                        });
-                    } else {
-                        swal("Your imaginary file is safe!", {
-                            buttons : {
-                                confirm : {
-                                    className: 'btn btn-success'
-                                }
-                            }
-                        });
-                    }
-                });
-            })
 
-        };
+			//== Demos
+			var initDemos = function() {
+
+				$('#alert_demo_8').click(function(e) {
+					swal({
+						title: 'Are you sure?',
+						text: "You won't be able to revert this!",
+						type: 'warning',
+						buttons:{
+							cancel: {
+								visible: true,
+								text : 'No, cancel!',
+								className: 'btn btn-danger'
+							},
+							confirm: {
+								text : 'Yes, delete it!',
+								className : 'btn btn-success'
+							}
+						}
+					}).then((willDelete) => {
+						if (willDelete) {
+							swal("Poof! Your imaginary file has been deleted!", {
+								icon: "success",
+								buttons : {
+									confirm : {
+										className: 'btn btn-success'
+									}
+								}
+							});
+						} else {
+							swal("Your imaginary file is safe!", {
+								buttons : {
+									confirm : {
+										className: 'btn btn-success'
+									}
+								}
+							});
+						}
+					});
+				})
+
+			};
 
 			return {
 				//== Init
