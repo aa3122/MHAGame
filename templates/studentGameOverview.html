@@ -111,22 +111,22 @@
 				$('#alert_demo_8').click(function(e) {
 					swal({
 						title: 'Are you sure?',
-						text: "You won't be able to revert this!",
+						text: "You won't be able to change your answers once submitted!",
 						type: 'warning',
 						buttons:{
 							cancel: {
 								visible: true,
-								text : 'No, cancel!',
+								text : 'No, go back!',
 								className: 'btn btn-danger'
 							},
 							confirm: {
-								text : 'Yes, delete it!',
+								text : 'Yes, submit it!',
 								className : 'btn btn-success'
 							}
 						}
 					}).then((willDelete) => {
 						if (willDelete) {
-							swal("Poof! Your imaginary file has been deleted!", {
+							swal("Your answers have been submitted!", {
 								icon: "success",
 								buttons : {
 									confirm : {
@@ -135,7 +135,7 @@
 								}
 							});
 						} else {
-							swal("Your imaginary file is safe!", {
+							swal("Submit your answers when you're ready!", {
 								buttons : {
 									confirm : {
 										className: 'btn btn-success'
