@@ -12,7 +12,7 @@
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
 	<link rel="icon" href="{% static '/assets/img/icon.ico' %}" type="image/x-icon"/>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<!-- Fonts and icons -->
+	<!-- Fonts and icons
 	<script src="../../assets/js/plugin/webfont/webfont.min.js"></script>
 	<script>
 		WebFont.load({
@@ -26,13 +26,13 @@
 
 	<link rel="stylesheet" href="{% static '/assets/css/bootstrap.min.css' %}">
 	<link rel="stylesheet" href="{% static '/assets/css/azzara.min.css' %}">
-
+    -->
 	<link href="{% static '/assets/styles.css' %}" rel="stylesheet" />
 	<link href="{% static '/assets/prism.css' %}" rel="stylesheet" />
 </head>
 <body>
-<div id="calendar"></div>
-<script type="text/javascript" src="{% static '//themera.net/embed/themera.js?id=71769' %}"></script>
+    <div id="calendar"></div>
+    <script type="text/javascript" src="{% static '//themera.net/embed/themera.js?id=71769' %}"></script>
 </body>
 <script src="{% static '/assets/js/core/jquery.3.2.1.min.js' %}"></script>
 <script src="{% static '/assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js' %}"></script>
@@ -95,9 +95,9 @@
 	$calendar = $('#calendar');
 	$calendar.fullCalendar({
 		header: {
-			left: 'prev,next today',
+			left: 'prev, next, today',
 			center: 'title',
-			right: 'month,agendaWeek,agendaDay,listWeek'
+			right: 'month, agendaWeek, agendaDay, listWeek'
 		},
 		selectable : true,
 		selectHelper: true,
@@ -140,71 +140,7 @@
 			}
 			);
 		},
-		events: [
-		{
-			title: 'All Day Event',
-			start: new Date(y, m, 1),
-			className: 'fc-default'
-		},
-		{
-			id: 999,
-			title: 'Repeating Event',
-			start: new Date(y, m, d - 3, 16, 0),
-			allDay: false,
-			className: 'fc-warning'
-		},
-		{
-			id: 999,
-			title: 'Repeating Event',
-			start: new Date(y, m, d + 4, 16, 0),
-			allDay: false,
-			className: 'fc-info'
-		},
-		{
-			title: 'Meeting',
-			start: new Date(y, m, d, 10, 30),
-			allDay: false,
-			className: 'fc-danger'
-		},
-		{
-			title: 'Lunch',
-			start: new Date(y, m, d, 12, 0),
-			end: new Date(y, m, d, 14, 0),
-			allDay: false,
-			className: 'fc-primary',
-			description: 'Eat Bro'
-		},
-		{
-			title: 'Meeting',
-			start: new Date(y, m, d + 3, 13, 30),
-			allDay: false,
-			className: 'fc-primary-solid',
-			description: 'Meeting'
-		},
-		{
-			title: 'Birthday Party',
-			start: new Date(y, m, d + 1, 19, 0),
-			end: new Date(y, m, d + 1, 22, 30),
-			allDay: false,
-			className: 'fc-success',
-			description: 'Coba Googling dulu'
-		},
-		{
-			title: 'Lunch',
-			start: new Date(y, m, d + 6, 13, 30),
-			allDay: false,
-			className: 'fc-success-solid',
-			description: 'Lunch'
-		},
-		{
-			title: 'Click for Google',
-			start: new Date(y, m, 28),
-			end: new Date(y, m, 29),
-			allDay: false,
-			url: 'http://google.com/',
-			className: 'fc-info-solid',
-		}
-		],
+
 
 
 	});
