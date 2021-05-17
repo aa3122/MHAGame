@@ -2,10 +2,808 @@
 {% extends 'studentbase.html' %}
 {% load static %}
 <html lang="en">
+<style>
+	.valuePadding {
+  border: 1px inset #ccc;
+}
+.valuePadding input {
+  border: none;
+  padding:0px;
+  outline: none;
+}
+	</style>
     {% block title %}
     <h4 class="page-title">Student Game Input</h4>
     {% endblock %}
     {% block content %}
-    <h2>All the small things</h2>
+    <div class="col col-stats">
+				            <div class="col-sm-6 col-md-3">
+                            <!-- style="background:#ff3333;" -->
+							<div class="card card-stats card-success card-round">
+								<div class="card-body ">
+									<div class="row">
+										<div class="col-5">
+											<div class="icon-big text-center">
+												<i class="flaticon-analytics"></i>
+											</div>
+										</div>
+										<div class="col col-stats">
+											<div class="numbers">
+												<p class="card-category">Remaining Budget</p>
+												<h4 class="card-title">$ 1,345</h4>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+    {{ mygame }}
+    <div class="col-md-6">
+							<div class="card">
+								<div class="card-header">
+									<h4 class="card-title">Healthcare Expenses</h4>
+								</div>
+								<div class="card-body">
+									<ul class="nav nav-pills nav-secondary nav-pills-no-bd" id="pills-tab-without-border" role="tablist">
+										<li class="nav-item">
+											<a class="nav-link active" id="pills-preventative-tab-nobd" data-toggle="pill" href="#pills-preventative-nobd" role="tab" aria-controls="pills-preventative-nobd" aria-selected="true">Preventative Services</a>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link" id="pills-acute-tab-nobd" data-toggle="pill" href="#pills-acute-nobd" role="tab" aria-controls="pills-acute-nobd" aria-selected="false">Acute Care Services</a>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link" id="pills-amb-tab-nobd" data-toggle="pill" href="#pills-amb-nobd" role="tab" aria-controls="pills-amb-nobd" aria-selected="false">Ambulatory Care Services</a>
+										</li>
+                                        <li class="nav-item">
+											<a onselect="style = 'background:red'"class="nav-link" id="pills-ltcs-tab-nobd" data-toggle="pill" href="#pills-ltcs-nobd" role="tab" aria-controls="pills-ltcs-nobd" aria-selected="false">Long Term Care Services</a>
+										</li>
+                                        <li class="nav-item">
+											<a class="nav-link" id="pills-pharm-tab-nobd" data-toggle="pill" href="#pills-pharm-nobd" role="tab" aria-controls="pills-pharm-nobd" aria-selected="false">Pharmacy Benefits</a>
+										</li>
+									</ul>
+
+
+
+
+
+									<div class="tab-content mt-2 mb-3" id="pills-without-border-tabContent">
+										<div class="tab-pane fade show active" id="pills-preventative-nobd" role="tabpanel" aria-labelledby="pills-preventative-tab-nobd">
+											<h2 >Patient Responsibility Percent</h2>
+
+											<div class="card-body">
+												<h5 class="card-title mb-3">Immunization</h5>
+												<div data-toggle="tooltip" data-placement="right" title="This, is the percentage the patient is responsible for paying." id="prevslider1" class="slider-primary"></div>
+												<p></p>
+                                            	<span class="valuePadding"><input id="previnput1" value="50">%</span>
+                                            	<p></p>
+											</div>
+
+	                                        <div class="card-body">
+	                                            <h5 class="card-title mb-3"> Education Program (Smoking Cessation)</h5>
+	                                            <div data-toggle="tooltip" data-placement="right" title="This, is the percentage the patient is responsible for paying."id="prevslider2" class="slider-primary"></div>
+	                                            <p></p>
+	                                            <span class="valuePadding"><input id="previnput2" value="50">%</span>
+	                                            <p></p>
+                                        	</div>
+
+                                            <div class="card-body">
+	                                            <h5 class="card-title mb-3"> Education Programs (Disease Management, Prevention)</h5>
+	                                            <div data-toggle="tooltip" data-placement="right" title="This, is the percentage the patient is responsible for paying."id="prevslider3" class="slider-primary"></div>
+	                                            <p></p>
+	                                            <span class="valuePadding"><input id="previnput3" value="50">%</span>
+	                                            <p></p>
+	                                        </div>
+
+                                            <div class="card-body">
+	                                            <h5 class="card-title mb-3"> Screening (Radiological/Surgical)</h5>
+	                                            <div data-toggle="tooltip" data-placement="right" title="This, is the percentage the patient is responsible for paying."id="prevslider4" class="slider-primary"></div>
+	                                            <p></p>
+	                                            <span class="valuePadding"><input id="previnput4" value="50">%</span>
+	                                            <p></p>
+                                            </div>
+
+                                            <div class="card-body">
+	                                            <h5 class="card-title mb-3"> Testing (Lab/Bloodwork)</h5>
+	                                            <div data-toggle="tooltip" data-placement="right" title="This, is the percentage the patient is responsible for paying."id="prevslider5" class="slider-primary"></div>
+	                                            <p></p>
+	                                            <span class="valuePadding"><input id="previnput5" value="50">%</span>
+	                                            <p></p>
+                                            </div>
+
+                                            <div class="card-body">
+	                                            <h5 class="card-title mb-3"> Testing (Pharmogenomics)</h5>
+	                                            <div data-toggle="tooltip" data-placement="right" title="This, is the percentage the patient is responsible for paying."id="prevslider6" class="slider-primary"></div>
+	                                            <p></p>
+	                                            <span class="valuePadding"><input id="previnput6" value="50">%</span>
+	                                            <p></p>
+                                            </div>
+
+                                            <div class="card-body">
+	                                            <h5 class="card-title mb-3"> Annual Exam with PCP</h5>
+	                                            <div data-toggle="tooltip" data-placement="right" title="This, is the percentage the patient is responsible for paying."id="prevslider7" class="slider-primary"></div>
+	                                            <p></p>
+	                                            <span class="valuePadding"><input id="previnput7" value="50">%</span>
+	                                            <p></p>
+                                                <div class="col-sm-6 col-md-3">
+                                                    <div class="card card-stats card-round">
+                                                        <div class="card-body ">
+                                                            <div class="row">
+                                                                <div class="col-5">
+                                                                    <div class="icon-big text-center">
+                                                                        <i class="flaticon-coins text-success"></i>
+                                                                    </div>
+                                                                </div>
+                                                            <div class="col col-stats">
+                                                        <div class="numbers">
+                                                    <p class="card-category">Effect On Budget</p>
+                                                <h4 class="card-title">-$100000</h4>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+                                        	</div>
+										</div>
+
+
+
+
+
+										<div class="tab-pane fade" id="pills-acute-nobd" role="tabpanel" aria-labelledby="pills-acute-tab-nobd">
+											<h2>Patient Responsibility Percent</h2>
+											<div class="card-body">
+												<h5 class="card-title mb-3"> Hospital Care</h5>
+	                                            <div data-toggle="tooltip" data-placement="right" title="This, is the percentage the patient is responsible for paying."id="acuteslider1" class="slider-primary"></div>
+	                                            <p></p>
+	                                            <span class="valuePadding"><input id="acuteinput1" value="50">%</span>
+	                                            <p></p>
+                                        	</div>
+                                            <div class="card-body">
+	                                            <h5 class="card-title mb-3"> Mental Health</h5>
+	                                            <div data-toggle="tooltip" data-placement="right" title="This, is the percentage the patient is responsible for paying."id="acuteslider2" class="slider-primary"></div>
+	                                            <p></p>
+	                                            <span class="valuePadding"><input id="acuteinput2" value="50">%</span>
+	                                            <p></p>
+	                                        </div>
+                                            <div class="card-body">
+	                                            <h5 class="card-title mb-3"> Emergency Care</h5>
+	                                            <div data-toggle="tooltip" data-placement="right" title="This, is the percentage the patient is responsible for paying."id="acuteslider3" class="slider-primary"></div>
+	                                            <p></p>
+	                                            <span class="valuePadding"><input id="acuteinput3" value="50">%</span>
+	                                            <p></p>
+                                                <div class="col-sm-6 col-md-3">
+							<div class="card card-stats card-round">
+								<div class="card-body ">
+									<div class="row">
+										<div class="col-5">
+											<div class="icon-big text-center">
+												<i class="flaticon-coins text-success"></i>
+											</div>
+										</div>
+										<div class="col col-stats">
+											<div class="numbers">
+												<p class="card-category">Effect On Budget</p>
+												<h4 class="card-title">-$100000</h4>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+	                                        </div>
+										</div>
+
+
+
+
+
+										<div class="tab-pane fade" id="pills-amb-nobd" role="tabpanel" aria-labelledby="pills-amb-tab-nobd">
+											<h2 >Patient Responsibility Percent</h2>
+											<div class="card-body">
+												<h5 class="card-title mb-3"> Outpatient Surgery</h5>
+	                                            <div data-toggle="tooltip" data-placement="right" title="This, is the percentage the patient is responsible for paying." id="ambslider1" class="slider-primary"></div>
+	                                            <p></p>
+	                                            <span class="valuePadding"><input id="ambinput1" value="50">%</span>
+	                                            <p></p>
+	                                        </div>
+                                            <div class="card-body">
+	                                            <h5 class="card-title mb-3"> Outpatient Radiology</h5>
+	                                            <div data-toggle="tooltip" data-placement="right" title="This, is the percentage the patient is responsible for paying."id="ambslider2" class="slider-primary"></div>
+	                                            <p></p>
+	                                            <span class="valuePadding"><input id="ambinput2" value="50">%</span>
+	                                            <p></p>
+	                                        </div>
+                                            <div class="card-body">
+	                                            <h5 class="card-title mb-3"> Physician Services (PCP)</h5>
+	                                            <div data-toggle="tooltip" data-placement="right" title="This, is the percentage the patient is responsible for paying."id="ambslider3" class="slider-primary"></div>
+	                                            <p></p>
+	                                            <span class="valuePadding"><input id="ambinput3" value="50">%</span>
+	                                            <p></p>
+	                                        </div>
+                                            <div class="card-body">
+	                                            <h5 class="card-title mb-3"> Physician Services (Specialist)</h5>
+	                                            <div data-toggle="tooltip" data-placement="right" title="This, is the percentage the patient is responsible for paying."id="ambslider4" class="slider-primary"></div>
+	                                            <p></p>
+	                                            <span class="valuePadding"><input id="ambinput4" value="50">%</span>
+	                                            <p></p>
+	                                        </div>
+                                            <div class="card-body">
+	                                            <h5 class="card-title mb-3"> Urgent Care Services</h5>
+	                                            <div data-toggle="tooltip" data-placement="right" title="This, is the percentage the patient is responsible for paying."id="ambslider5" class="slider-primary"></div>
+	                                            <p></p>
+	                                            <span class="valuePadding"><input id="ambinput5" value="50">%</span>
+	                                            <p></p>
+	                                        </div>
+                                            <div class="card-body">
+	                                            <h5 class="card-title mb-3"> Home Health</h5>
+	                                            <div data-toggle="tooltip" data-placement="right" title="This, is the percentage the patient is responsible for paying."id="ambslider6" class="slider-primary"></div>
+	                                            <p></p>
+	                                            <span class="valuePadding"><input id="ambinput6" value="50">%</span>
+	                                            <p></p>
+	                                        </div>
+                                            <div class="card-body">
+	                                            <h5 class="card-title mb-3"> Hospice</h5>
+	                                            <div data-toggle="tooltip" data-placement="right" title="This, is the percentage the patient is responsible for paying."id="ambslider7" class="slider-primary"></div>
+	                                            <p></p>
+	                                            <span class="valuePadding"><input id="ambinput7" value="50">%</span>
+	                                            <p></p>
+                                                <div class="col-sm-6 col-md-3">
+                                                    <div class="card card-stats card-round">
+                                                        <div class="card-body ">
+                                                            <div class="row">
+                                                                <div class="col-5">
+                                                                    <div class="icon-big text-center">
+                                                                        <i class="flaticon-coins text-success"></i>
+                                                                    </div>
+                                                                </div>
+                                                            <div class="col col-stats">
+                                                        <div class="numbers">
+                                                    <p class="card-category">Effect On Budget</p>
+                                                <h4 class="card-title">-$1000000</h4>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+	                                        </div>
+										</div>
+
+
+
+
+
+
+                                        <div class="tab-pane fade" id="pills-ltcs-nobd" role="tabpanel" aria-labelledby="pills-ltcs-tab-nobd">
+											<h2 >Patient Responsibility Percent</h2>
+											<div class="card-body">
+												<h5 class="card-title mb-3"> Long Term Acute Acre (LTAC)</h5>
+	                                            <div data-toggle="tooltip" data-placement="right" title="This, is the percentage the patient is responsible for paying." id="ltcsslider1" class="slider-primary"></div>
+	                                            <p></p>
+	                                            <span class="valuePadding"><input id="ltcsinput1" value="50">%</span>
+	                                            <p></p>
+	                                        </div>
+                                            <div class="card-body">
+	                                            <h5 class="card-title mb-3"> Skilled Nursing (SNF)</h5>
+	                                            <div data-toggle="tooltip" data-placement="right" title="This, is the percentage the patient is responsible for paying."id="ltcsslider2" class="slider-primary"></div>
+	                                            <p></p>
+	                                            <span class="valuePadding"><input id="ltcsinput2" value="50">%</span>
+	                                            <p></p>
+	                                        </div>
+                                            <div class="card-body">
+	                                            <h5 class="card-title mb-3"> Nursing Home</h5>
+	                                            <div data-toggle="tooltip" data-placement="right" title="This, is the percentage the patient is responsible for paying."id="ltcsslider3" class="slider-primary"></div>
+	                                            <p></p>
+	                                            <span class="valuePadding"><input id="ltcsinput3" value="50">%</span>
+	                                            <p></p>
+	                                        </div>
+                                            <div class="card-body">
+	                                            <h5 class="card-title mb-3"> Assisted Living</h5>
+	                                            <div data-toggle="tooltip" data-placement="right" title="This, is the percentage the patient is responsible for paying."id="ltcsslider4" class="slider-primary"></div>
+	                                            <p></p>
+	                                            <span class="valuePadding"><input id="ltcsinput4" value="50">%</span>
+	                                            <p></p>
+	                                        </div>
+                                            <div class="card-body">
+	                                            <h5 class="card-title mb-3"> Independant Living</h5>
+	                                            <div data-toggle="tooltip" data-placement="right" title="This, is the percentage the patient is responsible for paying."id="ltcsslider5" class="slider-primary"></div>
+	                                            <p></p>
+	                                            <span class="valuePadding"><input id="ltcsinput5" value="50">%</span>
+	                                            <p></p>
+                                                <div class="col-sm-6 col-md-3">
+                                                    <div class="card card-stats card-round">
+                                                        <div class="card-body ">
+                                                            <div class="row">
+                                                                <div class="col-5">
+                                                                    <div class="icon-big text-center">
+                                                                        <i class="flaticon-coins text-success"></i>
+                                                                    </div>
+                                                                </div>
+                                                            <div class="col col-stats">
+                                                        <div class="numbers">
+                                                    <p class="card-category">Effect On Budget</p>
+                                                <h4 class="card-title">-$1000000</h4>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+	                                        </div>
+										</div>
+
+
+
+
+
+                                        <div class="tab-pane fade" id="pills-pharm-nobd" role="tabpanel" aria-labelledby="pills-pharm-tab-nobd">
+											<h2 >Patient Responsibility Percent</h2>
+											<div class="card-body">
+												<h5 class="card-title mb-3"> Name Brand Drugs</h5>
+	                                            <div data-toggle="tooltip" data-placement="right" title="This, is the percentage the patient is responsible for paying." id="pharmslider1" class="slider-primary"></div>
+	                                            <p></p>
+	                                            <span class="valuePadding"><input id="pharminput1" value="50">%</span>
+	                                            <p></p>
+	                                        </div>
+                                            <div class="card-body">
+	                                            <h5 class="card-title mb-3"> Generic Drugs</h5>
+	                                            <div data-toggle="tooltip" data-placement="right" title="This, is the percentage the patient is responsible for paying."id="pharmslider2" class="slider-primary"></div>
+	                                            <p></p>
+	                                            <span class="valuePadding"><input id="pharminput2" value="50">%</span>
+	                                            <p></p>
+	                                        </div>
+                                            <div class="card-body">
+                                            <h5 class="card-title mb-3"> Specialty Drugs</h5>
+                                            <div data-toggle="tooltip" data-placement="right" title="This, is the percentage the patient is responsible for paying."id="pharmslider3" class="slider-primary"></div>
+                                            <p></p>
+                                            <span class="valuePadding"><input id="pharminput3" value="50">%</span>
+                                            <p></p>
+                                            <div class="card-body">
+	                                            <h5 class="card-title mb-3"> Durable Medical Equipment (DME)</h5>
+	                                            <div data-toggle="tooltip" data-placement="right" title="This, is the percentage the patient is responsible for paying."id="pharmslider4" class="slider-primary"></div>
+	                                            <p></p>
+	                                            <span class="valuePadding"><input id="pharminput4" value="50">%</span>
+	                                            <p></p>
+                                                <div class="col-sm-6 col-md-3">
+                                                    <div class="card card-stats card-round">
+                                                        <div class="card-body ">
+                                                            <div class="row">
+                                                                <div class="col-5">
+                                                                    <div class="icon-big text-center">
+                                                                        <i class="flaticon-coins text-success"></i>
+                                                                    </div>
+                                                                </div>
+                                                            <div class="col col-stats">
+                                                        <div class="numbers">
+                                                    <p class="card-category">Effect On Budget</p>
+                                                <h4 class="card-title">-$100000</h4>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+	                                        </div>
+										</div>
+									</div>
+								</div>
+							</div>
+                            <div class="card">
+								<div class="card-header">
+									<h4 class="card-title">Healthcare Budget and Taxes</h4>
+								</div>
+								<div class="card-body">
+									<ul class="nav nav-pills nav-secondary nav-pills-no-bd" id="pills-tab-without-border" role="tablist">
+										<li class="nav-item">
+											<a class="nav-link active" id="pills-init-tab-nobd" data-toggle="pill" href="#pills-init-nobd" role="tab" aria-controls="pills-init-nobd" aria-selected="true">Initial Budget</a>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link" id="pills-tax-tab-nobd" data-toggle="pill" href="#pills-tax-nobd" role="tab" aria-controls="pills-tax-nobd" aria-selected="false">Lifestyle Behavior Taxes</a>
+										</li>
+                                        <li class="nav-item">
+											<a class="nav-link" id="pills-total-tab-nobd" data-toggle="pill" href="#pills-total-nobd" role="tab" aria-controls="pills-total-nobd" aria-selected="false">Total Budget</a>
+										</li>
+									</ul>
+									<div class="tab-content mt-2 mb-3" id="pills-without-border-tabContent">
+										<div class="tab-pane fade show active" id="pills-init-nobd" role="tabpanel" aria-labelledby="pills-init-tab-nobd">
+											
+										</div>
+										<div class="tab-pane fade" id="pills-tax-nobd" role="tabpanel" aria-labelledby="pills-tax-tab-nobd">
+											<h2 >Category Taxed Percent</h2>
+											<div class="card-body">
+												<h5 class="card-title mb-3"> Tobacco Products (ie. cigarettes, chew)</h5>
+	                                            <div data-toggle="tooltip" data-placement="right" title="This, is the percentage this type of item will be taxed when purchased." id="taxslider1" class="slider-primary"></div>
+	                                            <p></p>
+	                                            <span class="valuePadding"><input id="taxinput1" value="50">%</span>
+	                                            <p></p>
+	                                        </div>
+                                            <div class="card-body">
+	                                            <h5 class="card-title mb-3"> Alcohol (ie. beer, wine, or bourbon)</h5>
+	                                            <div data-toggle="tooltip" data-placement="right" title="This, is the percentage this type of item will be taxed when purchased."id="taxslider2" class="slider-primary"></div>
+	                                            <p></p>
+	                                            <span class="valuePadding"><input id="taxinput2" value="50">%</span>
+	                                            <p></p>
+	                                        </div>
+                                            <div class="card-body">
+	                                            <h5 class="card-title mb-3"> Fatty Foods</h5>
+	                                            <div data-toggle="tooltip" data-placement="right" title="This, is the percentage this type of item will be taxed when purchased."id="taxslider3" class="slider-primary"></div>
+	                                            <p></p>
+	                                            <span class="valuePadding"><input id="taxinput3" value="50">%</span>
+	                                            <p></p>
+	                                        </div>
+                                            <div class="card-body">
+	                                            <h5 class="card-title mb-3"> Sugary Foods</h5>
+	                                            <div data-toggle="tooltip" data-placement="right" title="This, is the percentage this type of item will be taxed when purchased."id="taxslider4" class="slider-primary"></div>
+	                                            <p></p>
+	                                            <span class="valuePadding"><input id="taxinput4" value="50">%</span>
+	                                            <p></p>
+                                                <div class="col-sm-6 col-md-3">
+                                                    <div class="card card-stats card-round">
+                                                        <div class="card-body ">
+                                                            <div class="row">
+                                                                <div class="col-5">
+                                                                    <div class="icon-big text-center">
+                                                                        <i class="flaticon-coins text-success"></i>
+                                                                    </div>
+                                                                </div>
+                                                            <div class="col col-stats">
+                                                        <div class="numbers">
+                                                    <p class="card-category">Effect On Budget</p>
+                                                <h4 class="card-title">+$10000</h4>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+	                                        </div>
+										</div>
+                                        <div class="tab-pane fade" id="pills-total-nobd" role="tabpanel" aria-labelledby="pills-total-tab-nobd">
+											
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+    <script>
+    $( function() {
+	$( "#prevslider1" ).slider({
+		range: "min",
+	    value: 50,
+	    step: 1,
+	    min: 0,
+	    max: 100,
+    slide: function( event, ui ) {
+        $( "#previnput1" ).val(ui.value);}});
+	$("#previnput1").change(function () {
+    $("#prevslider1").slider("value", parseInt(this.value));
+});
+	$( "#prevslider2" ).slider({
+		range: "min",
+	    value: 50,
+	    step: 1,
+	    min: 0,
+	    max: 100,
+    slide: function( event, ui ) {
+        $( "#previnput2" ).val(ui.value);}});
+	$("#previnput2").change(function () {
+    $("#prevslider2").slider("value", parseInt(this.value));
+});
+	$( "#prevslider3" ).slider({
+		range: "min",
+	    value: 50,
+	    step: 1,
+	    min: 0,
+	    max: 100,
+    slide: function( event, ui ) {
+        $( "#previnput3" ).val(ui.value);}});
+	$("#previnput3").change(function () {
+    $("#prevslider3").slider("value", parseInt(this.value));
+});$( "#prevslider4" ).slider({
+		range: "min",
+	    value: 50,
+	    step: 1,
+	    min: 0,
+	    max: 100,
+    slide: function( event, ui ) {
+        $( "#previnput4" ).val(ui.value);}});
+	$("#previnput4").change(function () {
+    $("#prevslider4").slider("value", parseInt(this.value));
+});$( "#prevslider5" ).slider({
+		range: "min",
+	    value: 50,
+	    step: 1,
+	    min: 0,
+	    max: 100,
+    slide: function( event, ui ) {
+        $( "#previnput5" ).val(ui.value);}});
+	$("#previnput5").change(function () {
+    $("#prevslider5").slider("value", parseInt(this.value));
+});$( "#prevslider6" ).slider({
+		range: "min",
+	    value: 50,
+	    step: 1,
+	    min: 0,
+	    max: 100,
+    slide: function( event, ui ) {
+        $( "#previnput6" ).val(ui.value);}});
+	$("#previnput6").change(function () {
+    $("#prevslider6").slider("value", parseInt(this.value));
+});$( "#prevslider7" ).slider({
+		range: "min",
+	    value: 50,
+	    step: 1,
+	    min: 0,
+	    max: 100,
+    slide: function( event, ui ) {
+        $( "#previnput7" ).val(ui.value);}});
+	$("#previnput7").change(function () {
+    $("#prevslider7").slider("value", parseInt(this.value));
+});
+
+
+
+
+	$( "#acuteslider1" ).slider({
+		range: "min",
+	    value: 50,
+	    step: 1,
+	    min: 0,
+	    max: 100,
+    slide: function( event, ui ) {
+        $( "#acuteinput1" ).val(ui.value);}});
+	$("#acuteinput1").change(function () {
+    $("#acuteslider1").slider("value", parseInt(this.value));
+});$( "#acuteslider2" ).slider({
+		range: "min",
+	    value: 50,
+	    step: 1,
+	    min: 0,
+	    max: 100,
+    slide: function( event, ui ) {
+        $( "#acuteinput2" ).val(ui.value);}});
+	$("#acuteinput2").change(function () {
+    $("#acuteslider2").slider("value", parseInt(this.value));
+});$( "#acuteslider3" ).slider({
+		range: "min",
+	    value: 50,
+	    step: 1,
+	    min: 0,
+	    max: 100,
+    slide: function( event, ui ) {
+        $( "#acuteinput3" ).val(ui.value);}});
+	$("#acuteinput3").change(function () {
+    $("#acuteslider3").slider("value", parseInt(this.value));
+});
+
+
+
+
+$( "#ambslider1" ).slider({
+		range: "min",
+	    value: 50,
+	    step: 1,
+	    min: 0,
+	    max: 100,
+    slide: function( event, ui ) {
+        $( "#ambinput1" ).val(ui.value);}});
+	$("#ambinput1").change(function () {
+    $("#ambslider1").slider("value", parseInt(this.value));
+});
+	$( "#ambslider2" ).slider({
+		range: "min",
+	    value: 50,
+	    step: 1,
+	    min: 0,
+	    max: 100,
+    slide: function( event, ui ) {
+        $( "#ambinput2" ).val(ui.value);}});
+	$("#ambinput2").change(function () {
+    $("#ambslider2").slider("value", parseInt(this.value));
+});
+	$( "#ambslider3" ).slider({
+		range: "min",
+	    value: 50,
+	    step: 1,
+	    min: 0,
+	    max: 100,
+    slide: function( event, ui ) {
+        $( "#ambinput3" ).val(ui.value);}});
+	$("#ambinput3").change(function () {
+    $("#ambslider3").slider("value", parseInt(this.value));
+});$( "#ambslider4" ).slider({
+		range: "min",
+	    value: 50,
+	    step: 1,
+	    min: 0,
+	    max: 100,
+    slide: function( event, ui ) {
+        $( "#ambinput4" ).val(ui.value);}});
+	$("#ambinput4").change(function () {
+    $("#ambslider4").slider("value", parseInt(this.value));
+});$( "#ambslider5" ).slider({
+		range: "min",
+	    value: 50,
+	    step: 1,
+	    min: 0,
+	    max: 100,
+    slide: function( event, ui ) {
+        $( "#ambinput5" ).val(ui.value);}});
+	$("#ambinput5").change(function () {
+    $("#ambslider5").slider("value", parseInt(this.value));
+});$( "#ambslider6" ).slider({
+		range: "min",
+	    value: 50,
+	    step: 1,
+	    min: 0,
+	    max: 100,
+    slide: function( event, ui ) {
+        $( "#ambinput6" ).val(ui.value);}});
+	$("#ambinput6").change(function () {
+    $("#ambslider6").slider("value", parseInt(this.value));
+});$( "#ambslider7" ).slider({
+		range: "min",
+	    value: 50,
+	    step: 1,
+	    min: 0,
+	    max: 100,
+    slide: function( event, ui ) {
+        $( "#ambinput7" ).val(ui.value);}});
+	$("#ambinput7").change(function () {
+    $("#ambslider7").slider("value", parseInt(this.value));
+});
+
+
+
+
+$( "#ltcsslider1" ).slider({
+		range: "min",
+	    value: 50,
+	    step: 1,
+	    min: 0,
+	    max: 100,
+    slide: function( event, ui ) {
+        $( "#ltcsinput1" ).val(ui.value);}});
+	$("#ltcsinput1").change(function () {
+    $("#ltcsslider1").slider("value", parseInt(this.value));
+});
+	$( "#ltcsslider2" ).slider({
+		range: "min",
+	    value: 50,
+	    step: 1,
+	    min: 0,
+	    max: 100,
+    slide: function( event, ui ) {
+        $( "#ltcsinput2" ).val(ui.value);}});
+	$("#ltcsinput2").change(function () {
+    $("#ltcsslider2").slider("value", parseInt(this.value));
+});
+	$( "#ltcsslider3" ).slider({
+		range: "min",
+	    value: 50,
+	    step: 1,
+	    min: 0,
+	    max: 100,
+    slide: function( event, ui ) {
+        $( "#ltcsinput3" ).val(ui.value);}});
+	$("#ltcsinput3").change(function () {
+    $("#ltcsslider3").slider("value", parseInt(this.value));
+});$( "#ltcsslider4" ).slider({
+		range: "min",
+	    value: 50,
+	    step: 1,
+	    min: 0,
+	    max: 100,
+    slide: function( event, ui ) {
+        $( "#ltcsinput4" ).val(ui.value);}});
+	$("#ltcsinput4").change(function () {
+    $("#ltcsslider4").slider("value", parseInt(this.value));
+});$( "#ltcsslider5" ).slider({
+		range: "min",
+	    value: 50,
+	    step: 1,
+	    min: 0,
+	    max: 100,
+    slide: function( event, ui ) {
+        $( "#ltcsinput5" ).val(ui.value);}});
+	$("#ltcsinput5").change(function () {
+    $("#ltcsslider5").slider("value", parseInt(this.value));
+});
+
+
+
+
+$( "#pharmslider1" ).slider({
+		range: "min",
+	    value: 50,
+	    step: 1,
+	    min: 0,
+	    max: 100,
+    slide: function( event, ui ) {
+        $( "#pharminput1" ).val(ui.value);}});
+	$("#pharminput1").change(function () {
+    $("#pharmslider1").slider("value", parseInt(this.value));
+});
+	$( "#pharmslider2" ).slider({
+		range: "min",
+	    value: 50,
+	    step: 1,
+	    min: 0,
+	    max: 100,
+    slide: function( event, ui ) {
+        $( "#pharminput2" ).val(ui.value);}});
+	$("#pharminput2").change(function () {
+    $("#pharmslider2").slider("value", parseInt(this.value));
+});
+	$( "#pharmslider3" ).slider({
+		range: "min",
+	    value: 50,
+	    step: 1,
+	    min: 0,
+	    max: 100,
+    slide: function( event, ui ) {
+        $( "#pharminput3" ).val(ui.value);}});
+	$("#pharminput3").change(function () {
+    $("#pharmslider3").slider("value", parseInt(this.value));
+});$( "#pharmslider4" ).slider({
+		range: "min",
+	    value: 50,
+	    step: 1,
+	    min: 0,
+	    max: 100,
+    slide: function( event, ui ) {
+        $( "#pharminput4" ).val(ui.value);}});
+	$("#pharminput4").change(function () {
+    $("#pharmslider4").slider("value", parseInt(this.value));
+});
+
+
+
+
+$( "#taxslider1" ).slider({
+		range: "min",
+	    value: 50,
+	    step: 1,
+	    min: 0,
+	    max: 100,
+    slide: function( event, ui ) {
+        $( "#taxinput1" ).val(ui.value);}});
+	$("#taxinput1").change(function () {
+    $("#taxslider1").slider("value", parseInt(this.value));
+});
+	$( "#taxslider2" ).slider({
+		range: "min",
+	    value: 50,
+	    step: 1,
+	    min: 0,
+	    max: 100,
+    slide: function( event, ui ) {
+        $( "#taxinput2" ).val(ui.value);}});
+	$("#taxinput2").change(function () {
+    $("#taxslider2").slider("value", parseInt(this.value));
+});
+	$( "#taxslider3" ).slider({
+		range: "min",
+	    value: 50,
+	    step: 1,
+	    min: 0,
+	    max: 100,
+    slide: function( event, ui ) {
+        $( "#taxinput3" ).val(ui.value);}});
+	$("#taxinput3").change(function () {
+    $("#taxslider3").slider("value", parseInt(this.value));
+});$( "#taxslider4" ).slider({
+		range: "min",
+	    value: 50,
+	    step: 1,
+	    min: 0,
+	    max: 100,
+    slide: function( event, ui ) {
+        $( "#taxinput4" ).val(ui.value);}});
+	$("#taxinput4").change(function () {
+    $("#taxlider4").slider("value", parseInt(this.value));
+});}); 
+    </script>
     {% endblock %}
 </html>

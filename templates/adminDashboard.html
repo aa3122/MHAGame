@@ -6,6 +6,10 @@
     <h4 class="page-title">Admin Dashboard</h4>
     {% endblock %}
     {% block content %}
-    <h2>All the small things</h2>
+    <ul>
+    {% for i in displayusername %}
+    <li>{{i.first_name}} {{i.last_name}}</li>
+    {% endfor %}
+    </ul>
     {% endblock %}
 </html>
