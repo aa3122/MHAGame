@@ -19,12 +19,12 @@ def adminViewGame(request):
 	return render(request, 'adminViewGame.html')
 @staff_member_required(login_url="/student")
 def adminViewStudents(request):
-	displaynames=User.objects.all().excluded(is_super = 1)
+	displaynames=User.objects.all().exclude(is_super = 1)
 	return render(request, 'adminViewStudents.html', {"displayusername":displaynames})
 @staff_member_required(login_url="/student")
-def test(request):
-	x = Student.objects.all()
-	return render(request, 'test.html', {'x':x})
+#def test(request):
+#	x = Student.objects.all()
+#	return render(request, 'test.html', {'x':x})
 
 def testcalender(request):
     return render(request, 'testcalender.html')
