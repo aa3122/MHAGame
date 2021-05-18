@@ -11,3 +11,5 @@ class Game(models.Model):
     class Meta:
         managed = False
         db_table = 'game'
+    def __str__(self):
+        return self.game_id
