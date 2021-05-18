@@ -158,16 +158,21 @@ class DjangoSession(models.Model):
         db_table = 'django_session'
 
 
-class Game(models.Model):
-    game_id = models.AutoField(primary_key=True)
-    cost = models.DecimalField(max_digits=10, decimal_places=0)
-    access_scorefunction = models.DecimalField(db_column='access_ScoreFunction', max_digits=10, decimal_places=0)  # Field name made lowercase.
-    initial_pop = models.IntegerField()
-    email = models.CharField(max_length=254)
+class CourseSection(models.Model):
+    crn = models.IntegerField()
+    title = models.CharField(max_length=100)
+    term = models.CharField(max_length=100)
+    start_date = models.DateTimeField()
+    end_date = models.DateTimeField()
+    prefix = models.CharField(max_length=40)
+    credit_hours = models.IntegerField()
+    course_num = models.CharField(max_length=40)
+    section_num = models.CharField(max_length=40)
+    email = models.CharField(max_length=254, blank=True, null=True)
 
     class Meta:
         managed = False
-        db_table = 'game'
+        db_table = 'course_section'
 
 
 class Organization(models.Model):

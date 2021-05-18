@@ -179,17 +179,24 @@ class Student(models.Model):
     class Meta:
         managed = False
         db_table = 'student'
+
 class Game(models.Model):
-    game_id = models.AutoField(db_column='game_ID', primary_key=True)
-    cost = models.DecimalField(max_digits=12,decimal_places=2)
+    game_id = models.AutoField(primary_key=True)
+    access_scorefunction = models.DecimalField(db_column='access_ScoreFunction', max_digits=10, decimal_places=0)  # Field name made lowercase.
     initial_pop = models.IntegerField()
-    access_ScoreFunctiob = models.DecimalField(max_digits=12,decimal_places=3)
-    email = models.ForeignKey('AuthUser', models.DO_NOTHING, db_column='email')
+    email = models.CharField(max_length=254)
+    initial_budget = models.DecimalField(max_digits=10, decimal_places=0)
+    preventative_total = models.DecimalField(max_digits=10, decimal_places=0)
+    acute_total = models.DecimalField(max_digits=10, decimal_places=0)
+    ambulatory_total = models.DecimalField(max_digits=10, decimal_places=0)
+    longterm_total = models.DecimalField(max_digits=10, decimal_places=0)
+    pharmacy_total = models.DecimalField(max_digits=10, decimal_places=0)
+    tax_total = models.DecimalField(max_digits=10, decimal_places=0)
+    creator = models.ForeignKey(AuthUser, models.DO_NOTHING, db_column='creator')
 
     class Meta:
         managed = False
         db_table = 'game'
-
 
 
 
