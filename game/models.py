@@ -3,23 +3,53 @@ from django.contrib.auth.models import *
 
 # Create your models here.
 
+
 class Game(models.Model):
-    game_id = models.AutoField(primary_key=True)
-    access_scorefunction = models.DecimalField(db_column='access_ScoreFunction', max_digits=10, decimal_places=0)  # Field name made lowercase.
-    initial_pop = models.IntegerField()
-    email = models.CharField(max_length=254)
-    initial_budget = models.DecimalField(max_digits=10, decimal_places=0)
-    preventative_total = models.DecimalField(max_digits=10, decimal_places=0)
-    acute_total = models.DecimalField(max_digits=10, decimal_places=0)
-    ambulatory_total = models.DecimalField(max_digits=10, decimal_places=0)
-    longterm_total = models.DecimalField(max_digits=10, decimal_places=0)
-    pharmacy_total = models.DecimalField(max_digits=10, decimal_places=0)
-    tax_total = models.DecimalField(max_digits=10, decimal_places=0)
+    instructor = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
+    initial_population = models.IntegerField(blank=True, null=True)
+    initial_budget = models.IntegerField(blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'game'
 
 
-    def __str__(self):
-        return self.game_id
+class Organization(models.Model):
+    org_id = models.AutoField(db_column='org_ID', primary_key=True)  # Field name made lowercase.
+    org_name = models.CharField(db_column='org_Name', max_length=100)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'organization'
+
+
+class Session(models.Model):
+    sessionid = models.AutoField(primary_key=True)
+    gameid = models.ForeignKey(Game, models.DO_NOTHING, db_column='gameid')
+    student = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
+    prev_expenses = models.IntegerField(blank=True, null=True)
+    acute_expenses = models.IntegerField(blank=True, null=True)
+    ambul_expenses = models.IntegerField(blank=True, null=True)
+    long_expenses = models.IntegerField(blank=True, null=True)
+    pharm_expenses = models.IntegerField(blank=True, null=True)
+    tax_total = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'session'
+
+class CourseSection(models.Model):
+    crn = models.IntegerField()
+    title = models.CharField(max_length=100)
+    term = models.CharField(max_length=100)
+    start_date = models.DateTimeField()
+    end_date = models.DateTimeField()
+    prefix = models.CharField(max_length=40)
+    credit_hours = models.IntegerField()
+    course_num = models.CharField(max_length=40)
+    section_num = models.CharField(max_length=40)
+    email = models.CharField(max_length=254, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'course_section'
