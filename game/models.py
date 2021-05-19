@@ -1,17 +1,24 @@
 from django.db import models
-from django.contrib.auth.models import *
+from django.contrib.auth.models import User
+
 
 # Create your models here.
 
 
 class Game(models.Model):
-    instructor = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
+    instructor = models.ForeignKey(User, models.DO_NOTHING, blank=True, null=True)
     initial_population = models.IntegerField(blank=True, null=True)
     initial_budget = models.IntegerField(blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'game'
+
+    def __str__(self):
+        int_game = '%i' % (self.id)
+        return 'Game {}'.format(int_game)
+
+
 
 
 class Organization(models.Model):
@@ -26,7 +33,7 @@ class Organization(models.Model):
 class Session(models.Model):
     sessionid = models.AutoField(primary_key=True)
     gameid = models.ForeignKey(Game, models.DO_NOTHING, db_column='gameid')
-    student = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
+    student = models.ForeignKey(User, models.DO_NOTHING, blank=True, null=True)
     prev_expenses = models.IntegerField(blank=True, null=True)
     acute_expenses = models.IntegerField(blank=True, null=True)
     ambul_expenses = models.IntegerField(blank=True, null=True)
@@ -37,6 +44,10 @@ class Session(models.Model):
     class Meta:
         managed = False
         db_table = 'session'
+
+    def __str__(self):
+        session_num = '%i' % (self.sessionid)
+        return 'Session {}'.format(session_num)
 
 class CourseSection(models.Model):
     crn = models.IntegerField()
