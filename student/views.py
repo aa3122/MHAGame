@@ -14,8 +14,7 @@ def gameInput(request):
     return render(request, 'studentGameInput.html')
 @login_required()
 def studentGameOverview(request):
-    query_results = Student.objects.all()
-    return render(request, 'studentGameOverview.html', {'query_results':query_results})
+    return render(request, 'studentGameOverview.html')
 @login_required()
 def profile(request):
     return render(request, 'studentprofile.html')
