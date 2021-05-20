@@ -35,4 +35,3 @@ def testcalender(request):
 @staff_member_required(login_url="/student")
 def adminProfile(request):
 	return render(request, 'adminProfile.html')
-
