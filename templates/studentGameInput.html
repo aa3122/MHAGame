@@ -11,15 +11,72 @@
   padding:0px;
   outline: none;
 }
+input[id*='price']{
+    pointer-events: none;
+}
 	</style>
+    {% block tabtitle %}
+    <title>Game Input</title>
+    {% endblock %}
     {% block title %}
-    <h4 class="page-title">Student Game Input</h4>
+    <h4 class="page-title">{{game_id}}</h4>
     {% endblock %}
     {% block content %}
-    <div class="col col-stats">
+    
 				            <div class="col-sm-6 col-md-3">
                             <!-- style="background:#ff3333;" -->
-							<div class="card card-stats card-success card-round">
+                                <div class="card card-stats card-success card-round">
+								<div class="card-body ">
+									<div class="row">
+										<div class="col-5">
+											<div class="icon-big text-center">
+												<i class="flaticon-analytics"></i>
+											</div>
+										</div>
+										<div class="col col-stats">
+											<div class="numbers">
+												<p class="card-category">Initial Budget</p>
+												<h4 class="card-title">$</h4>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+                                <div onclick="expensestotal()" class="card card-stats card-success card-round">
+								<div class="card-body ">
+									<div class="row">
+										<div class="col-5">
+											<div class="icon-big text-center">
+												<i class="flaticon-analytics"></i>
+											</div>
+										</div>
+										<div class="col col-stats">
+											<div class="numbers">
+												<p class="card-category">Total Expenses</p>
+												<h4 id="exptotal" class="card-title">$</h4>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+                                <div class="card card-stats card-success card-round">
+								<div class="card-body ">
+									<div class="row">
+										<div class="col-5">
+											<div class="icon-big text-center">
+												<i class="flaticon-analytics"></i>
+											</div>
+										</div>
+										<div class="col col-stats">
+											<div class="numbers">
+												<p class="card-category">Total Taxes</p>
+												<h4 class="card-title">$</h4>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+                            <div class="card card-stats card-success card-round">
 								<div class="card-body ">
 									<div class="row">
 										<div class="col-5">
@@ -30,14 +87,34 @@
 										<div class="col col-stats">
 											<div class="numbers">
 												<p class="card-category">Remaining Budget</p>
-												<h4 class="card-title">$ 1,345</h4>
+												<h4 class="card-title">$</h4>
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
+							<div class="card card-stats card-secondary card-round">
+								<div class="card-body ">
+									<div class="row">
+										<div class="col-5">
+											<div class="icon-big text-center">
+												<i class="flaticon-success"></i>
+											</div>
+										</div>
+										<div class="col col-stats">
+											<div class="numbers">
+												<a href="gameOverview" class="btn btn-secondary" href="#" role="button">
+											<span class="btn-label">
+												<i class="fas fa-hand-holding-usd"></i>
+											</span>
+											Submit Budget
+                                    </a>
+											</div>
+										</div>
+									</div>
+								</div>
 						</div>
-    {{ mygame }}
+						</div>
     <div class="col-md-6">
 							<div class="card">
 								<div class="card-header">
@@ -72,58 +149,68 @@
 
 											<div class="card-body">
 												<h5 class="card-title mb-3">Immunization</h5>
-												<div data-toggle="tooltip" data-placement="right" title="This, is the percentage the patient is responsible for paying." id="prevslider1" class="slider-primary"></div>
+												<div onchange = "prevtotalcalc()" data-toggle="tooltip" data-placement="right" title="This, is the percentage the patient is responsible for paying." id="prevslider1" class="slider-primary"></div>
 												<p></p>
                                             	<span class="valuePadding"><input id="previnput1" value="50">%</span>
+                                                <p></p>
+                                                <span data-toggle="tooltip" data-placement="right" title="This is the negative effect on your budget." class="valuePadding">$<input   style="pointer-events: none;" id="prevprice1" value="Effect on budget in USD"></span>
                                             	<p></p>
-											</div>
+                                        </div>
 
 	                                        <div class="card-body">
 	                                            <h5 class="card-title mb-3"> Education Program (Smoking Cessation)</h5>
-	                                            <div data-toggle="tooltip" data-placement="right" title="This, is the percentage the patient is responsible for paying."id="prevslider2" class="slider-primary"></div>
+	                                            <div onchange = "prevtotalcalc()" data-toggle="tooltip" data-placement="right" title="This, is the percentage the patient is responsible for paying."id="prevslider2" class="slider-primary"></div>
 	                                            <p></p>
-	                                            <span class="valuePadding"><input id="previnput2" value="50">%</span>
+	                                            <span class="valuePadding"><input  id="previnput2" value="50">%</span>
 	                                            <p></p>
+                                                <span data-toggle="tooltip" data-placement="right" title="This is the negative effect on your budget." class="valuePadding">$<input   style="pointer-events: none;" id="prevprice2" value="Effect on budget in USD"></span>
                                         	</div>
 
                                             <div class="card-body">
 	                                            <h5 class="card-title mb-3"> Education Programs (Disease Management, Prevention)</h5>
-	                                            <div data-toggle="tooltip" data-placement="right" title="This, is the percentage the patient is responsible for paying."id="prevslider3" class="slider-primary"></div>
+	                                            <div onchange = "prevtotalcalc()" data-toggle="tooltip" data-placement="right" title="This, is the percentage the patient is responsible for paying."id="prevslider3" class="slider-primary"></div>
 	                                            <p></p>
 	                                            <span class="valuePadding"><input id="previnput3" value="50">%</span>
 	                                            <p></p>
+                                                <span data-toggle="tooltip" data-placement="right" title="This is the negative effect on your budget." class="valuePadding">$<input   style="pointer-events: none;" id="prevprice3" value="Effect on budget in USD"></span>
 	                                        </div>
 
                                             <div class="card-body">
 	                                            <h5 class="card-title mb-3"> Screening (Radiological/Surgical)</h5>
-	                                            <div data-toggle="tooltip" data-placement="right" title="This, is the percentage the patient is responsible for paying."id="prevslider4" class="slider-primary"></div>
+	                                            <div onchange = "prevtotalcalc()" data-toggle="tooltip" data-placement="right" title="This, is the percentage the patient is responsible for paying."id="prevslider4" class="slider-primary"></div>
 	                                            <p></p>
 	                                            <span class="valuePadding"><input id="previnput4" value="50">%</span>
 	                                            <p></p>
+                                                <span data-toggle="tooltip" data-placement="right" title="This is the negative effect on your budget." class="valuePadding">$<input   style="pointer-events: none;" id="prevprice4" value="Effect on budget in USD"></span>
                                             </div>
 
                                             <div class="card-body">
 	                                            <h5 class="card-title mb-3"> Testing (Lab/Bloodwork)</h5>
-	                                            <div data-toggle="tooltip" data-placement="right" title="This, is the percentage the patient is responsible for paying."id="prevslider5" class="slider-primary"></div>
+	                                            <div onchange = "prevtotalcalc()" data-toggle="tooltip" data-placement="right" title="This, is the percentage the patient is responsible for paying."id="prevslider5" class="slider-primary"></div>
 	                                            <p></p>
 	                                            <span class="valuePadding"><input id="previnput5" value="50">%</span>
 	                                            <p></p>
+                                                <span data-toggle="tooltip" data-placement="right" title="This is the negative effect on your budget." class="valuePadding">$<input   style="pointer-events: none;" id="prevprice5" value="Effect on budget in USD"></span>
                                             </div>
 
                                             <div class="card-body">
 	                                            <h5 class="card-title mb-3"> Testing (Pharmogenomics)</h5>
-	                                            <div data-toggle="tooltip" data-placement="right" title="This, is the percentage the patient is responsible for paying."id="prevslider6" class="slider-primary"></div>
+	                                            <div onchange = "prevtotalcalc()" data-toggle="tooltip" data-placement="right" title="This, is the percentage the patient is responsible for paying."id="prevslider6" class="slider-primary"></div>
 	                                            <p></p>
 	                                            <span class="valuePadding"><input id="previnput6" value="50">%</span>
 	                                            <p></p>
+                                                <span data-toggle="tooltip" data-placement="right" title="This is the negative effect on your budget." class="valuePadding">$<input   style="pointer-events: none;" id="prevprice6" value="Effect on budget in USD"></span>
                                             </div>
 
                                             <div class="card-body">
 	                                            <h5 class="card-title mb-3"> Annual Exam with PCP</h5>
-	                                            <div data-toggle="tooltip" data-placement="right" title="This, is the percentage the patient is responsible for paying."id="prevslider7" class="slider-primary"></div>
+	                                            <div onchange = "prevtotalcalc()" data-toggle="tooltip" data-placement="right" title="This, is the percentage the patient is responsible for paying."id="prevslider7" class="slider-primary"></div>
 	                                            <p></p>
 	                                            <span class="valuePadding"><input id="previnput7" value="50">%</span>
 	                                            <p></p>
+                                                <span data-toggle="tooltip" data-placement="right" title="This is the negative effect on your budget." class="valuePadding">$<input   style="pointer-events: none;" id="prevprice7" value="Effect on budget in USD"></span>
+                                                <p></p>
+                                                <button class = "btn btn-info"onclick = "prevtotalcalc()">Click here to update effect on budget</button>
                                                 <div class="col-sm-6 col-md-3">
                                                     <div class="card card-stats card-round">
                                                         <div class="card-body ">
@@ -136,7 +223,7 @@
                                                             <div class="col col-stats">
                                                         <div class="numbers">
                                                     <p class="card-category">Effect On Budget</p>
-                                                <h4 class="card-title">-$100000</h4>
+                                                <h4 id="prevtotalcost" class="card-title">-$0</h4>
 											</div>
 										</div>
 									</div>
@@ -158,6 +245,7 @@
 	                                            <p></p>
 	                                            <span class="valuePadding"><input id="acuteinput1" value="50">%</span>
 	                                            <p></p>
+                                                <span data-toggle="tooltip" data-placement="right" title="This is the negative effect on your budget." class="valuePadding">$<input   style="pointer-events: none;" id="acuteprice1" value="Effect on budget in USD"></span>
                                         	</div>
                                             <div class="card-body">
 	                                            <h5 class="card-title mb-3"> Mental Health</h5>
@@ -165,6 +253,7 @@
 	                                            <p></p>
 	                                            <span class="valuePadding"><input id="acuteinput2" value="50">%</span>
 	                                            <p></p>
+                                                <span data-toggle="tooltip" data-placement="right" title="This is the negative effect on your budget." class="valuePadding">$<input   style="pointer-events: none;" id="acuteprice2" value="Effect on budget in USD"></span>
 	                                        </div>
                                             <div class="card-body">
 	                                            <h5 class="card-title mb-3"> Emergency Care</h5>
@@ -172,6 +261,9 @@
 	                                            <p></p>
 	                                            <span class="valuePadding"><input id="acuteinput3" value="50">%</span>
 	                                            <p></p>
+                                                <span data-toggle="tooltip" data-placement="right" title="This is the negative effect on your budget." class="valuePadding">$<input   style="pointer-events: none;" id="acuteprice3" value="Effect on budget in USD"></span>
+                                                <p></p>
+                                                 <button class = "btn btn-info"onclick = "acutetotalcalc()">Click here to update effect on budget</button>
                                                 <div class="col-sm-6 col-md-3">
 							<div class="card card-stats card-round">
 								<div class="card-body ">
@@ -184,7 +276,7 @@
 										<div class="col col-stats">
 											<div class="numbers">
 												<p class="card-category">Effect On Budget</p>
-												<h4 class="card-title">-$100000</h4>
+												<h4 id = "acutetotalcost" class="card-title">-$0</h4>
 											</div>
 										</div>
 									</div>
@@ -206,6 +298,8 @@
 	                                            <p></p>
 	                                            <span class="valuePadding"><input id="ambinput1" value="50">%</span>
 	                                            <p></p>
+                                                <span data-toggle="tooltip" data-placement="right" title="This is the negative effect on your budget." class="valuePadding">$<input   style="pointer-events: none;" id="ambprice1" value="Effect on budget in USD"></span>
+                                                <p></p>
 	                                        </div>
                                             <div class="card-body">
 	                                            <h5 class="card-title mb-3"> Outpatient Radiology</h5>
@@ -213,6 +307,8 @@
 	                                            <p></p>
 	                                            <span class="valuePadding"><input id="ambinput2" value="50">%</span>
 	                                            <p></p>
+                                                <span data-toggle="tooltip" data-placement="right" title="This is the negative effect on your budget." class="valuePadding">$<input   style="pointer-events: none;" id="ambprice2" value="Effect on budget in USD"></span>
+                                                <p></p>
 	                                        </div>
                                             <div class="card-body">
 	                                            <h5 class="card-title mb-3"> Physician Services (PCP)</h5>
@@ -220,6 +316,8 @@
 	                                            <p></p>
 	                                            <span class="valuePadding"><input id="ambinput3" value="50">%</span>
 	                                            <p></p>
+                                                <span data-toggle="tooltip" data-placement="right" title="This is the negative effect on your budget." class="valuePadding">$<input   style="pointer-events: none;" id="ambprice3" value="Effect on budget in USD"></span>
+                                                <p></p>
 	                                        </div>
                                             <div class="card-body">
 	                                            <h5 class="card-title mb-3"> Physician Services (Specialist)</h5>
@@ -227,6 +325,8 @@
 	                                            <p></p>
 	                                            <span class="valuePadding"><input id="ambinput4" value="50">%</span>
 	                                            <p></p>
+                                                <span data-toggle="tooltip" data-placement="right" title="This is the negative effect on your budget." class="valuePadding">$<input   style="pointer-events: none;" id="ambprice4" value="Effect on budget in USD"></span>
+                                                <p></p>
 	                                        </div>
                                             <div class="card-body">
 	                                            <h5 class="card-title mb-3"> Urgent Care Services</h5>
@@ -234,6 +334,8 @@
 	                                            <p></p>
 	                                            <span class="valuePadding"><input id="ambinput5" value="50">%</span>
 	                                            <p></p>
+                                                <span data-toggle="tooltip" data-placement="right" title="This is the negative effect on your budget." class="valuePadding">$<input   style="pointer-events: none;" id="ambprice5" value="Effect on budget in USD"></span>
+                                                <p></p>
 	                                        </div>
                                             <div class="card-body">
 	                                            <h5 class="card-title mb-3"> Home Health</h5>
@@ -241,6 +343,8 @@
 	                                            <p></p>
 	                                            <span class="valuePadding"><input id="ambinput6" value="50">%</span>
 	                                            <p></p>
+                                                <span data-toggle="tooltip" data-placement="right" title="This is the negative effect on your budget." class="valuePadding">$<input   style="pointer-events: none;" id="ambprice6" value="Effect on budget in USD"></span>
+                                                <p></p>
 	                                        </div>
                                             <div class="card-body">
 	                                            <h5 class="card-title mb-3"> Hospice</h5>
@@ -248,6 +352,9 @@
 	                                            <p></p>
 	                                            <span class="valuePadding"><input id="ambinput7" value="50">%</span>
 	                                            <p></p>
+                                                <span data-toggle="tooltip" data-placement="right" title="This is the negative effect on your budget." class="valuePadding">$<input   style="pointer-events: none;" id="ambprice7" value="Effect on budget in USD"></span>
+                                                <p></p>
+                                                <button class = "btn btn-info"onclick = "ambtotalcalc()">Click here to update effect on budget</button>
                                                 <div class="col-sm-6 col-md-3">
                                                     <div class="card card-stats card-round">
                                                         <div class="card-body ">
@@ -260,7 +367,7 @@
                                                             <div class="col col-stats">
                                                         <div class="numbers">
                                                     <p class="card-category">Effect On Budget</p>
-                                                <h4 class="card-title">-$1000000</h4>
+                                                <h4 id = "ambtotalcost" class="card-title">-$0</h4>
 											</div>
 										</div>
 									</div>
@@ -278,11 +385,13 @@
                                         <div class="tab-pane fade" id="pills-ltcs-nobd" role="tabpanel" aria-labelledby="pills-ltcs-tab-nobd">
 											<h2 >Patient Responsibility Percent</h2>
 											<div class="card-body">
-												<h5 class="card-title mb-3"> Long Term Acute Acre (LTAC)</h5>
+												<h5 class="card-title mb-3"> Long Term Acute Care (LTAC)</h5>
 	                                            <div data-toggle="tooltip" data-placement="right" title="This, is the percentage the patient is responsible for paying." id="ltcsslider1" class="slider-primary"></div>
 	                                            <p></p>
 	                                            <span class="valuePadding"><input id="ltcsinput1" value="50">%</span>
 	                                            <p></p>
+                                                <span data-toggle="tooltip" data-placement="right" title="This is the negative effect on your budget." class="valuePadding">$<input   style="pointer-events: none;" id="ltcsprice1" value="Effect on budget in USD"></span>
+                                                <p></p>
 	                                        </div>
                                             <div class="card-body">
 	                                            <h5 class="card-title mb-3"> Skilled Nursing (SNF)</h5>
@@ -290,6 +399,8 @@
 	                                            <p></p>
 	                                            <span class="valuePadding"><input id="ltcsinput2" value="50">%</span>
 	                                            <p></p>
+                                                <span data-toggle="tooltip" data-placement="right" title="This is the negative effect on your budget." class="valuePadding">$<input   style="pointer-events: none;" id="ltcsprice2" value="Effect on budget in USD"></span>
+                                                <p></p>
 	                                        </div>
                                             <div class="card-body">
 	                                            <h5 class="card-title mb-3"> Nursing Home</h5>
@@ -297,6 +408,8 @@
 	                                            <p></p>
 	                                            <span class="valuePadding"><input id="ltcsinput3" value="50">%</span>
 	                                            <p></p>
+                                                <span data-toggle="tooltip" data-placement="right" title="This is the negative effect on your budget." class="valuePadding">$<input   style="pointer-events: none;" id="ltcsprice3" value="Effect on budget in USD"></span>
+                                                <p></p>
 	                                        </div>
                                             <div class="card-body">
 	                                            <h5 class="card-title mb-3"> Assisted Living</h5>
@@ -304,6 +417,8 @@
 	                                            <p></p>
 	                                            <span class="valuePadding"><input id="ltcsinput4" value="50">%</span>
 	                                            <p></p>
+                                                <span data-toggle="tooltip" data-placement="right" title="This is the negative effect on your budget." class="valuePadding">$<input   style="pointer-events: none;" id="ltcsprice4" value="Effect on budget in USD"></span>
+                                                <p></p>
 	                                        </div>
                                             <div class="card-body">
 	                                            <h5 class="card-title mb-3"> Independant Living</h5>
@@ -311,6 +426,9 @@
 	                                            <p></p>
 	                                            <span class="valuePadding"><input id="ltcsinput5" value="50">%</span>
 	                                            <p></p>
+                                                <span data-toggle="tooltip" data-placement="right" title="This is the negative effect on your budget." class="valuePadding">$<input   style="pointer-events: none;" id="ltcsprice5" value="Effect on budget in USD"></span>
+                                                <p></p>
+                                                <button class = "btn btn-info"onclick = "ltcstotalcalc()">Click here to update effect on budget</button>
                                                 <div class="col-sm-6 col-md-3">
                                                     <div class="card card-stats card-round">
                                                         <div class="card-body ">
@@ -323,7 +441,7 @@
                                                             <div class="col col-stats">
                                                         <div class="numbers">
                                                     <p class="card-category">Effect On Budget</p>
-                                                <h4 class="card-title">-$1000000</h4>
+                                                <h4 id = "ltcstotalcost" class="card-title">-$0</h4>
 											</div>
 										</div>
 									</div>
@@ -345,6 +463,8 @@
 	                                            <p></p>
 	                                            <span class="valuePadding"><input id="pharminput1" value="50">%</span>
 	                                            <p></p>
+                                                <span data-toggle="tooltip" data-placement="right" title="This is the negative effect on your budget." class="valuePadding">$<input   style="pointer-events: none;" id="pharmprice1" value="Effect on budget in USD"></span>
+                                                <p></p>
 	                                        </div>
                                             <div class="card-body">
 	                                            <h5 class="card-title mb-3"> Generic Drugs</h5>
@@ -352,6 +472,8 @@
 	                                            <p></p>
 	                                            <span class="valuePadding"><input id="pharminput2" value="50">%</span>
 	                                            <p></p>
+                                                <span data-toggle="tooltip" data-placement="right" title="This is the negative effect on your budget." class="valuePadding">$<input   style="pointer-events: none;" id="pharmprice2" value="Effect on budget in USD"></span>
+                                                <p></p>
 	                                        </div>
                                             <div class="card-body">
                                             <h5 class="card-title mb-3"> Specialty Drugs</h5>
@@ -359,12 +481,17 @@
                                             <p></p>
                                             <span class="valuePadding"><input id="pharminput3" value="50">%</span>
                                             <p></p>
+                                                <span data-toggle="tooltip" data-placement="right" title="This is the negative effect on your budget." class="valuePadding">$<input   style="pointer-events: none;" id="pharmprice3" value="Effect on budget in USD"></span>
+                                                <p></p>
                                             <div class="card-body">
 	                                            <h5 class="card-title mb-3"> Durable Medical Equipment (DME)</h5>
 	                                            <div data-toggle="tooltip" data-placement="right" title="This, is the percentage the patient is responsible for paying."id="pharmslider4" class="slider-primary"></div>
 	                                            <p></p>
 	                                            <span class="valuePadding"><input id="pharminput4" value="50">%</span>
 	                                            <p></p>
+                                                <span data-toggle="tooltip" data-placement="right" title="This is the negative effect on your budget." class="valuePadding">$<input   style="pointer-events: none;" id="pharmprice4" value="Effect on budget in USD"></span>
+                                                <p></p>
+                                                <button class = "btn btn-info"onclick = "pharmtotalcalc()">Click here to update effect on budget</button>
                                                 <div class="col-sm-6 col-md-3">
                                                     <div class="card card-stats card-round">
                                                         <div class="card-body ">
@@ -377,13 +504,14 @@
                                                             <div class="col col-stats">
                                                         <div class="numbers">
                                                     <p class="card-category">Effect On Budget</p>
-                                                <h4 class="card-title">-$100000</h4>
+                                                <h4 id="pharmtotalcost"class="card-title">-$0</h4>
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
+                        <button class = "btn btn-info"onclick = "expensestotal()">Click here to update total expenses at top</button>
 	                                        </div>
 										</div>
 									</div>
@@ -415,28 +543,28 @@
 												<h5 class="card-title mb-3"> Tobacco Products (ie. cigarettes, chew)</h5>
 	                                            <div data-toggle="tooltip" data-placement="right" title="This, is the percentage this type of item will be taxed when purchased." id="taxslider1" class="slider-primary"></div>
 	                                            <p></p>
-	                                            <span class="valuePadding"><input id="taxinput1" value="50">%</span>
+	                                            <span class="valuePadding"><input id="taxinput1" value="5">%</span>
 	                                            <p></p>
 	                                        </div>
                                             <div class="card-body">
 	                                            <h5 class="card-title mb-3"> Alcohol (ie. beer, wine, or bourbon)</h5>
 	                                            <div data-toggle="tooltip" data-placement="right" title="This, is the percentage this type of item will be taxed when purchased."id="taxslider2" class="slider-primary"></div>
 	                                            <p></p>
-	                                            <span class="valuePadding"><input id="taxinput2" value="50">%</span>
+	                                            <span class="valuePadding"><input id="taxinput2" value="5">%</span>
 	                                            <p></p>
 	                                        </div>
                                             <div class="card-body">
 	                                            <h5 class="card-title mb-3"> Fatty Foods</h5>
 	                                            <div data-toggle="tooltip" data-placement="right" title="This, is the percentage this type of item will be taxed when purchased."id="taxslider3" class="slider-primary"></div>
 	                                            <p></p>
-	                                            <span class="valuePadding"><input id="taxinput3" value="50">%</span>
+	                                            <span class="valuePadding"><input id="taxinput3" value="5">%</span>
 	                                            <p></p>
 	                                        </div>
                                             <div class="card-body">
 	                                            <h5 class="card-title mb-3"> Sugary Foods</h5>
 	                                            <div data-toggle="tooltip" data-placement="right" title="This, is the percentage this type of item will be taxed when purchased."id="taxslider4" class="slider-primary"></div>
 	                                            <p></p>
-	                                            <span class="valuePadding"><input id="taxinput4" value="50">%</span>
+	                                            <span class="valuePadding"><input id="taxinput4" value="5">%</span>
 	                                            <p></p>
                                                 <div class="col-sm-6 col-md-3">
                                                     <div class="card card-stats card-round">
@@ -450,7 +578,7 @@
                                                             <div class="col col-stats">
                                                         <div class="numbers">
                                                     <p class="card-category">Effect On Budget</p>
-                                                <h4 class="card-title">+$10000</h4>
+                                                <h4 id="pharmtotalcost"class="card-title">-$0</h4>
 											</div>
 										</div>
 									</div>
@@ -467,6 +595,37 @@
 							</div>
 						</div>
     <script>
+    var formatter = new Intl.NumberFormat('en-US', {style: 'currency',currency: 'USD',});
+    function expensestotal() {
+        var a=document.getElementById("prevtotalcost").value;
+        var b=document.getElementById("acutetotalcost").value;
+        var c=document.getElementById("ambtotalcost").value;
+        var d=document.getElementById("ltcstotalcost").value;
+        var e=document.getElementById("pharmtotalcost").value;
+        var exptot = Number(a) + Number(b) + Number(c) + Number(d) + Number(e);
+        document.getElementById('exptotal').innerHTML = ("-" + formatter.format(exptot));}
+    function prevtotalcalc() {  
+        let prevtotal = Number(prevprice1.value) + Number(prevprice2.value) + Number(prevprice3.value) + Number(prevprice4.value) + Number(prevprice5.value) + Number(prevprice6.value) + Number(prevprice7.value);
+        document.getElementById('prevtotalcost').innerHTML = ("-" + formatter.format(prevtotal));}
+    
+    function acutetotalcalc() {  
+        let acutetotal = Number(acuteprice1.value) + Number(acuteprice2.value) + Number(acuteprice3.value);
+        document.getElementById('acutetotalcost').innerHTML = ("-" + formatter.format(acutetotal));}
+        
+    function ambtotalcalc() {  
+        let ambtotal = Number(ambprice1.value) + Number(ambprice2.value) + Number(ambprice3.value) + Number(ambprice4.value) + Number(ambprice5.value) + Number(ambprice6.value)+ Number(ambprice7.value);
+        document.getElementById('ambtotalcost').innerHTML = ("-" + formatter.format(ambtotal));}
+        
+    function ltcstotalcalc() {  
+        let ltcstotal = Number(ltcsprice1.value) + Number(ltcsprice2.value) + Number(ltcsprice3.value) + Number(ltcsprice4.value) + Number(ltcsprice5.value);
+        document.getElementById('ltcstotalcost').innerHTML = ("-" + formatter.format(ltcstotal));}
+        
+    function pharmtotalcalc() {  
+        let pharmtotal = Number(pharmprice1.value) + Number(pharmprice2.value) + Number(pharmprice3.value) + Number(pharmprice4.value);
+        document.getElementById('pharmtotalcost').innerHTML = ("-" + formatter.format(pharmtotal));}
+    
+    
+
     $( function() {
 	$( "#prevslider1" ).slider({
 		range: "min",
@@ -475,9 +634,14 @@
 	    min: 0,
 	    max: 100,
     slide: function( event, ui ) {
-        $( "#previnput1" ).val(ui.value);}});
+        $( "#previnput1" ).val(ui.value);
+        $( "#prevprice1" ).val(parseFloat(formuladict(ui.value)).toFixed(2));
+        var prevprice1 = parseFloat(formuladict(ui.value));
+        }});
 	$("#previnput1").change(function () {
     $("#prevslider1").slider("value", parseInt(this.value));
+    $( "#prevprice1" ).val(parseFloat(formuladict(this.value)).toFixed(2));
+    var prevprice1 = parseFloat(formuladict(this.value));
 });
 	$( "#prevslider2" ).slider({
 		range: "min",
@@ -486,9 +650,13 @@
 	    min: 0,
 	    max: 100,
     slide: function( event, ui ) {
-        $( "#previnput2" ).val(ui.value);}});
+        $( "#previnput2" ).val(ui.value);
+     $( "#prevprice2" ).val(parseFloat(formuladict(ui.value)).toFixed(2));
+     var prevprice2 = formuladict(ui.value);}});
 	$("#previnput2").change(function () {
     $("#prevslider2").slider("value", parseInt(this.value));
+    $( "#prevprice2" ).val(parseFloat(formuladict(this.value)).toFixed(2));
+    var prevprice2 = formuladict(this.value);
 });
 	$( "#prevslider3" ).slider({
 		range: "min",
@@ -497,9 +665,13 @@
 	    min: 0,
 	    max: 100,
     slide: function( event, ui ) {
-        $( "#previnput3" ).val(ui.value);}});
+        $( "#previnput3" ).val(ui.value);
+     $( "#prevprice3" ).val(parseFloat(formuladict(ui.value)).toFixed(2));
+     var prevprice3 = formuladict(ui.value);}});
 	$("#previnput3").change(function () {
     $("#prevslider3").slider("value", parseInt(this.value));
+    $( "#prevprice3" ).val(parseFloat(formuladict(this.value)).toFixed(2));
+    var prevprice3 = formuladict(this.value);
 });$( "#prevslider4" ).slider({
 		range: "min",
 	    value: 50,
@@ -507,9 +679,13 @@
 	    min: 0,
 	    max: 100,
     slide: function( event, ui ) {
-        $( "#previnput4" ).val(ui.value);}});
+        $( "#previnput4" ).val(ui.value);
+     $( "#prevprice4" ).val(parseFloat(formuladict(ui.value)).toFixed(2));
+     var prevprice4 = formuladict(ui.value);}});
 	$("#previnput4").change(function () {
     $("#prevslider4").slider("value", parseInt(this.value));
+    $( "#prevprice4" ).val(parseFloat(formuladict(this.value)).toFixed(2));
+    var prevprice4 = formuladict(this.value);
 });$( "#prevslider5" ).slider({
 		range: "min",
 	    value: 50,
@@ -517,9 +693,13 @@
 	    min: 0,
 	    max: 100,
     slide: function( event, ui ) {
-        $( "#previnput5" ).val(ui.value);}});
+        $( "#previnput5" ).val(ui.value);
+     $( "#prevprice5" ).val(parseFloat(formuladict(ui.value)).toFixed(2));
+     var prevprice5 = formuladict(ui.value);}});
 	$("#previnput5").change(function () {
     $("#prevslider5").slider("value", parseInt(this.value));
+    $( "#prevprice5" ).val(parseFloat(formuladict(this.value)).toFixed(2));
+    var prevprice5 = formuladict(this.value);
 });$( "#prevslider6" ).slider({
 		range: "min",
 	    value: 50,
@@ -527,9 +707,13 @@
 	    min: 0,
 	    max: 100,
     slide: function( event, ui ) {
-        $( "#previnput6" ).val(ui.value);}});
+        $( "#previnput6" ).val(ui.value);
+     $( "#prevprice6" ).val(parseFloat(formuladict(ui.value)).toFixed(2));
+     var prevprice6 = formuladict(ui.value);}});
 	$("#previnput6").change(function () {
     $("#prevslider6").slider("value", parseInt(this.value));
+    $( "#prevprice6" ).val(parseFloat(formuladict(this.value)).toFixed(2));
+    var prevprice6 = formuladict(this.value);
 });$( "#prevslider7" ).slider({
 		range: "min",
 	    value: 50,
@@ -537,11 +721,14 @@
 	    min: 0,
 	    max: 100,
     slide: function( event, ui ) {
-        $( "#previnput7" ).val(ui.value);}});
+        $( "#previnput7" ).val(ui.value);
+     $( "#prevprice7" ).val(parseFloat(formuladict(ui.value)).toFixed(2));
+    var prevprice7 =  formuladict(ui.value);}});
 	$("#previnput7").change(function () {
     $("#prevslider7").slider("value", parseInt(this.value));
+    $( "#prevprice7" ).val(parseFloat(formuladict(this.value)).toFixed(2));
+    var prevprice7 = formuladict(this.value);
 });
-
 
 
 
@@ -552,9 +739,13 @@
 	    min: 0,
 	    max: 100,
     slide: function( event, ui ) {
-        $( "#acuteinput1" ).val(ui.value);}});
+        $( "#acuteinput1" ).val(ui.value);
+     $( "#acuteprice1" ).val(parseFloat(formuladict1(ui.value)).toFixed(2));
+    var acuteprice1 =  formuladict1(ui.value);}});
 	$("#acuteinput1").change(function () {
     $("#acuteslider1").slider("value", parseInt(this.value));
+    $( "#acuteprice1" ).val(parseFloat(formuladict1(this.value)).toFixed(2));
+    var acuteprice1 = formuladict1(this.value);
 });$( "#acuteslider2" ).slider({
 		range: "min",
 	    value: 50,
@@ -562,9 +753,13 @@
 	    min: 0,
 	    max: 100,
     slide: function( event, ui ) {
-        $( "#acuteinput2" ).val(ui.value);}});
+        $( "#acuteinput2" ).val(ui.value);
+    $( "#acuteprice2" ).val(parseFloat(formuladict1(ui.value)).toFixed(2));
+    var acuteprice2 =  formuladict1(ui.value);}});
 	$("#acuteinput2").change(function () {
     $("#acuteslider2").slider("value", parseInt(this.value));
+    $( "#acuteprice2" ).val(parseFloat(formuladict1(this.value)).toFixed(2));
+    var acuteprice2 = formuladict1(this.value);
 });$( "#acuteslider3" ).slider({
 		range: "min",
 	    value: 50,
@@ -572,9 +767,13 @@
 	    min: 0,
 	    max: 100,
     slide: function( event, ui ) {
-        $( "#acuteinput3" ).val(ui.value);}});
+        $( "#acuteinput3" ).val(ui.value);
+    $( "#acuteprice3" ).val(parseFloat(formuladict1(ui.value)).toFixed(2));
+    var acuteprice3 =  formuladict1(ui.value);}});
 	$("#acuteinput3").change(function () {
     $("#acuteslider3").slider("value", parseInt(this.value));
+    $( "#acuteprice3" ).val(parseFloat(formuladict1(this.value)).toFixed(2));
+    var acuteprice3 = formuladict1(this.value);
 });
 
 
@@ -587,9 +786,13 @@ $( "#ambslider1" ).slider({
 	    min: 0,
 	    max: 100,
     slide: function( event, ui ) {
-        $( "#ambinput1" ).val(ui.value);}});
+        $( "#ambinput1" ).val(ui.value);
+    $( "#ambprice1" ).val(parseFloat(formuladict(ui.value)).toFixed(2));
+    var ambprice1 =  formuladict1(ui.value);}});
 	$("#ambinput1").change(function () {
     $("#ambslider1").slider("value", parseInt(this.value));
+    $( "#ambprice1" ).val(parseFloat(formuladict(this.value)).toFixed(2));
+    var ambprice1 = formuladict1(this.value);
 });
 	$( "#ambslider2" ).slider({
 		range: "min",
@@ -598,9 +801,13 @@ $( "#ambslider1" ).slider({
 	    min: 0,
 	    max: 100,
     slide: function( event, ui ) {
-        $( "#ambinput2" ).val(ui.value);}});
+        $( "#ambinput2" ).val(ui.value);
+    $( "#ambprice2" ).val(parseFloat(formuladict(ui.value)).toFixed(2));
+    var ambprice2 =  formuladict1(ui.value);}});
 	$("#ambinput2").change(function () {
     $("#ambslider2").slider("value", parseInt(this.value));
+    $( "#ambprice2" ).val(parseFloat(formuladict(this.value)).toFixed(2));
+    var ambprice2 = formuladict1(this.value);
 });
 	$( "#ambslider3" ).slider({
 		range: "min",
@@ -609,9 +816,13 @@ $( "#ambslider1" ).slider({
 	    min: 0,
 	    max: 100,
     slide: function( event, ui ) {
-        $( "#ambinput3" ).val(ui.value);}});
+        $( "#ambinput3" ).val(ui.value);
+    $( "#ambprice3" ).val(parseFloat(formuladict(ui.value)).toFixed(2));
+    var ambprice3 =  formuladict1(ui.value);}});
 	$("#ambinput3").change(function () {
     $("#ambslider3").slider("value", parseInt(this.value));
+    $( "#ambprice3" ).val(parseFloat(formuladict(this.value)).toFixed(2));
+    var ambprice3 = formuladict1(this.value);
 });$( "#ambslider4" ).slider({
 		range: "min",
 	    value: 50,
@@ -619,9 +830,13 @@ $( "#ambslider1" ).slider({
 	    min: 0,
 	    max: 100,
     slide: function( event, ui ) {
-        $( "#ambinput4" ).val(ui.value);}});
+        $( "#ambinput4" ).val(ui.value);
+    $( "#ambprice4" ).val(parseFloat(formuladict(ui.value)).toFixed(2));
+    var ambprice4 =  formuladict1(ui.value);}});
 	$("#ambinput4").change(function () {
     $("#ambslider4").slider("value", parseInt(this.value));
+    $( "#ambprice4" ).val(parseFloat(formuladict(this.value)).toFixed(2));
+    var ambprice4 = formuladict1(this.value);
 });$( "#ambslider5" ).slider({
 		range: "min",
 	    value: 50,
@@ -629,9 +844,13 @@ $( "#ambslider1" ).slider({
 	    min: 0,
 	    max: 100,
     slide: function( event, ui ) {
-        $( "#ambinput5" ).val(ui.value);}});
+        $( "#ambinput5" ).val(ui.value);
+    $( "#ambprice5" ).val(parseFloat(formuladict(ui.value)).toFixed(2));
+    var ambprice5 =  formuladict1(ui.value);}});
 	$("#ambinput5").change(function () {
     $("#ambslider5").slider("value", parseInt(this.value));
+    $( "#ambprice5" ).val(parseFloat(formuladict(this.value)).toFixed(2));
+    var ambprice5 = formuladict1(this.value);
 });$( "#ambslider6" ).slider({
 		range: "min",
 	    value: 50,
@@ -639,9 +858,13 @@ $( "#ambslider1" ).slider({
 	    min: 0,
 	    max: 100,
     slide: function( event, ui ) {
-        $( "#ambinput6" ).val(ui.value);}});
+        $( "#ambinput6" ).val(ui.value);
+    $( "#ambprice6" ).val(parseFloat(formuladict(ui.value)).toFixed(2));
+    var ambprice6 =  formuladict1(ui.value);}});
 	$("#ambinput6").change(function () {
     $("#ambslider6").slider("value", parseInt(this.value));
+    $( "#ambprice6" ).val(parseFloat(formuladict(this.value)).toFixed(2));
+    var ambprice6 = formuladict1(this.value);
 });$( "#ambslider7" ).slider({
 		range: "min",
 	    value: 50,
@@ -649,9 +872,13 @@ $( "#ambslider1" ).slider({
 	    min: 0,
 	    max: 100,
     slide: function( event, ui ) {
-        $( "#ambinput7" ).val(ui.value);}});
+        $( "#ambinput7" ).val(ui.value);
+    $( "#ambprice7" ).val(parseFloat(formuladict(ui.value)).toFixed(2));
+    var ambprice7 =  formuladict1(ui.value);}});
 	$("#ambinput7").change(function () {
     $("#ambslider7").slider("value", parseInt(this.value));
+    $( "#ambprice7" ).val(parseFloat(formuladict(this.value)).toFixed(2));
+    var ambprice7 = formuladict1(this.value);
 });
 
 
@@ -664,9 +891,13 @@ $( "#ltcsslider1" ).slider({
 	    min: 0,
 	    max: 100,
     slide: function( event, ui ) {
-        $( "#ltcsinput1" ).val(ui.value);}});
+        $( "#ltcsinput1" ).val(ui.value);
+    $( "#ltcsprice1" ).val(parseFloat(formuladict2(ui.value)).toFixed(2));
+    var ltcsprice1 =  formuladict2(ui.value);}});
 	$("#ltcsinput1").change(function () {
     $("#ltcsslider1").slider("value", parseInt(this.value));
+    $( "#ltcsprice1" ).val(parseFloat(formuladict2(this.value)).toFixed(2));
+    var ltcsprice1 = formuladict2(this.value);
 });
 	$( "#ltcsslider2" ).slider({
 		range: "min",
@@ -675,9 +906,13 @@ $( "#ltcsslider1" ).slider({
 	    min: 0,
 	    max: 100,
     slide: function( event, ui ) {
-        $( "#ltcsinput2" ).val(ui.value);}});
+        $( "#ltcsinput2" ).val(ui.value);
+    $( "#ltcsprice2" ).val(parseFloat(formuladict2(ui.value)).toFixed(2));
+    var ltcsprice2 =  formuladict2(ui.value);}});
 	$("#ltcsinput2").change(function () {
     $("#ltcsslider2").slider("value", parseInt(this.value));
+    $( "#ltcsprice2" ).val(parseFloat(formuladict2(this.value)).toFixed(2));
+    var ltcsprice2 = formuladict2(this.value);
 });
 	$( "#ltcsslider3" ).slider({
 		range: "min",
@@ -686,9 +921,13 @@ $( "#ltcsslider1" ).slider({
 	    min: 0,
 	    max: 100,
     slide: function( event, ui ) {
-        $( "#ltcsinput3" ).val(ui.value);}});
+        $( "#ltcsinput3" ).val(ui.value);
+    $( "#ltcsprice3" ).val(parseFloat(formuladict2(ui.value)).toFixed(2));
+    var ltcsprice3 =  formuladict2(ui.value);}});
 	$("#ltcsinput3").change(function () {
     $("#ltcsslider3").slider("value", parseInt(this.value));
+    $( "#ltcsprice3" ).val(parseFloat(formuladict2(this.value)).toFixed(2));
+    var ltcsprice3 = formuladict2(this.value);
 });$( "#ltcsslider4" ).slider({
 		range: "min",
 	    value: 50,
@@ -696,9 +935,13 @@ $( "#ltcsslider1" ).slider({
 	    min: 0,
 	    max: 100,
     slide: function( event, ui ) {
-        $( "#ltcsinput4" ).val(ui.value);}});
+        $( "#ltcsinput4" ).val(ui.value);
+    $( "#ltcsprice4" ).val(parseFloat(formuladict2(ui.value)).toFixed(2));
+    var ltcsprice4 =  formuladict2(ui.value);}});
 	$("#ltcsinput4").change(function () {
     $("#ltcsslider4").slider("value", parseInt(this.value));
+    $( "#ltcsprice4" ).val(parseFloat(formuladict2(this.value)).toFixed(2));
+    var ltcsprice4 = formuladict2(this.value);
 });$( "#ltcsslider5" ).slider({
 		range: "min",
 	    value: 50,
@@ -706,9 +949,13 @@ $( "#ltcsslider1" ).slider({
 	    min: 0,
 	    max: 100,
     slide: function( event, ui ) {
-        $( "#ltcsinput5" ).val(ui.value);}});
+        $( "#ltcsinput5" ).val(ui.value);
+    $( "#ltcsprice5" ).val(parseFloat(formuladict2(ui.value)).toFixed(2));
+    var ltcsprice5 =  formuladict2(ui.value);}});
 	$("#ltcsinput5").change(function () {
     $("#ltcsslider5").slider("value", parseInt(this.value));
+    $( "#ltcsprice5" ).val(parseFloat(formuladict2(this.value)).toFixed(2));
+    var ltcsprice5 = formuladict2(this.value);
 });
 
 
@@ -721,9 +968,13 @@ $( "#pharmslider1" ).slider({
 	    min: 0,
 	    max: 100,
     slide: function( event, ui ) {
-        $( "#pharminput1" ).val(ui.value);}});
+        $( "#pharminput1" ).val(ui.value);
+    $( "#pharmprice1" ).val(parseFloat(formuladict3(ui.value)).toFixed(2));
+    var pharmprice1 =  formuladict3(ui.value);}});
 	$("#pharminput1").change(function () {
     $("#pharmslider1").slider("value", parseInt(this.value));
+    $( "#pharmprice1" ).val(parseFloat(formuladict3(this.value)).toFixed(2));
+    var pharmprice1 = formuladict3(this.value);
 });
 	$( "#pharmslider2" ).slider({
 		range: "min",
@@ -732,9 +983,13 @@ $( "#pharmslider1" ).slider({
 	    min: 0,
 	    max: 100,
     slide: function( event, ui ) {
-        $( "#pharminput2" ).val(ui.value);}});
+        $( "#pharminput2" ).val(ui.value);
+    $( "#pharmprice2" ).val(parseFloat(formuladict3(ui.value)).toFixed(2));
+    var pharmprice2 =  formuladict3(ui.value);}});
 	$("#pharminput2").change(function () {
     $("#pharmslider2").slider("value", parseInt(this.value));
+    $( "#pharmprice2" ).val(parseFloat(formuladict3(this.value)).toFixed(2));
+    var pharmprice2 = formuladict3(this.value);
 });
 	$( "#pharmslider3" ).slider({
 		range: "min",
@@ -743,9 +998,13 @@ $( "#pharmslider1" ).slider({
 	    min: 0,
 	    max: 100,
     slide: function( event, ui ) {
-        $( "#pharminput3" ).val(ui.value);}});
+        $( "#pharminput3" ).val(ui.value);
+    $( "#pharmprice3" ).val(parseFloat(formuladict3(ui.value)).toFixed(2));
+    var pharmprice3 =  formuladict3(ui.value);}});
 	$("#pharminput3").change(function () {
     $("#pharmslider3").slider("value", parseInt(this.value));
+    $( "#pharmprice3" ).val(parseFloat(formuladict3(this.value)).toFixed(2));
+    var pharmprice3 = formuladict3(this.value);
 });$( "#pharmslider4" ).slider({
 		range: "min",
 	    value: 50,
@@ -753,9 +1012,13 @@ $( "#pharmslider1" ).slider({
 	    min: 0,
 	    max: 100,
     slide: function( event, ui ) {
-        $( "#pharminput4" ).val(ui.value);}});
+        $( "#pharminput4" ).val(ui.value);
+    $( "#pharmprice4" ).val(parseFloat(formuladict3(ui.value)).toFixed(2));
+    var pharmprice4 =  formuladict3(ui.value);}});
 	$("#pharminput4").change(function () {
     $("#pharmslider4").slider("value", parseInt(this.value));
+    $( "#pharmprice4" ).val(parseFloat(formuladict3(this.value)).toFixed(2));
+    var pharmprice4 = formuladict3(this.value);
 });
 
 
@@ -763,10 +1026,10 @@ $( "#pharmslider1" ).slider({
 
 $( "#taxslider1" ).slider({
 		range: "min",
-	    value: 50,
-	    step: 1,
+	    value: 5,
+	    step: .1,
 	    min: 0,
-	    max: 100,
+	    max: 10,
     slide: function( event, ui ) {
         $( "#taxinput1" ).val(ui.value);}});
 	$("#taxinput1").change(function () {
@@ -774,10 +1037,10 @@ $( "#taxslider1" ).slider({
 });
 	$( "#taxslider2" ).slider({
 		range: "min",
-	    value: 50,
-	    step: 1,
+	    value: 5,
+	    step: .1,
 	    min: 0,
-	    max: 100,
+	    max: 10,
     slide: function( event, ui ) {
         $( "#taxinput2" ).val(ui.value);}});
 	$("#taxinput2").change(function () {
@@ -785,25 +1048,86 @@ $( "#taxslider1" ).slider({
 });
 	$( "#taxslider3" ).slider({
 		range: "min",
-	    value: 50,
-	    step: 1,
+	    value: 5,
+	    step: .1,
 	    min: 0,
-	    max: 100,
+	    max: 10,
     slide: function( event, ui ) {
         $( "#taxinput3" ).val(ui.value);}});
 	$("#taxinput3").change(function () {
     $("#taxslider3").slider("value", parseInt(this.value));
 });$( "#taxslider4" ).slider({
 		range: "min",
-	    value: 50,
-	    step: 1,
+	    value: 5,
+	    step: .1,
 	    min: 0,
-	    max: 100,
+	    max: 10,
     slide: function( event, ui ) {
         $( "#taxinput4" ).val(ui.value);}});
 	$("#taxinput4").change(function () {
     $("#taxlider4").slider("value", parseInt(this.value));
 });}); 
+        
+//formula to calculate preventative and ambulatory
+function formuladict(value){
+    var dict = {};
+    dict[100] = 0;
+    var y = 500000;
+    var x = 99;
+    dict[x] = y;
+    while(x>0){
+      y = y * 1.05;
+      x -= 1;
+      dict[x] = y;}
+    return dict[value];}
+//formula to calculate Acute Care
+function formuladict1(value1){
+    var dict1 = {};
+    dict1[100] = 0;
+    var y1 = 2500000;
+    var x1 = 99;
+    dict1[x1] = y1;
+    while(x1>0){
+      y1 = y1 * 1.05;
+      x1 -= 1;
+      dict1[x1] = y1;}
+    return dict1[value1];}
+//formula to calculate long term
+function formuladict2(value){
+    var dict2 = {};
+    dict2[100] = 0;
+    var y2 = 750000;
+    var x2 = 99;
+    dict2[x2] = y2;
+    while(x2>0){
+      y2 = y2 * 1.05;
+      x2 -= 1;
+      dict2[x2] = y2;}
+    return dict2[value];}
+//formula to calculate pharmacy
+function formuladict3(value){
+    var dict3 = {};
+    dict3[100] = 0;
+    var y3 = 1000000;
+    var x3 = 99;
+    dict3[x3] = y3;
+    while(x3>0){
+      y3 = y3 * 1.05;
+      x3 -= 1;
+      dict3[x3] = y3;}
+    return dict3[value];}
+// formulat to calculate tax amount
+function formuladict4(value){
+    var dict4 = {};
+    dict4[0] = 0;
+    var y4 = 1000000;
+    var x4 = 9.9;
+    dict4[x4] = y4;
+    while(x4>0){
+      y4 = y4 * 1.05;
+      x4 -= .1;
+      dict4[x4] = y4;}
+    return dict4[value];}
     </script>
     {% endblock %}
 </html>

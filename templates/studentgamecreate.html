@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+{% extends 'studentbase.html' %}
+{% load static %
+<html lang="en">
+    {% block tabtitle %}
+    <title>Choose Game</title>
+    {% endblock %}
+    {% block title %}
+    <h4 class="page-title">Join A Game</h4>
+    {% endblock %}
+    {% block content%}
+    <div class="main-panel">
+			<div class="content">
+				<div class="page-inner">
+    {% for games in gamelist %}
+    <div class="row row-card-no-pd">
+        <div class="col-sm-6 col-md-3">
+            <div class="card card-stats card-round">
+                <div class="card-body ">
+                    <div class="row">
+                        <div class="col-5">
+                            <div class="icon-big text-center">
+                                <i class="flaticon-game-controller text-warning"></i>
+                            </div>
+                        </div>
+                        <div class="col col-stats">
+                            <div class="numbers">
+                                <p class="card-category">Game ID</p>
+                                <h4 class="card-title">Game: {{games.id}}</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+            <div class="card card-stats card-round">
+                <div class="card-body ">
+                    <div class="row">
+                        <div class="col-5">
+                            <div class="icon-big text-center">
+                                <i class="flaticon-user-1 text-success"></i>
+                            </div>
+                        </div>
+                        <div class="col col-stats">
+                            <div class="numbers">
+                                <p class="card-category">Instructor ID</p>
+                                <h4 class="card-title">{{games.instructor}}</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+            <div class="card card-stats card-round">
+                <div class="card-body ">
+                    <div class="row">
+                        <div class="col-5">
+                            <div class="icon-big text-center">
+                                <i class="flaticon-play-button-1 text-success"></i>
+                            </div>
+                        </div>
+                        <div class="col col-stats">
+                            <div class="numbers">
+                                <form action="gameinput" method="post">
+                                    <a href="gameinput" class="btn btn-info" role="button">
+											<span class="btn-label">
+												<i class="fa fa-plus"></i>
+											</span>
+											Join Game {{games.id}}
+                                    </a></form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+                </div></div></div>
+    {% endblock %}
+</html>

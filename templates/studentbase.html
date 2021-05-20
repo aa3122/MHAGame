@@ -3,7 +3,8 @@
 <html lang="en">
 <head>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<title>Student Dashboard</title>
+	{% block tabtitle %}
+    {% endblock %}
 	<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
 	<link rel="icon" href="{% static '/assets/img/icon.ico' %}" type="image/x-icon"/>
 
@@ -240,8 +241,8 @@
 										</a>
 									</li>
 									<li>
-										<a href="gameinput">
-											<span class="sub-item">Game Input</span>
+										<a href="gamecreate">
+											<span class="sub-item">Join A Game</span>
 										</a>
 									</li>
 								</ul>

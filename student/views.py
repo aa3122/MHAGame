@@ -3,6 +3,8 @@ from django.http import HttpResponse
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
+from game.models import Game, Session
+from .forms import SessionCreateForm
 @login_required()
 def studentDashboard(request):
     return render(request, 'studentDashboard.html')
@@ -10,8 +12,23 @@ def studentDashboard(request):
 def calender(request):
     return render(request, 'studentCalender.html')
 @login_required()
+def studentgamecreate(request):
+	allgames = Game.objects.all()
+	return render(request, 'studentgamecreate.html',  {"gamelist":allgames})
+@login_required()
 def gameInput(request):
-    return render(request, 'studentGameInput.html')
+	game_id = request.POST.get("gameid")
+	if request.method == 'POST':
+		form = SessionCreateForm(request.POST)
+		if form.is_valid():
+			form.save()
+			return HttpResponse('Your input has been recieved')
+		else:
+			form = SessionCreateForm()
+			context = {
+			'form':form,
+			}
+	return render(request, 'studentGameInput.html')
 @login_required()
 def studentGameOverview(request):
     return render(request, 'studentGameOverview.html')

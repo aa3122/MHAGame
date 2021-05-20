@@ -3,13 +3,78 @@
 {% load static %}
 <html lang="en">
     {% block title %}
-    <h4 class="page-title">Admin View Students</h4>
+    <h4 class="page-title">Student Roster</h4>
     {% endblock %}
     {% block content %}
-    <ul>
+    <div class="main-panel">
+			<div style="height:auto;" class="content pre-scrollable">
+				<div class="page-inner">
     {% for i in displayusername %}
-    <li>{{i.first_name}}</li>
+    <div class="row row-card-no-pd">
+        <div class="col-sm-6 col-md-3">
+            <div class="card card-stats card-round">
+                <div class="card-body ">
+                    <div class="row">
+                        <div class="col-5">
+                            <div class="icon-big text-center">
+                                <i class="flaticon-user-1 text-warning"></i>
+                            </div>
+                        </div>
+                        <div class="col col-stats">
+                            <div class="numbers">
+                                <p class="card-category">Name</p>
+                                <h4 class="card-title">{{i.first_name}} {{i.last_name}}</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+            <div class="card card-stats card-round">
+                <div class="card-body ">
+                    <div class="row">
+                        <div class="col-5">
+                            <div class="icon-big text-center">
+                                <i class="flaticon-internet text-info"></i>
+                            </div>
+                        </div>
+                        <div class="col col-stats">
+                            <div class="numbers">
+                                <p class="card-category">Email Address</p>
+                                <h4 class="card-title">{{i.email}}</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+            <div class="card card-stats card-round">
+                <div class="card-body ">
+                    <div class="row">
+                        <div class="col-5">
+                            <div class="icon-big text-center">
+                                <i class="flaticon-user-4 text-success"></i>
+                            </div>
+                        </div>
+                        <div class="col col-stats">
+                            <div class="numbers">
+                                <form action="gameinput" method="post">
+                                    <a href="gameinput" class="btn btn-info" role="button">
+											<span class="btn-label">
+												<i class="fas fa-cog"></i>
+											</span>
+											Manage {{i.first_name}}
+                                    </a></form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     {% endfor %}
-    </ul>
+                </div></div></div>
     {% endblock %}
 </html>

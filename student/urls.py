@@ -7,5 +7,6 @@ urlpatterns = [
     path('gameOverview', views.studentGameOverview, name="studentGameOverview"),
     path('calender', views.calender, name="calender"),
     path('gameinput', views.gameInput, name='gameInput'),
-    path('profile', views.profile, name='profile')
+    path('profile', views.profile, name='profile'),
+    path('gamecreate', views.studentgamecreate, name="studentgamecreate")
 ]
