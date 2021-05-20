@@ -2,6 +2,14 @@
 {% extends 'studentbase.html' %}
 {% load static %}
 <html lang="en">
+{% block breadcrumb %}
+        <li class="separator">
+            <i class="flaticon-right-arrow"></i>
+        </li>
+        <li class="nav-item">
+            <a href="#">Overview</a>
+        </li>
+    {% endblock %}
     {% block title %}
     <h4 class="page-title">Student Game Overview</h4>
     {% endblock %}
