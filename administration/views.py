@@ -6,6 +6,7 @@ from django.contrib.auth import get_user_model
 from .models import displayusername
 from django.contrib.auth.models import User
 from game.models import Game
+from django.views.generic import CreateView
 
 
 @staff_member_required(login_url="/student")
@@ -35,3 +36,8 @@ def testcalender(request):
 @staff_member_required(login_url="/student")
 def adminProfile(request):
 	return render(request, 'adminProfile.html')
+
+class AddGameView(CreateView):
+	model = Game
+	template_name = 'adminCreateGame'
+	fields = '__all'

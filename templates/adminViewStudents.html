@@ -2,20 +2,21 @@
 {% extends 'base.html' %}
 {% load static %}
 <html lang="en">
-    {% block title %}
-    <h4 class="page-title">Student Roster</h4>
-    {% endblock %}
-    {% block content %}
-    <div class="main-panel">
-			<div style="height:auto;" class="content pre-scrollable">
-				<div class="page-inner">
-    {% for i in displayusername %}
-    <div class="row row-card-no-pd">
-        <div class="col-sm-6 col-md-3">
-            <div class="card card-stats card-round">
-                <div class="card-body ">
-                    <div class="row">
-                        <div class="col-5">
+{% block title %}
+<h4 class="page-title">Student Roster</h4>
+{% endblock %}
+{% block content %}
+<div class="main-panel">
+ <!-- <div style="height:auto;" class="content pre-scrollable"> -->
+    <div class="page-inner" >
+        <div style="height:auto;" class="content pre-scrollable">
+            {% for i in displayusername %}
+            <div class="row row-card-no-pd">
+                <div class="col-sm-6 col-md-3">
+                    <div class="card card-stats card-round">
+                        <div class="card-body ">
+                            <div class="row">
+                                <div class="col-5">
                             <div class="icon-big text-center">
                                 <i class="flaticon-user-1 text-warning"></i>
                             </div>
@@ -62,11 +63,11 @@
                             <div class="numbers">
                                 <form action="gameinput" method="post">
                                     <a href="gameinput" class="btn btn-info" role="button">
-											<span class="btn-label">
-												<i class="fas fa-cog"></i>
-											</span>
-											Manage {{i.first_name}}
-                                    </a></form>
+                                     <span class="btn-label">
+                                        <i class="fas fa-cog"></i>
+                                    </span>
+                                    Manage {{i.first_name}}
+                                </a></form>
                             </div>
                         </div>
                     </div>
@@ -75,6 +76,6 @@
         </div>
     </div>
     {% endfor %}
-                </div></div></div>
-    {% endblock %}
+</div></div>
+{% endblock %}
 </html>

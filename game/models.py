@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 
 class Game(models.Model):
     instructor = models.ForeignKey(User, models.DO_NOTHING, blank=True, null=True)
+    game_name = models.CharField(db_column='game_name', max_length=100)
     initial_population = models.IntegerField(blank=True, null=True)
     initial_budget = models.IntegerField(blank=True, null=True)
 
