@@ -7,5 +7,24 @@
     {% endblock %}
     {% block content %}
     <h2>All the small things</h2>
+        <form method="post" class="create-game">
+
+        {% csrf_token %}
+				<div class="form-group form-floating-label">
+					<input  id="id_name_game" name="name_game" type="text" class="form-control input-border-bottom" required>
+					<label for="name_game" class="placeholder">Name of Game: </label></div>
+				<div class="form-group form-floating-label">
+					<input  id="id_num_players" name="num_players" type="number" class="form-control input-border-bottom" required>
+					<label for="num_players" class="placeholder">Number of Players:</label></div>
+								<div class="form-group form-floating-label">
+					<input  id="id_initial_pop" name="initial_pop" type="number" class="form-control input-border-bottom" required>
+					<label for="initial_pop" class="placeholder">Initial Population</label></div>
+								<div class="form-group form-floating-label">
+					<input  id="id_budget" name="budget" type="number" min="1" step="any" class="form-control input-border-bottom" required>
+					<label for="budget" class="placeholder">Budget $</label></div>
+								<div class="form-group form-floating-label">
+
     {% endblock %}
+    </div>
+    </form>
 </html>
