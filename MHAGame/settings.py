@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'MHAGame.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-	'NAME': 'wphdb',
+	'NAME': 'mha_game',
 	'USER': 'django',
 	'PASSWORD': 'dj@ngo'
 
