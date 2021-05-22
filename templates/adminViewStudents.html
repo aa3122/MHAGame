@@ -2,14 +2,22 @@
 {% extends 'base.html' %}
 {% load static %}
 <html lang="en">
+    {% block breadcrumb %}
+        <li class="separator">
+            <i class="flaticon-right-arrow"></i>
+        </li>
+        <li class="nav-item">
+            <a href="/administration/viewstudents">Students</a>
+        </li>
+    {% endblock %}
 {% block title %}
 <h4 class="page-title">Student Roster</h4>
 {% endblock %}
 {% block content %}
 <div class="main-panel">
  <!-- <div style="height:auto;" class="content pre-scrollable"> -->
-    <div class="page-inner" >
-        <div style="height:auto;" class="content pre-scrollable">
+    <div class="page-inner" style="height:auto;" >
+        <div  class="content">
             {% for i in displayusername %}
             <div class="row row-card-no-pd">
                 <div class="col-sm-6 col-md-3">
@@ -62,7 +70,7 @@
                         <div class="col col-stats">
                             <div class="numbers">
                                 <form action="gameinput" method="post">
-                                    <a href="gameinput" class="btn btn-info" role="button">
+                                    <a href="managestudent" class="btn btn-info" role="button">
                                      <span class="btn-label">
                                         <i class="fas fa-cog"></i>
                                     </span>

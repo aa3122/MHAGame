@@ -37,7 +37,7 @@ def testcalender(request):
 def adminProfile(request):
 	return render(request, 'adminProfile.html')
 
-class AddGameView(CreateView):
+class adminCreateGameView(CreateView):
 	model = Game
-	template_name = 'adminCreateGame'
-	fields = '__all'
+	template_name = 'adminCreateGame.html'
+	fields = '__all__'

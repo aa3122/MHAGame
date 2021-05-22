@@ -1,6 +1,14 @@
 {% extends 'base.html' %}
 {% load static %}
 <html lang="en">
+    {% block breadcrumb %}
+    <li class="separator">
+        <i class="flaticon-right-arrow"></i>
+    </li>
+    <li class="nav-item">
+        <a href="/administration/viewgames">Current Games</a>
+    </li>
+    {% endblock %}
     {% block title %}
     <h4 class="page-title">Existing Games</h4>
     {% endblock %}
