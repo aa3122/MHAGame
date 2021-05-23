@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 from game.models import Game, Session
 from .forms import SessionCreateForm
+from django.views.generic import ListView, DetailView
 @login_required()
 def studentDashboard(request):
     return render(request, 'studentDashboard.html')
@@ -30,8 +31,9 @@ def gameInput(request):
 			}
 	return render(request, 'studentGameInput.html')
 @login_required()
-def studentGameOverview(request):
-    return render(request, 'studentGameOverview.html')
+def studentGameOverview(ListView):
+	Session = Session.objects.all()
+	return render(request, 'studentGameOverview.html')
 @login_required()
 def profile(request):
     return render(request, 'studentprofile.html')

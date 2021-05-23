@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth import get_user_model
-from .models import displayusername
+# from .models import displayusername
 from django.contrib.auth.models import User
 from game.models import Game
 from django.views.generic import CreateView

@@ -19,29 +19,48 @@ class Game(models.Model):
         int_game = '%i' % (self.id)
         return 'Game {}'.format(int_game)
 
-
-
-
-class Organization(models.Model):
-    org_id = models.AutoField(db_column='org_ID', primary_key=True)  # Field name made lowercase.
-    org_name = models.CharField(db_column='org_Name', max_length=100)  # Field name made lowercase.
-
-    class Meta:
-        managed = False
-        db_table = 'organization'
-
-
 class Session(models.Model):
     sessionid = models.AutoField(primary_key=True)
-    gameid = models.ForeignKey(Game, models.DO_NOTHING, db_column='gameid')
-    student = models.ForeignKey(User, models.DO_NOTHING, blank=True, null=True)
+    gameid = models.ForeignKey(Game, on_delete=models.CASCADE)
+    student = models.ForeignKey(User, on_delete=models.CASCADE)
+    immunization_perc = models.IntegerField(blank=True, null=False)
+    EDUSmoking_perc = models.IntegerField(blank=True, null=False)
+    EDUDisease_perc = models.IntegerField(blank=True, null=False)
+    Screening_perc = models.IntegerField(blank=True, null=False)
+    TestingLab_perc = models.IntegerField(blank=True, null=False)
+    AnnualPCP_perc = models.IntegerField(blank=True, null=False)
+    HospitalCare_perc = models.IntegerField(blank=True, null=False)
+    MentalHealth_perc = models.IntegerField(blank=True, null=False)
+    EmergencyCare_perc = models.IntegerField(blank=True, null=False)
+    OutPatientSurg_perc = models.IntegerField(blank=True, null=False)
+    OutPatientRadio_perc = models.IntegerField(blank=True, null=False)
+    PhysicianPCP_perc = models.IntegerField(blank=True, null=False)
+    PhysicianSpec_perc = models.IntegerField(blank=True, null=False)
+    UrgentCare_perc = models.IntegerField(blank=True, null=False)
+    HomeHealth_perc = models.IntegerField(blank=True, null=False)
+    Hospice_perc = models.IntegerField(blank=True, null=False)
+    LTAC_perc = models.IntegerField(blank=True, null=False)
+    SkilledNursing_perc = models.IntegerField(blank=True, null=False)
+    NursingHome_perc = models.IntegerField(blank=True, null=False)
+    AsstLiving_perc = models.IntegerField(blank=True, null=False)
+    IndLiving_perc = models.IntegerField(blank=True, null=False)
+    NameBrand_perc = models.IntegerField(blank=True, null=False)
+    GenDrugs_perc = models.IntegerField(blank=True, null=False)
+    SpecialtyDrugs_perc = models.IntegerField(blank=True, null=False)
+    DurableMedEqu_perc = models.IntegerField(blank=True, null=False)
+    TobTax_perc = models.IntegerField(blank=True, null=False)
+    Alcohol_perc = models.IntegerField(blank=True, null=False)
+    FattyFoods_perc = models.IntegerField(blank=True, null=False)
+    SugFoods_perc = models.IntegerField(blank=True, null=False)
+    immunization_perc = models.IntegerField(blank=True, null=False)
+    immunization_perc = models.IntegerField(blank=True, null=False)
     prev_expenses = models.IntegerField(blank=True, null=True)
     acute_expenses = models.IntegerField(blank=True, null=True)
     ambul_expenses = models.IntegerField(blank=True, null=True)
     long_expenses = models.IntegerField(blank=True, null=True)
     pharm_expenses = models.IntegerField(blank=True, null=True)
     tax_total = models.IntegerField(blank=True, null=True)
-
+    
     class Meta:
         managed = False
         db_table = 'session'
