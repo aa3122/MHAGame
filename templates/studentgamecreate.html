@@ -20,7 +20,7 @@
     <div class="main-panel">
 			<div class="content">
 				<div class="page-inner">
-    {% for games in gamelist %}
+    {% for games in object_list %}
     <div class="row row-card-no-pd">
         <div class="col-sm-6 col-md-3">
             <div class="card card-stats card-round">
@@ -34,7 +34,7 @@
                         <div class="col col-stats">
                             <div class="numbers">
                                 <p class="card-category">Game ID</p>
-                                <h4 class="card-title">Game: {{games.id}}</h4>
+                                <h4 class="card-title">Game: {{games.Instructor_id}}</h4>
                             </div>
                         </div>
                     </div>
@@ -53,7 +53,7 @@
                         <div class="col col-stats">
                             <div class="numbers">
                                 <p class="card-category">Instructor ID</p>
-                                <h4 class="card-title">{{games.instructor}}</h4>
+                                <h4 class="card-title">{{games.Instructor_id}}</h4>
                             </div>
                         </div>
                     </div>
@@ -76,7 +76,7 @@
 											<span class="btn-label">
 												<i class="fa fa-plus"></i>
 											</span>
-											Join Game {{games.id}}
+											Join Game {{games.Instructor_id}}
                                     </a></form>
                             </div>
                         </div>

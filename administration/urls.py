@@ -1,14 +1,12 @@
 from django.urls import path
-
 from . import views
+from .views import *
 
 urlpatterns = [
-    path('', views.adminDashboard, name='administration'),
-    path('creategame', views.adminCreateGame, name='adminCreateGame'),
-    path('viewgames', views.adminViewGame, name='adminViewGame'),
-    path('viewstudents', views.adminViewStudents, name='adminViewStudents'),
-    path('testcalender', views.testcalender, name='testcalender'),
-    path('viewstudents', views.adminViewStudents, name='adminViewStudents'),
-    path('profile', views.adminProfile, name='adminProfile')
+path('', adminDashboard.as_view(), name="adminDashboard"),
+path('creategame', adminCreateGameView.as_view(), name="adminCreateGame"),
+path('viewgames', adminViewGame.as_view(), name="adminViewGame"),
+path('viewstudents', adminViewStudents.as_view(), name="adminViewStudents"),
+path('profile', profile.as_view(), name='profile')
 
-]
+    ]

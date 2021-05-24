@@ -2,13 +2,13 @@
 {% extends 'base.html' %}
 {% load static %}
 <html lang="en">
-  {% block breadcrumb %}
-  <li class="separator">
-      <i class="flaticon-right-arrow"></i>
-  </li>
-  <li class="nav-item">
-      <a href="/administration/creategame">Create Game</a>
-  </li>
+{% block breadcrumb %}
+<li class="separator">
+  <i class="flaticon-right-arrow"></i>
+</li>
+<li class="nav-item">
+  <a href="/administration/creategame">Create Game</a>
+</li>
 {% endblock %}
 {% block title %}
 <h4 class="page-title">Admin Create Game</h4>
@@ -21,7 +21,11 @@
 
 
         {% csrf_token %}
-        <!-- {{ form.as_p }} -->
+        {{
+
+          form.Instructor_id = user.
+        }}
+      
         <!-- <div class="col-sm-6 col-md-3"> -->
           <!-- style="background:#ff3333;" -->
           <!-- <div class="card"> -->
@@ -32,32 +36,38 @@
                  <div class="card-title">Create Game</div>
                </div>
                <div class="card-body">
+
                 <div class="form-group form-inline">
-                  <label for="name_game" class="col-md-3 col-form-label">Name of Game: </label>
+                  <label for="game_tag" class="col-md-3 col-form-label">Create Game Tag:</label>
                   <div class="col-md-9 p-0">
-                    <input  id="id_name_game" name="name_game" type="text" required>
+                    {{form.join_tag}}
+                    <!-- <input  id="id_game_tag" name="game_tag" type="number" min="0" step="1" value = "0"  required> -->
                   </div>
                 </div>
 
+
                 <div class="form-group form-inline">
-                  <label for="num_players" class="col-md-3 col-form-label">Number of Players:</label>
+                  <label for="name_game" class="col-md-3 col-form-label">Name of Game: </label>
                   <div class="col-md-9 p-0">
-                    <input  id="id_num_players" name="num_players" type="number" min="0" step="1" value = "0"  required>
+                    <!-- <input  id="id_name_game" name="name_game" type="text" required> -->
+                    {{form.game_name}}
                   </div>
                 </div>
 
                 <div class="form-group form-inline">
                  <label for="initial_pop" class="col-md-3 col-form-label">Initial Population</label>
                  <div class="col-md-9 p-0">
-                  <input  id="id_initial_pop" name="initial_pop" type="number" min="0" step="1" value = "0" required>
+                 <!--  <input  id="id_initial_pop" name="initial_pop" type="number" min="0" step="1" value = "0" required> -->
+                 {{form.initial_population}}
                 </div>
               </div>
 
               <div class="form-group form-inline">
-               <label for="budget" class="col-md-3 col-form-label">Budget $</label>
+               <label for="budget" class="col-md-3 col-form-label">Initial Budget $</label>
                <div class="col-md-9 p-0">
 
-                <input id="id_budget" type="number"  type="number" min="0" step="any" value = "0" class="col-md-3 col-form-label" aria-label="Amount (to the nearest dollar)">
+               <!--  <input id="id_budget" type="number"  type="number" min="0" step="any" value = "0" class="col-md-3 col-form-label" aria-label="Amount (to the nearest dollar)"> -->
+               {{form.initial_budget}}
              <!--    <div class="input-group-append">
                   <span class="input-group-text">.00</span>
                 </div> -->
@@ -73,11 +83,11 @@
       </div>
 
 
-    <!-- <div class =".card-tasks .table .form-check"></form></div> -->
-    {% endblock %}
+      <!-- <div class =".card-tasks .table .form-check"></form></div> -->
+      {% endblock %}
 
 
+    </div>
   </div>
-</div>
 
-</html>
+  </html>
