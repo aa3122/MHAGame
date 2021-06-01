@@ -20,72 +20,25 @@
     <div class="main-panel">
 			<div class="content">
 				<div class="page-inner">
-    {% for games in object_list %}
-    <div class="row row-card-no-pd">
-        <div class="col-sm-6 col-md-3">
-            <div class="card card-stats card-round">
-                <div class="card-body ">
-                    <div class="row">
-                        <div class="col-5">
-                            <div class="icon-big text-center">
-                                <i class="flaticon-game-controller text-warning"></i>
-                            </div>
-                        </div>
-                        <div class="col col-stats">
-                            <div class="numbers">
-                                <p class="card-category">Game ID</p>
-                                <h4 class="card-title">Game: {{games.Instructor_id}}</h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-md-3">
-            <div class="card card-stats card-round">
-                <div class="card-body ">
-                    <div class="row">
-                        <div class="col-5">
-                            <div class="icon-big text-center">
-                                <i class="flaticon-user-1 text-success"></i>
-                            </div>
-                        </div>
-                        <div class="col col-stats">
-                            <div class="numbers">
-                                <p class="card-category">Instructor ID</p>
-                                <h4 class="card-title">{{games.Instructor_id}}</h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-md-3">
-            <div class="card card-stats card-round">
-                <div class="card-body ">
-                    <div class="row">
-                        <div class="col-5">
-                            <div class="icon-big text-center">
-                                <i class="flaticon-play-button-1 text-success"></i>
-                            </div>
-                        </div>
-                        <div class="col col-stats">
-                            <div class="numbers">
-                                <form action="gameinput" method="post">
-                                    <a href="gameinput" class="btn btn-info" role="button">
-											<span class="btn-label">
-												<i class="fa fa-plus"></i>
-											</span>
-											Join Game {{games.Instructor_id}}
-                                    </a></form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    {% endfor %}
-                </div></div></div>
+                    <form method='POST'>
+                    {% csrf_token %}
+                        <div class="col-md-3 pl-md-0 pr-md-0">
+							<div class="card card-pricing card-pricing-focus card-primary">
+								<div class="card-header">
+									<h4 class="card-title">Join Game</h4>
+									</div>
+								<div class="card-body">
+									<ul class="specification-list">
+                                        <center>
+                                        <p>Enter Join Code Provided by your instructor.</p>
+                                            <p>{{form.game_tag}}</p></center>
+									</ul>
+								</div>
+								<div class="card-footer">
+									<button type ='submit' class="btn btn-light btn-block"><b>Get Started</b></button>
+								</div>
+                            </div></div>
+                    </form></div>
+                </div></div>
     {% endblock %}
 </html>

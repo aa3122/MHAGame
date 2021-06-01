@@ -7,7 +7,7 @@
             <i class="flaticon-right-arrow"></i>
         </li>
         <li class="nav-item">
-            <a href="/student/profile">Profile</a>
+            <a href="{% url 'profile-view' user.username %}">Profile</a>
         </li>
     {% endblock %}
     {% block title %}
@@ -23,26 +23,15 @@
 										</ul>
 									</div>
 								</div>
+                                <form method='post'>
+                                    {% csrf_token %}
 								<div class="card-body">
-									<div class="row mt-3">
-										<div class="col-md-6">
-											<div class="form-group form-group-default">
-												<label>Name</label>
-												<input type="text" class="form-control" name="name" placeholder="Name" value="{{ user.first_name }}">
-											</div>
-										</div>
-										<div class="col-md-6">
-											<div class="form-group form-group-default">
-												<label>Email</label>
-												<input type="email" class="form-control" name="email" placeholder="Name" value="{{ user.email }}">
-											</div>
-										</div>
-									</div>
+                                    {{form.as_p}}
 									<div class="text-right mt-3 mb-3">
-										<button class="btn btn-success">Save</button>
-										<button class="btn btn-danger">Reset</button>
+										<button type='submit' class="btn btn-success">Save</button>
+										<a href='/student'class="btn btn-danger">Cancel</a>
 									</div>
-								</div>
+								</div></form>
 							</div>
 						</div>
 						<div class="col-md-4">
@@ -56,8 +45,6 @@
 								</div>
 								<div class="card-body">
 									<div class="user-profile text-center">
-										<div class="name">{{user.first_name}} {{user.last_name }}</div>
-										<div class="job">{% if user.is_staff %} Staff {% else %} Student {% endif %}</div>
 									</div>
 								</div>
 								<div class="card-footer">

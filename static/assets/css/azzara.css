@@ -673,12 +673,12 @@ body {
     padding: 0px !important;
     min-height: calc(100% - 123px);
     margin-top: 57px;
-    overflow: hidden; }
+    overflow: auto; }
   .main-panel > .content-full {
     padding: 0px !important;
     min-height: calc(100% - 123px);
     margin-top: 57px;
-    overflow: hidden; }
+    overflow: auto; }
   .main-panel .page-header {
     display: flex;
     align-items: center;

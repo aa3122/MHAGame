@@ -3,13 +3,31 @@
  {% load static %} 
 <html lang="en">
     {% block title %}
-    <h4 class="page-title">Admin Dashboard</h4>
+    <h4 class="page-title">Instructor Dashboard</h4>
     {% endblock %}
     {% block content %}
-    <ul>
-    {% for i in displayusername %}
-    <li>{{i.first_name}} {{i.last_name}}</li>
+    
+ 
+ 
+{% for game in object_list %}
+    <div class="row">
+        <div class="col-md-11">
+            <div class="card card-info card-annoucement card-round">
+                <div class="card-body text-center">
+                    <div class="card-opening">{{game.game_name}} </div>
+                    <div class="card-desc">  
+                    {{game.course}}
+                    {{game.Instructor}}
+                    </div>
+                    <div class="card-detail">
+                        <div class="btn btn-light btn-rounded"> <a href="{% url 'adminViewStudents' game.pk %}">View Detail</a></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
     {% endfor %}
-    </ul>
+ 
     {% endblock %}
 </html>

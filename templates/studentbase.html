@@ -100,23 +100,29 @@
 						</li>
 						<li class="nav-item dropdown hidden-caret">
 							<a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false">
-								<div class="avatar-sm">
-									<img src="{% static '/assets/img/profile.jpg' %}" alt="..." class="avatar-img rounded-circle">
+								<div class="avatar">
+									<span style = 'background:#FF3232; color:white;' id = "initial1" style= 'color:white;' class="avatar-title rounded-circle border-white"></span>
 								</div>
 							</a>
 							<ul class="dropdown-menu dropdown-user animated fadeIn">
 								<li>
 									<div class="user-box">
-										<div class="avatar-lg"><img src="{% static '/assets/img/profile.jpg' %}" alt="image profile" class="avatar-img rounded"></div>
+										<div class="avatar-sm float-left mr-2">
+										<div class="avatar">
+        <span style = 'background:#FF3232;' id = "initial2" class="avatar-title rounded-circle border border-white"></span>
+    <script>
+
+    </script>
+                                            </div></div>
 										<div class="u-text">
 											<h4>{{ user.first_name }}</h4>
-											<p class="text-muted">{{user.email}}</p><a href="profile" class="btn btn-rounded btn-danger btn-sm">View Profile</a>
+											<p class="text-muted">{{user.email}}</p><a href="{% url 'profile-view' user.username %}" class="btn btn-rounded btn-danger btn-sm">View Profile</a>
 										</div>
 									</div>
 								</li>
 								<li>
 									<div class="dropdown-divider"></div>
-									<a class="dropdown-item" href="profile">My Profile</a>
+									<a class="dropdown-item" href="{% url 'profile-view' user.username %}">My Profile</a>
 									<div class="dropdown-divider"></div>
 									<a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
 								</li>
@@ -136,14 +142,18 @@
 				<div class="sidebar-content">
 					<div class="user">
 						<div class="avatar-sm float-left mr-2">
-							<img src="{% static '/assets/img/profile.jpg' %}" alt="..." class="avatar-img rounded-circle">
+						<div class="avatar">
+        <span style = 'background:#FF3232;'id = "initial" class="avatar-title rounded-circle border border-white"></span>
+    <script>
+</script>
+    </div>	
 						</div>
 						<div class="info">
 							<a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
 								<span>
 									{{user.first_name}} {{user.last_name}}
 									{% if user.is_staff %}
-									<span class="user-level">Staff</span>
+									<span class="user-level">Instructor</span>
 									{% else %}
 									<span class="user-level">Student</span>
 									{% endif %}
@@ -155,7 +165,7 @@
 							<div class="collapse in" id="collapseExample">
 								<ul class="nav">
 									<li>
-										<a href="profile">
+										<a href="{% url 'profile-view' user.username %}">
 											<span class="link-collapse">My Profile</span>
 										</a>
 									</li>
@@ -289,4 +299,14 @@
 -->
 
 </body>
+    <script>
+let first = '{{user.first_name}}';
+let last = '{{user.last_name}}';
+let first1 = first.charAt(0);
+let last1 = last.charAt(0);
+let initials = first1 + last1;
+document.getElementById("initial").innerHTML = initials;
+document.getElementById("initial1").innerHTML = initials;
+document.getElementById("initial2").innerHTML = initials;
+</script>
 </html>

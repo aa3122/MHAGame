@@ -7,87 +7,87 @@
   <i class="flaticon-right-arrow"></i>
 </li>
 <li class="nav-item">
-  <a href="/administration/creategame">Create Game</a>
+  <a href="/administration/creategame">Game Parameters</a>
 </li>
 {% endblock %}
 {% block title %}
-<h4 class="page-title">Admin Create Game</h4>
+<h4 class="page-title">Game Parameters</h4>
 {% endblock %}
 {% block content %}
 <div class="main-panel">
   <div class="content">
     <div class="page-inner">
-      <form method="post" class="create-game">
-
-
-        {% csrf_token %}
-        {{
-
-          form.Instructor_id = user.
-        }}
-      
-        <!-- <div class="col-sm-6 col-md-3"> -->
-          <!-- style="background:#ff3333;" -->
-          <!-- <div class="card"> -->
-            <!-- <div class="row"> -->
-              <!-- <div class="col-md-6"> -->
-               <div class="card text-center">
-                <div class="card-header">
-                 <div class="card-title">Create Game</div>
-               </div>
-               <div class="card-body">
-
-                <div class="form-group form-inline">
-                  <label for="game_tag" class="col-md-3 col-form-label">Create Game Tag:</label>
-                  <div class="col-md-9 p-0">
-                    {{form.join_tag}}
-                    <!-- <input  id="id_game_tag" name="game_tag" type="number" min="0" step="1" value = "0"  required> -->
+        <form method="post" class="create-game">
+          {% csrf_token %}
+          
+          {{ form.Instructor }}
+        
+          <!-- <div class="col-sm-6 col-md-3"> -->
+            <!-- style="background:#ff3333;" -->
+            <!-- <div class="card"> -->
+              <!-- <div class="row"> -->
+                <!-- <div class="col-md-6"> -->
+                 <div class="card text-center">
+                  <div class="card-header">
+                   <div class="card-title">Game Parameters</div>
+                 </div>
+                 <div class="card-body">
+        
+                  <div class="form-group form-inline">
+                    <label for="game_tag" class="col-md-3 col-form-label">Game Code</label>
+                    <div class="col-md-9 p-0">
+                      {{form.join_tag}}
+                      <!-- <input  id="id_game_tag" name="game_tag" type="number" min="0" step="1" value = "0"  required> -->
+                    </div>
+                  </div>
+                  <div class="form-group form-inline">
+                    <label for="name_game" class="col-md-3 col-form-label">Course Section</label>
+                    <div class="col-md-9 p-0">
+                      <!-- <input  id="id_name_game" name="name_game" type="text" required> -->
+                      {{form.course}}
+                    </div>
+                  </div>
+        
+                  <div class="form-group form-inline">
+                    <label for="name_game" class="col-md-3 col-form-label">Name Your Game</label>
+                    <div class="col-md-9 p-0">
+                      <!-- <input  id="id_name_game" name="name_game" type="text" required> -->
+                      {{form.game_name}}
+                    </div>
+                  </div>
+        
+                  <div class="form-group form-inline">
+                   <label for="initial_pop" class="col-md-3 col-form-label">Initial Population</label>
+                   <div class="col-md-9 p-0">
+                   <!--  <input  id="id_initial_pop" name="initial_pop" type="number" min="0" step="1" value = "0" required> -->
+                   {{form.initial_population}}
                   </div>
                 </div>
-
-
+        
                 <div class="form-group form-inline">
-                  <label for="name_game" class="col-md-3 col-form-label">Name of Game: </label>
-                  <div class="col-md-9 p-0">
-                    <!-- <input  id="id_name_game" name="name_game" type="text" required> -->
-                    {{form.game_name}}
-                  </div>
-                </div>
-
-                <div class="form-group form-inline">
-                 <label for="initial_pop" class="col-md-3 col-form-label">Initial Population</label>
+                 <label for="budget" class="col-md-3 col-form-label">Initial Budget</label>
                  <div class="col-md-9 p-0">
-                 <!--  <input  id="id_initial_pop" name="initial_pop" type="number" min="0" step="1" value = "0" required> -->
-                 {{form.initial_population}}
+        
+                 <!--  <input id="id_budget" type="number"  type="number" min="0" step="any" value = "0" class="col-md-3 col-form-label" aria-label="Amount (to the nearest dollar)"> -->
+                 {{form.initial_budget}}
+               <!--    <div class="input-group-append">
+                    <span class="input-group-text">.00</span>
+                  </div> -->
                 </div>
-              </div>
-
-              <div class="form-group form-inline">
-               <label for="budget" class="col-md-3 col-form-label">Initial Budget $</label>
-               <div class="col-md-9 p-0">
-
-               <!--  <input id="id_budget" type="number"  type="number" min="0" step="any" value = "0" class="col-md-3 col-form-label" aria-label="Amount (to the nearest dollar)"> -->
-               {{form.initial_budget}}
-             <!--    <div class="input-group-append">
-                  <span class="input-group-text">.00</span>
-                </div> -->
               </div>
             </div>
-          </div>
-          <div class="form-action">
-            <!-- <a href="/viewgames" id="show-viewgames" class="btn btn-danger btn-rounded btn-login mr-3">Cancel</a> -->
-            <button type="submit" value="Submit" name="submit" class="btn btn-primary btn-lg">Submit</button>
-          </div>
-          {{ form.errors }}
-        </form>   </div>
-      </div>
-
-
-      <!-- <div class =".card-tasks .table .form-check"></form></div> -->
-      {% endblock %}
-
-
-    </div>
+            <div class="card-footer">
+              <div class="form-action">
+                <!-- <a href="/viewgames" id="show-viewgames" class="btn btn-danger btn-rounded btn-login mr-3">Cancel</a> -->
+                <button type="submit" value="Submit" name="submit" class="btn btn-primary btn-lg">Save Game</button>
+              </div>
+              {{ form.errors }}
+            </div>
+        </form>   
+     </div>
   </div>
+        <!-- <div class =".card-tasks .table .form-check"></form></div> -->      
+</div>
+{% endblock %}
 
   </html>

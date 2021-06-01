@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+<html lang="en">
+{% block breadcrumb %}
+<li class="separator">
+  <i class="flaticon-right-arrow"></i>
+</li>
+<li class="nav-item">
+  <a href="/administration/creategame">Create Game</a>
+</li>
+{% endblock %}
+{% block title %}
+<h4 class="page-title">Admin Create Class</h4>
+{% endblock %}
+{% block content %}
+<div class="main-panel">
+  <div class="content">
+    <div class="page-inner">
+      <form method="post" class="create-class">
+
+
+        {% csrf_token %}
+        
+        
+     
+        {{ form.Instructor }}
+
+        <div class="card text-center">
+                <div class="card-header">
+                 <div class="card-title">Create Game</div>
+               </div>
+               <div class="card-body">
+
+                <div class="form-group form-inline">
+                  <label for="game_tag" class="col-md-3 col-form-label">Course CRN: </label>
+                  <div class="col-md-9 p-0">
+                    {{form.crn}}
+                    <div class="form-group form-inline">
+                    </div>
+                  </div>
+
+                  <label for="game_tag" class="col-md-3 col-form-label">Course Title: </label>
+                  <div class="col-md-9 p-0">
+                    {{form.title}}
+                  </div>
+                </div>
+
+                <div class="form-group form-inline">
+                  <label for="game_tag" class="col-md-3 col-form-label">Course Term: </label>
+                  <div class="col-md-9 p-0">
+                 {{ form.term }}
+               </div>
+             </div>
+
+             <div class="form-group form-inline">
+                  <label for="game_tag" class="col-md-3 col-form-label">Course Prefix: </label>
+                  <div class="col-md-9 p-0">
+               {{form.prefix}}
+             </div>
+           </div>
+
+           <div class="form-group form-inline">
+                  <label for="game_tag" class="col-md-3 col-form-label"> Course Number: </label>
+                  <div class="col-md-9 p-0">
+               {{form.course_num}}
+             </div>
+           </div>
+
+           <div class="form-group form-inline">
+                  <label for="game_tag" class="col-md-3 col-form-label">Course Section Number: </label>
+                  <div class="col-md-9 p-0">
+                    {{form.section_num}}
+                  </div>
+                </div>
+          <div class="form-action">
+            <!-- <a href="/viewgames" id="show-viewgames" class="btn btn-danger btn-rounded btn-login mr-3">Cancel</a> -->
+            <button type="submit" value="Submit" name="submit" class="btn btn-primary btn-lg">Submit</button>
+          </div>
+          {{ form.errors }}
+        </form>   </div>
+      </div>
+
+
+
+
+     
+              {% endblock %}
+
+
+
+
+  </html>

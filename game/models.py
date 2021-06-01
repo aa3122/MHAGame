@@ -6,25 +6,25 @@ from django.contrib.auth.models import User
 
 
 class Game(models.Model):
-    gameid = models.AutoField(primary_key=True)
+    game = models.AutoField(primary_key=True)
     join_tag = models.CharField(default=1, max_length=100, unique=True)
-    Instructor_id = models.ForeignKey(User,null=True, on_delete=models.CASCADE)
+    Instructor = models.ForeignKey(User,null=True, on_delete=models.CASCADE, limit_choices_to={'is_staff': True},)
     game_name = models.CharField(db_column='game_name', max_length=100)
     initial_population = models.IntegerField(blank=False, null=False, default=0)
-    initial_budget = models.IntegerField(blank=False, null=False, default=0)
+    initial_budget = models.DecimalField(max_digits = 13, decimal_places = 2, blank=False, null=False, default=0)
+    course  = models.CharField(max_length = 240, null=True)
 
     class Meta:
         managed = True
         db_table = 'game'
 
     def __str__(self):
-        int_game = '%i' % (self.gameid)
-        return 'Game {}'.format(int_game)
+        return self.join_tag
 
 class Session(models.Model):
-    sessionid = models.AutoField(primary_key=True)
-    game_tag = models.ForeignKey(Game, default=1, on_delete=models.CASCADE)
-    student = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
+    session = models.AutoField(primary_key=True)
+    game_tag = models.ForeignKey(Game, default=1, on_delete=models.CASCADE, related_name='hostgame')
+    student = models.ForeignKey(User, null=True, on_delete=models.CASCADE, limit_choices_to={'is_staff': False},)
     immunization_perc = models.IntegerField(blank=True, null=False, default=100)
     EDUSmoking_perc = models.IntegerField(blank=True, null=False, default=100)
     EDUDisease_perc = models.IntegerField(blank=True, null=False, default=100)
@@ -50,16 +50,17 @@ class Session(models.Model):
     NameBrand_perc = models.IntegerField(blank=True, null=False, default=100)
     GenDrugs_perc = models.IntegerField(blank=True, null=False, default=100)
     SpecialtyDrugs_perc = models.IntegerField(blank=True, null=False, default=100)
-    DurableMedEqu_perc = models.IntegerField(blank=True, null=False, default=100)
     TobTax_perc = models.IntegerField(blank=True, null=False, default=0)
-    Alcohol_perc = models.IntegerField(blank=True, null=False, default=0)
-    FattyFoods_perc = models.IntegerField(blank=True, null=False, default=0)
-    SugFoods_perc = models.IntegerField(blank=True, null=False, default=0)
+    DurableMedEqu_perc = models.IntegerField(blank=True, null=False, default=100)
+    TobTax_perc = models.DecimalField(max_digits = 5, decimal_places = 1, blank=True, null=False, default=0)
+    Alcohol_perc = models.DecimalField(max_digits = 5, decimal_places = 1, blank=True, null=False, default=0)
+    FattyFoods_perc = models.DecimalField(max_digits = 5, decimal_places = 1,blank=True, null=False, default=0)
+    SugFoods_perc = models.DecimalField(max_digits = 5, decimal_places = 1, blank=True, null=False, default=0)
     
     class Meta:
         managed = True
         db_table = 'session'
 
     def __str__(self):
-        session_num = '%i' % (self.sessionid)
+        session_num = '%i' % (self.session)
         return 'Session {}'.format(session_num)

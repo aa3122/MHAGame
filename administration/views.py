@@ -1,83 +1,98 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render, redirect, reverse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
 from game.models import Game, Session
-from student.models import Class,  CourseSection
-from django.views.generic import ListView, DetailView, CreateView, View
+from student.models import Class, CourseSection
+from django.views.generic import ListView, DetailView, CreateView, View, TemplateView,UpdateView
 from extra_views import CreateWithInlinesView, InlineFormSet
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.conf import settings
+from django.contrib.auth.views import redirect_to_login
+
+from django.shortcuts import get_object_or_404
 
 
+class AdminStaffRequiredMixin(LoginRequiredMixin, UserPassesTestMixin):
 
-class adminDashboard(View):
+    def test_func(self):
+        return self.request.user.is_staff
+
+    def handle_no_permission(self):
+        return HttpResponseRedirect(reverse('studentDashboard'))
+           
+
+class adminViewStudents(AdminStaffRequiredMixin, DetailView):
+	template_name = 'adminViewStudents.html'
 	model = Game
-	template_name = 'adminDashboard.html'
-	def get(self,request):
-		# displaynames=User.objects.exclude(is_staff = 1)
-		return HttpResponse(render(request, 'adminDashboard.html'))
-
-# class adminCreateGameView(CreateView):
-	# model = Game
-	# fields = '__all__'
-	# success_url = 'viewgames'
-	# template_name = 'adminCreateGame.html'
+	success_url = '/administration/viewstudents'
 
 
-class adminPullUser(InlineFormSet):
-    model = User   
-    # fields = 'username'
+	def get_context_data(self, **kwargs):
+		context = super(adminViewStudents, self).get_context_data(**kwargs)
+		
+		context['session'] = Session.objects.all()
+		
+		return context
 
-class adminCreateGameView(CreateWithInlinesView):
+
+
+class adminDashboard(AdminStaffRequiredMixin, ListView):
 	model = Game
+	models = Game.objects.all()
 	fields = '__all__'
-	inlines = [adminPullUser]
+	template_name = 'adminDashboard.html'
+	context_object_name = 'viewstudents'
+
+
+	def get_queryset(self):
+		return Game.objects.filter(Instructor_id=self.request.user).order_by('course')
+
+class adminCreateGameView(AdminStaffRequiredMixin, CreateView):
+	model = Game
+	fields = 'game', 'join_tag', 'course','game_name', 'initial_population', 'initial_budget'
 	success_url = 'viewgames'
+	def form_valid(self, form):
+		form.instance.Instructor = self.request.user
+		return super(adminCreateGameView, self).form_valid(form)
 	template_name = 'adminCreateGame.html'
 
-  
+class adminGameEdit(AdminStaffRequiredMixin, UpdateView):
+	model = Game
+	fields = 'game', 'join_tag', 'course','game_name', 'initial_population', 'initial_budget'
+	success_url = '/administration/viewgames'
+	template_name = 'adminCreateGame.html'
 
 
-class adminViewGame(ListView):
+
+
+class adminViewGame(AdminStaffRequiredMixin, ListView):
 	model = Game
 	template_name = 'adminViewGame.html'
 
-class adminViewStudents(ListView):
-	model = User
-	template_name = 'adminViewStudents.html'
+	def get_queryset(self):
+		return Game.objects.filter(Instructor_id=self.request.user)
 
+	
+class adminManageGameView(AdminStaffRequiredMixin, DetailView):
+	model = Session
+	models = Session.objects.all()
+	template_name = 'adminManageGame.html'
+	
+
+	def get_context_data(self, **kwargs):
+		context = super(adminManageGameView, self).get_context_data(**kwargs)
+		
+		context['session'] = Session.objects.all()
+		
+		return context
 class profile(DetailView):
 	model = User
 	def get(self,request):
 		return HttpResponse(render(request, 'adminProfile.html'))
 
-# @staff_member_required(login_url="/student")
-# def adminDashboard(request):
-# 	displaynames=User.objects.exclude(is_staff = 1)
-# 	return render(request, 'adminDashboard.html', {"displayusername":displaynames})
 
-# @staff_member_required(login_url="/student")
-# def adminCreateGame(request):
-# 	return render(request, 'adminCreateGame.html')
 
-# @staff_member_required(login_url="/student")
-# def adminViewGame(request):
-# 	displaynames=User.objects.all()
-# 	displaygames=Game.objects.all()
-# 	return render(request, 'adminViewGame.html', {"displaygames":displaygames, "displaynames":displaynames})
-
-# @staff_member_required(login_url="/student")
-# def adminViewStudents(request):
-# 	displaynames=User.objects.exclude(is_staff = 1)
-# 	return render(request, 'adminViewStudents.html', {"displayusername":displaynames})
-
-# @staff_member_required(login_url="/student")
-# def adminProfile(request):
-# 	return render(request, 'adminProfile.html')
-
-# class adminCreateGameView(CreateView):
-# 	model = Game
-# 	template_name = 'adminCreateGame.html'
-# 	fields = '__all__'
 

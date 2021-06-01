@@ -6,8 +6,9 @@
     <h4 class="page-title">Student Dashboard</h4>
     {% endblock %}
     {% block content %}
+    {% for i in object_list %}
 	<script src="{% static '/assets/js/plugin/chart.js/chart.min.js' %}"></script>
-    <div class="col-sm-6 col-md-3">
+    <!-- <div class="col-sm-6 col-md-3">
         <div class="card card-stats card-primary card-round">
             <div class="card-body">
                 <div class="row">
@@ -82,143 +83,333 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <script src="{% static '/assets/js/plugin/chart.js/chart.min.js' %}"></script>
-    <div class="col-md-6">
-							<div class="card">
-								<div class="card-header">
-									<div class="card-title">Satisfaction Score Vs. Class Average</div>
-								</div>
-								<div class="card-body">
-									<div class="chart-container">
-										<canvas id="multipleLineChart"></canvas>
-									</div>
-								</div>
-							</div>
+    <div class="page-outer">
+		<div class="card">
+			<div class="card-header">
+				<div class="card-title">Your Budget</div>
+			</div>
+			<div class="card-body">
+				<div class="chart-container">
+					<canvas id="pieChart"></canvas>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-6">
+			<div class="card">
+				<div class="card-header">
+					<div class="card-title">Your Satisfaction Scores</div>
+				</div>
+				<div class="card-body">
+					<div class="chart-container">
+						<canvas id="radarChart"></canvas>
+					</div>
+				</div>
+			</div>
+			<!-- <div class="card">
+				<div class="card-header">
+					<div class="card-title">Percent Taxed Vs. Class Average</div>
+				</div>
+				<div class="card-body">
+					<div class="chart-container">
+						<canvas id="multipleBarChart"></canvas>
+					</div>
+				</div>
+			</div> -->
+		</div>
+	</div>
+	<head>
+		<meta charset='utf-8' />
+		<link href="{% static '/assets/fullcalendar/lib/main.css' %}" rel='stylesheet' />
+		<script src="{% static '/assets/fullcalendar/lib/main.js' %}"></script>
+		<script>
+	
+			document.addEventListener('DOMContentLoaded', function() {
+			var calendarEl = document.getElementById('calendar');
+			var calendar = new FullCalendar.Calendar(calendarEl, {
+				initialView: 'dayGridMonth'
+			});
+			calendar.render();
+			});
+	
+		</script>
+		</head>
+		<div class="page-inner">
+			<div class="row">
+				<div class="col">
+					<div class="card">
+						<div class="card-body">
+							<div id="calendar"></div>
 						</div>
-                        <div class="col-md-6">
-							<div class="card">
-								<div class="card-header">
-									<div class="card-title">Funds Allocated Vs. Class Average</div>
-								</div>
-								<div class="card-body">
-									<div class="chart-container">
-										<canvas id="radarChart"></canvas>
-									</div>
-								</div>
-							</div>
-						</div>
-						<head>
-							<meta charset='utf-8' />
-							<link href="{% static '/assets/fullcalendar/lib/main.css' %}" rel='stylesheet' />
-							<script src="{% static '/assets/fullcalendar/lib/main.js' %}"></script>
-							<script>
-						
-							  document.addEventListener('DOMContentLoaded', function() {
-								var calendarEl = document.getElementById('calendar');
-								var calendar = new FullCalendar.Calendar(calendarEl, {
-								  initialView: 'dayGridMonth'
-								});
-								calendar.render();
-							  });
-						
-							</script>
-						  </head>
-							<div class="main-panel">
-									<div class="content">
-										<div class="page-inner">
-											<div id="calendar"></div>
-										</div>
-									</div>
-							</div>
-<script>
-    var multipleLineChart = document.getElementById('multipleLineChart').getContext('2d');
-    var myMultipleLineChart = new Chart(multipleLineChart, {
-			type: 'line',
-			data: {
-				labels: ["Start", "Deadline 1", "Deadline 2", "Deadline 3", "Deadline 4", "Deadline 5", "Deadline 6", "Deadline 7", "Deadline 8", "Deadline 9", "Deadline 10", "Finish"],
-				datasets: [{
-					label: "Your Satisfaction Score",
-					borderColor: "#1d7af3",
-					pointBorderColor: "#FFF",
-					pointBackgroundColor: "#1d7af3",
-					pointBorderWidth: 2,
-					pointHoverRadius: 4,
-					pointHoverBorderWidth: 1,
-					pointRadius: 4,
-					backgroundColor: 'transparent',
-					fill: true,
-					borderWidth: 2,
-					data: [0, 7, 6, 4, 3, 8, 9, 2, 5, 4, 6, 10]
-				},{
-					label: "Class Average Satisfaction Score",
-					borderColor: "#f3545d",
-					pointBorderColor: "#FFF",
-					pointBackgroundColor: "#f3545d",
-					pointBorderWidth: 2,
-					pointHoverRadius: 4,
-					pointHoverBorderWidth: 1,
-					pointRadius: 4,
-					backgroundColor: 'transparent',
-					fill: true,
-					borderWidth: 2,
-					data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 9.5, 9.5, 10]
-				}]
-			},
-			options : {
-				responsive: true, 
-				maintainAspectRatio: false,
-				legend: {
-					position: 'top',
-				},
-				tooltips: {
-					bodySpacing: 4,
-					mode:"nearest",
-					intersect: 0,
-					position:"nearest",
-					xPadding:10,
-					yPadding:10,
-					caretPadding:10
-				},
-				layout:{
-					padding:{left:15,right:15,top:15,bottom:15}
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+		var formatter = new Intl.NumberFormat('en-US', {style: 'currency',currency: 'USD',});
+		var prevprice1 = parseFloat(formuladict({{i.immunization_perc}}).toFixed(2));
+		var prevprice2 = parseFloat(formuladict({{i.EDUSmoking_perc}}).toFixed(2));
+		var prevprice3 = parseFloat(formuladict({{i.EDUDisease_perc}}).toFixed(2));
+		var prevprice4 = parseFloat(formuladict({{i.Screening_perc}}).toFixed(2));
+		var prevprice5 = parseFloat(formuladict({{i.TestingLab_perc}}).toFixed(2));
+		var prevprice6 = parseFloat(formuladict({{i.TestingPharmo_perc}}).toFixed(2));
+		var prevprice7 = parseFloat(formuladict({{i.AnnualPCP_perc}}).toFixed(2));
+	
+		var acuteprice1 = parseFloat(formuladict1({{i.HospitalCare_perc}}).toFixed(2));
+		var acuteprice2 = parseFloat(formuladict1({{i.MentalHealth_perc}}).toFixed(2));
+		var acuteprice3 = parseFloat(formuladict1({{i.EmergencyCare_perc}}).toFixed(2));
+		
+		var ambprice1 = parseFloat(formuladict({{i.OutPatientSurg_perc}}).toFixed(2));
+		var ambprice2 = parseFloat(formuladict({{i.OutPatientRadio_perc}}).toFixed(2));
+		var ambprice3 = parseFloat(formuladict({{i.PhysicianPCP_perc}}).toFixed(2));
+		var ambprice4 = parseFloat(formuladict({{i.PhysicianSpec_perc}}).toFixed(2));
+		var ambprice5 = parseFloat(formuladict({{i.UrgentCare_perc}}).toFixed(2));
+		var ambprice6 = parseFloat(formuladict({{i.HomeHealth_perc}}).toFixed(2));
+		var ambprice7 = parseFloat(formuladict({{i.Hospice_perc}}).toFixed(2));
+		
+		var ltcsprice1 = parseFloat(formuladict2({{i.LTAC_perc}}).toFixed(2));
+		var ltcsprice2 = parseFloat(formuladict2({{i.SkilledNursing_perc}}).toFixed(2));
+		var ltcsprice3 = parseFloat(formuladict2({{i.NursingHome_perc}}).toFixed(2));
+		var ltcsprice4 = parseFloat(formuladict2({{i.AsstLiving_perc}}).toFixed(2));
+		var ltcsprice5 = parseFloat(formuladict2({{i.IndLiving_perc}}).toFixed(2));
+		
+		var pharmprice1 = parseFloat(formuladict3({{i.NameBrand_perc}}).toFixed(2));
+		var pharmprice2 = parseFloat(formuladict3({{i.GenDrugs_perc}}).toFixed(2));
+		var pharmprice3 = parseFloat(formuladict3({{i.SpecialtyDrugs_perc}}).toFixed(2));
+		var pharmprice4 = parseFloat(formuladict3({{i.DurableMedEqu_perc}}).toFixed(2));
+		
+		function loader() {
+			prevtotalcalc()
+			acutetotalcalc()
+			ambtotalcalc()
+			ltcstotalcalc()
+			pharmtotalcalc()
+			expensestotal()
+			remainingtotal()}
+		
+
+		function prevtotalcalc() {  
+			let prevtotal = Number(prevprice1) + Number(prevprice2) + Number(prevprice3) + Number(prevprice4) + Number(prevprice5) + Number(prevprice6) + Number(prevprice7);
+			return prevtotal;}
+		
+		function acutetotalcalc() {  
+			let acutetotal = Number(acuteprice1) + Number(acuteprice2) + Number(acuteprice3);
+			return acutetotal;}
+			
+		function ambtotalcalc() {  
+			let ambtotal = Number(ambprice1) + Number(ambprice2) + Number(ambprice3) + Number(ambprice4) + Number(ambprice5) + Number(ambprice6)+ Number(ambprice7);
+			return ambtotal;}
+			
+		function ltcstotalcalc() {  
+			let ltcstotal = Number(ltcsprice1) + Number(ltcsprice2) + Number(ltcsprice3) + Number(ltcsprice4) + Number(ltcsprice5);
+			return ltcstotal;}
+			
+		function pharmtotalcalc() {  
+			let pharmtotal = Number(pharmprice1) + Number(pharmprice2) + Number(pharmprice3) + Number(pharmprice4);
+			return pharmtotal;}
+		
+		function remainingtotal() {
+			var budget = {{i.game_tag.initial_budget}};
+			var expenses = expensestotal();
+			var taxes = 0;
+			var remainingtotal = budget + taxes - expenses;
+			return remainingtotal;}
+			
+		function expensestotal() {
+			var expensestotal = prevtotalcalc() + acutetotalcalc() + ambtotalcalc() + ltcstotalcalc() + pharmtotalcalc();
+			return expensestotal;}
+		
+		loader()
+	//formula to calculate preventative and ambulatory
+	function formuladict(value){
+		var dict = {};
+		dict[100] = 0;
+		var y = 500000;
+		var x = 99;
+		dict[x] = y;
+		while(x>0){
+		  y = y * 1.05;
+		  x -= 1;
+		  dict[x] = y;}
+		return dict[value];}
+	//formula to calculate Acute Care
+	function formuladict1(value1){
+		var dict1 = {};
+		dict1[100] = 0;
+		var y1 = 2500000;
+		var x1 = 99;
+		dict1[x1] = y1;
+		while(x1>0){
+		  y1 = y1 * 1.05;
+		  x1 -= 1;
+		  dict1[x1] = y1;}
+		return dict1[value1];}
+	//formula to calculate long term
+	function formuladict2(value){
+		var dict2 = {};
+		dict2[100] = 0;
+		var y2 = 750000;
+		var x2 = 99;
+		dict2[x2] = y2;
+		while(x2>0){
+		  y2 = y2 * 1.05;
+		  x2 -= 1;
+		  dict2[x2] = y2;}
+		return dict2[value];}
+	//formula to calculate pharmacy
+	function formuladict3(value){
+		var dict3 = {};
+		dict3[100] = 0;
+		var y3 = 1000000;
+		var x3 = 99;
+		dict3[x3] = y3;
+		while(x3>0){
+		  y3 = y3 * 1.05;
+		  x3 -= 1;
+		  dict3[x3] = y3;}
+		return dict3[value];}
+	// formula to calculate tax amount
+	function formuladict4(value){
+		var dict4 = {};
+		dict4['0.0'] = 0;
+		var y4 = 500000;
+		var x4 = 0.1;
+		dict4[x4] = y4;
+		while(x4<=10){
+		  y4 = y4 * 1.05;
+		  x4 += .1;
+		  dict4[x4.toFixed(1)] = y4;
+		}
+		return dict4[value];}
+
+	// formula to calculate satisfaction score from preventative services
+	function prevsatscore() {
+		var immunization = 100 - {{i.immunization_perc}};
+		var EDUSmoking = 100 - {{i.EDUSmoking_perc}};
+		var EDUDisease = 100 - {{i.EDUDisease_perc}};
+		var Screening = 100 - {{i.Screening_perc}};
+		var TestingLab = 100 - {{i.TestingLab_perc}};
+		var TestingPharmo = 100 - {{i.TestingPharmo_perc}};
+		var AnnualPCP = 100 - {{i.AnnualPCP_perc}};
+		return ((immunization + EDUSmoking + EDUDisease + Screening + TestingLab + TestingPharmo + AnnualPCP) / 7).toFixed(2);
+	}
+	// formula to calculate satisfaction score from acute care services
+	function acutesatscore() {
+		var HospitalCare = 100 - {{i.HospitalCare_perc}};
+		var MentalHealth = 100 - {{i.MentalHealth_perc}};
+		var EmergencyCare = 100 - {{i.EmergencyCare_perc}};
+		return ((HospitalCare + MentalHealth + EmergencyCare) / 3).toFixed(2);
+	}
+	// formula to calculate satisfaction score from ambulatory care services
+	function ambsatscore() {
+		var OutPatientSurg = 100 - {{i.OutPatientSurg_perc}};
+		var OutPatientRadio = 100 - {{i.OutPatientRadio_perc}};
+		var PhysicianPCP = 100 - {{i.PhysicianPCP_perc}};
+		var PhysicianSpec = 100 - {{i.PhysicianSpec_perc}};
+		var UrgentCare = 100 - {{i.UrgentCare_perc}};
+		var HomeHealth = 100 - {{i.HomeHealth_perc}};
+		var Hospice = 100 - {{i.Hospice_perc}};
+		return ((OutPatientSurg + OutPatientRadio + PhysicianPCP + PhysicianSpec + UrgentCare + HomeHealth + Hospice) / 7).toFixed(2);
+	}
+	// formula to calculate satisfaction score from long term care services
+	function ltcssatscore() {
+		var LTAC = 100 - {{i.LTAC_perc}};
+		var SkilledNursing = 100 - {{i.SkilledNursing_perc}};
+		var NursingHome = 100 - {{i.NursingHome_perc}};
+		var AsstLiving = 100 - {{i.AsstLiving_perc}};
+		var IndLiving = 100 - {{i.IndLiving_perc}};
+		return ((LTAC + SkilledNursing + NursingHome + AsstLiving + IndLiving) / 5).toFixed(2);
+	}
+	// formula to calculate satisfaction score from pharmacy benefits
+	function pharmsatscore() {
+		var NameBrand = 100 - {{i.NameBrand_perc}};
+		var GenDrugs = 100 - {{i.GenDrugs_perc}};
+		var SpecialtyDrugs = 100 - {{i.SpecialtyDrugs_perc}};
+		var DurableMedEqu = 100 - {{i.DurableMedEqu_perc}};
+		return ((NameBrand + GenDrugs + SpecialtyDrugs + DurableMedEqu) / 4).toFixed(2);
+	}
+	// formula to calculate satisfaction score from taxes
+	function taxsatscore() {
+		var TobTax = (10 - {{i.TobTax_perc}}) * 10; 
+		var Alcohol = (10 - {{i.Alcohol_perc}}) * 10;
+		var FattyFoods = (10 - {{i.FattyFoods_perc}}) * 10;
+		var SugFoods = (10 - {{i.SugFoods_perc}}) * 10;
+		return ((TobTax + Alcohol + FattyFoods + SugFoods) / 4).toFixed(2);
+	}
+		</script>
+		<script>
+			var radarChart = document.getElementById('radarChart').getContext('2d');
+			var myRadarChart = new Chart(radarChart, {
+					type: 'radar',
+					data: {
+						labels: ["Preventive Services", "Acute Care Services", "Ambulatory Care Services", "Long Term Care Services", "Pharmacy Benefits", "Lifestyle Behavior Taxes"],
+						datasets: [{
+							data: [prevsatscore(), acutesatscore(), ambsatscore(), ltcssatscore(), pharmsatscore(), taxsatscore()],
+							borderColor: "#1d7af3",
+							backgroundColor : 'rgba(29, 122, 243, 0.25)',
+							pointBackgroundColor: "#1d7af3",
+							pointHoverRadius: 4,
+							pointRadius: 3,
+							label: 'Your Satisfaction Scores'
+						}, 
+						]
+					},
+					options : {
+						responsive: true, 
+						maintainAspectRatio: false,
+						legend : {
+							position: 'bottom'
+						}
+					}
+				});
+			</script>
+			<script>
+			var pieChart = document.getElementById('pieChart').getContext('2d');
+			var myPieChart = new Chart(pieChart, {
+				type: 'pie',
+				data: {
+					datasets: [{
+						data: [prevtotalcalc(), acutetotalcalc(), ambtotalcalc(), ltcstotalcalc(), pharmtotalcalc(), remainingtotal()],
+						backgroundColor :["#1d7af3","#f3545d","#fdaf4b", "#5cff90", "#8a64a5", "#118C4F"],
+						borderWidth: 0
+					}],
+					labels: ["Preventive Services", "Acute Care Services", "Ambulatory Care Services", "Long Term Care Services", "Pharmacy Benefits", "Surplus"] 
 				}
-			}
-    });
-    </script>
-    <script>
-    var radarChart = document.getElementById('radarChart').getContext('2d')
-    var myRadarChart = new Chart(radarChart, {
-			type: 'radar',
-			data: {
-				labels: ["Preventive Services", "Acute Care Services", "Ambulatory Care Services", "Long Term Care Services", "Pharmacy Benefits"],
-				datasets: [{
-					data: [19, 13, 30, 17, 26],
-					borderColor: "#1d7af3",
-					backgroundColor : 'rgba(29, 122, 243, 0.25)',
-					pointBackgroundColor: "#1d7af3",
-					pointHoverRadius: 4,
-					pointRadius: 3,
-					label: 'Your Allocated Funds'
-				}, {
-					data: [25, 21, 15, 28, 23],
-					borderColor: '#f3545d',
-					backgroundColor: 'rgba(243, 0, 29, 0.25)',
-					pointBackgroundColor: "#f3545d",
-					pointHoverRadius: 4,
-					pointRadius: 3,
-					label: 'Class Average Allocated Funds'
-				},
-				]
-			},
-			options : {
-				responsive: true, 
-				maintainAspectRatio: false,
-				legend : {
-					position: 'bottom'
+                
+                
+                ,
+				options : {
+					responsive: true, 
+					maintainAspectRatio: false,
+					legend: {
+						position : 'bottom',
+						labels : {
+							fontColor: 'rgb(154, 154, 154)',
+							fontSize: 11,
+							usePointStyle : true,
+							padding: 20
+						}
+					},
+					pieceLabel: {
+						render: 'percentage',
+						fontColor: 'white',
+						fontSize: 14,
+					},
+					tooltips: false,
+					layout: {
+						padding: {
+							left: 20,
+							right: 20,
+							top: 20,
+							bottom: 20
+						}
+					}
 				}
-			}
-		});
-    </script>
-    {% endblock %}
+			});
+				</script>
+	{% endfor %}
+	{% endblock %}
 </html>

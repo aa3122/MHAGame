@@ -1,101 +1,103 @@
 {% extends 'base.html' %}
 {% load static %}
 <html lang="en">
-    {% block breadcrumb %}
-    <li class="separator">
-        <i class="flaticon-right-arrow"></i>
-    </li>
-    <li class="nav-item">
-        <a href="/administration/viewgames">Current Games</a>
-    </li>
+{% block breadcrumb %}
+<li class="separator">
+    <i class="flaticon-right-arrow"></i>
+</li>
+<li class="nav-item">
+    <a href="/administration/viewgames">Current Games</a>
+</li>
+{% endblock %}
+{% block title %}
+<h4 class="page-title">Existing Games</h4>
+{% endblock %}
+{% block content %}
+        {% for i in object_list %}
+        <div id= "display" class="row row-card-no-pd">
+            <div class="col-sm-6 col-md-3">
+                <div class="card card-stats card-round">
+                    <div class="card-body ">
+                        <div class="row">
+                            <div class="col">
+                                <div class="icon-big text-center">
+                                    <i class="flaticon-game-controller text-warning"></i>
+                                </div>
+                            </div>
+                            <div class="col col-stats">
+                                <div class="numbers">
+                                    <p class="card-category">Game: </p>
+                                    <h4 class="card-title">{{i.game_name}}</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary btn-border btn-round">
+                            <span class="btn-label">
+                                <i class="fas fa-cog"></i>
+                            </span>
+                            <a href="{% url 'adminGameEdit' i.pk %}">Manage Game</a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="card card-stats card-round">
+                    <div class="card-body ">
+                        <div class="row">
+                            <div class="col">
+                                <div class="icon-big text-center">
+                                    <i class="flaticon-profile text-danger"></i>
+                                </div>
+                            </div>
+                            <div class="col col-stats">
+                                <div class="numbers">
+                                    <p class="card-category">Instructor: </p>
+                                    <h4 class="card-title">{{i.Instructor}}</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="card card-stats card-round">
+                    <div class="card-body ">
+                        <div class="row">
+                            <div class="col">
+                                <div class="icon-big text-center">
+                                    <i class="flaticon-message text-info"></i>
+                                </div>
+                            </div>
+                            <div class="col col-stats">
+                                <div class="numbers">
+                                    <p class="card-category">Join Code: </p>
+                                    <h4 class="card-title">{{i.join_tag}}</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="card card-stats card-round">
+                    <div class="card-body ">
+                        <div class="row">
+                            <div class="col">
+                                <div class="icon-big text-center">
+                                    <i class="flaticon-coins text-success"></i>
+                                </div>
+                            </div>
+                            <div class="col col-stats">
+                                <div class="numbers">
+                                    <p class="card-category">Initial Budget</p>
+                                    <h4 class="card-title">{{i.initial_budget}}</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
     {% endblock %}
-    {% block title %}
-    <h4 class="page-title">Existing Games</h4>
-    {% endblock %}
-    {% block content %}
-    <div class="main-panel">
-			<div class="content">
-				<div class="page-inner">
-    {% for i in displaygames %}
-    <div id= "display" class="row row-card-no-pd">
-        <div class="col-sm-6 col-md-3">
-            <div class="card card-stats card-round">
-                <div class="card-body ">
-                    <div class="row">
-                        <div class="col-5">
-                            <div class="icon-big text-center">
-                                <i class="flaticon-user-1 text-warning"></i>
-                            </div>
-                        </div>
-                        <div class="col col-stats">
-                            <div class="numbers">
-                                <p class="card-category">Game</p>
-                                <h4 class="card-title">Game {{i.id}}</h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-md-3">
-            <div class="card card-stats card-round">
-                <div class="card-body ">
-                    <div class="row">
-                        <div class="col-5">
-                            <div class="icon-big text-center">
-                                <i class="flaticon-internet text-info"></i>
-                            </div>
-                        </div>
-                        <div class="col col-stats">
-                            <div class="numbers">
-                                <p class="card-category">Instructor</p>
-                                <h4 class="card-title">{{i.instructor}}</h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-md-3">
-            <div class="card card-stats card-round">
-                <div class="card-body ">
-                    <div class="row">
-                        <div class="col-5">
-                            <div class="icon-big text-center">
-                                <i class="flaticon-internet text-info"></i>
-                            </div>
-                        </div>
-                        <div class="col col-stats">
-                            <div class="numbers">
-                                <p class="card-category">Initial Population</p>
-                                <h4 class="card-title">{{i.initial_population}}</h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-md-3">
-            <div class="card card-stats card-round">
-                <div class="card-body ">
-                    <div class="row">
-                        <div class="col-5">
-                            <div class="icon-big text-center">
-                                <i class="flaticon-internet text-info"></i>
-                            </div>
-                        </div>
-                        <div class="col col-stats">
-                            <div class="numbers">
-                                <p class="card-category">Initial Budget</p>
-                                <h4 class="card-title">{{i.initial_budget}}</h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    {% endfor %}
-                </div></div></div>
-    {% endblock %}
-</html>
+    </html><a href="{% url 'appname.nameOfFunctionInViews' %}">Click here</a>

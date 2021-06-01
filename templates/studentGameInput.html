@@ -7,13 +7,13 @@
             <i class="flaticon-right-arrow"></i>
         </li>
         <li class="nav-item">
-            <a href="/student/gamecreate">Join</a>
+            <a href="{% url 'mysessions' %}">Overview</a>
         </li>
 		<li class="separator">
             <i class="flaticon-right-arrow"></i>
         </li>
         <li class="nav-item">
-            <a href="/student/gamecreate/gameinput">Input</a>
+            <a href="{% url 'gameedit' object.pk %}">Input</a>
         </li>
     {% endblock %}
 <style>
@@ -38,8 +38,6 @@ input[id*='price']{
     {% block content %}
     <form method="POST">
     {% csrf_token %}
-        {{form.game_tag}}
-        {{form.student}}
     
                             <!-- style="background:#ff3333;" -->
                                 <div class="row">
@@ -138,7 +136,7 @@ input[id*='price']{
 	                                            <p></p>
                                                 <span data-toggle="tooltip" data-placement="right" title="This is the negative effect on your budget." class="valuePadding">$<input   style="pointer-events: none;" id="prevprice7" value=0.00></span>
                                                 <p></p>
-                                                <div class="col-sm-6 col-md-3">
+                                                <div class="col">
                                                     <div class="card card-stats card-round">
                                                         <div class="card-body ">
                                                             <div class="row">
@@ -190,7 +188,7 @@ input[id*='price']{
 	                                            <p></p>
                                                 <span data-toggle="tooltip" data-placement="right" title="This is the negative effect on your budget." class="valuePadding">$<input   style="pointer-events: none;" id="acuteprice3" value=0.00></span>
                                                 <p></p>
-                                                <div class="col-sm-6 col-md-3">
+                                                <div class="col">
 							<div class="card card-stats card-round">
 								<div class="card-body ">
 									<div class="row">
@@ -280,7 +278,7 @@ input[id*='price']{
 	                                            <p></p>
                                                 <span data-toggle="tooltip" data-placement="right" title="This is the negative effect on your budget." class="valuePadding">$<input   style="pointer-events: none;" id="ambprice7" value=0.00></span>
                                                 <p></p>
-                                                <div class="col-sm-6 col-md-3">
+                                                <div class="col">
                                                     <div class="card card-stats card-round">
                                                         <div class="card-body ">
                                                             <div class="row">
@@ -353,7 +351,7 @@ input[id*='price']{
 	                                            <p></p>
                                                 <span data-toggle="tooltip" data-placement="right" title="This is the negative effect on your budget." class="valuePadding">$<input   style="pointer-events: none;" id="ltcsprice5" value=0.00></span>
                                                 <p></p>
-                                                <div class="col-sm-6 col-md-3">
+                                                <div class="col">
                                                     <div class="card card-stats card-round">
                                                         <div class="card-body ">
                                                             <div class="row">
@@ -415,7 +413,7 @@ input[id*='price']{
 	                                            <p></p>
                                                 <span data-toggle="tooltip" data-placement="right" title="This is the negative effect on your budget." class="valuePadding">$<input   style="pointer-events: none;" id="pharmprice4" value=0.00></span>
                                                 <p></p>
-                                                <div class="col-sm-6 col-md-3">
+                                                <div class="col">
                                                     <div class="card card-stats card-round">
                                                         <div class="card-body ">
                                                             <div class="row">
@@ -490,7 +488,7 @@ input[id*='price']{
 	                                            <p></p>
                                                 <span data-toggle="tooltip" data-placement="right" title="This is the amount of money added to your budget." class="valuePadding">$<input   style="pointer-events: none;" id="taxprice4" value=0.00></span>
                                                 <p></p>
-                                                <div class="col-sm-6 col-md-3">
+                                                <div class="col">
                                                     <div class="card card-stats card-round">
                                                         <div class="card-body ">
                                                             <div class="row">
@@ -530,7 +528,7 @@ input[id*='price']{
 										<div class="col col-stats">
 											<div class="numbers">
 												<p class="card-category">Initial Budget</p>
-												<h4 class="card-title">$</h4>
+												<h4 id = 'initial_budget'class="card-title">${{session.game_tag.initial_budget}}</h4>
 											</div>
 										</div>
 									</div>
@@ -546,7 +544,7 @@ input[id*='price']{
 										</div>
 										<div class="col col-stats">
 											<div class="numbers">
-												<p class="card-category">Total Expenses</p>
+												<p class="card-category">Total Cost Of Expenses</p>
 												<h4 id="exptotal" class="card-title">$</h4>
 											</div>
 										</div>
@@ -563,8 +561,8 @@ input[id*='price']{
 										</div>
 										<div class="col col-stats">
 											<div class="numbers">
-												<p class="card-category">Total Taxes</p>
-												<h4 id="taxtotalcost" class="card-title">$</h4>
+												<p class="card-category">Total Earned From Taxes</p>
+												<h4 id="taxtotalcost1" class="card-title">$</h4>
 											</div>
 										</div>
 									</div>
@@ -581,7 +579,7 @@ input[id*='price']{
 										<div class="col col-stats">
 											<div class="numbers">
 												<p class="card-category">Remaining Budget</p>
-												<h4 class="card-title">$</h4>
+												<h4 id = 'remainingbud' class="card-title">$</h4>
 											</div>
 										</div>
 									</div>
@@ -601,7 +599,7 @@ input[id*='price']{
 											<span class="btn-label">
 												<i class="fas fa-hand-holding-usd"></i>
 											</span>
-											Submit Budget
+											Save Budget
                                     </button>
 											</div>
 										</div>
@@ -619,9 +617,9 @@ input[id*='price']{
         $( "#prevprice6" ).val(parseFloat(formuladict(document.getElementsByName("TestingPharmo_perc")[0].value)).toFixed(2));
         $( "#prevprice7" ).val(parseFloat(formuladict(document.getElementsByName("AnnualPCP_perc")[0].value)).toFixed(2));
         prevtotalcalc()
-        $( "#acuteprice1" ).val(parseFloat(formuladict(document.getElementsByName("HospitalCare_perc")[0].value)).toFixed(2));
-        $( "#acuteprice2" ).val(parseFloat(formuladict(document.getElementsByName("MentalHealth_perc")[0].value)).toFixed(2));
-        $( "#acuteprice3" ).val(parseFloat(formuladict(document.getElementsByName("EmergencyCare_perc")[0].value)).toFixed(2));
+        $( "#acuteprice1" ).val(parseFloat(formuladict1(document.getElementsByName("HospitalCare_perc")[0].value)).toFixed(2));
+        $( "#acuteprice2" ).val(parseFloat(formuladict1(document.getElementsByName("MentalHealth_perc")[0].value)).toFixed(2));
+        $( "#acuteprice3" ).val(parseFloat(formuladict1(document.getElementsByName("EmergencyCare_perc")[0].value)).toFixed(2));
         acutetotalcalc()
         $( "#ambprice1" ).val(parseFloat(formuladict(document.getElementsByName("OutPatientSurg_perc")[0].value)).toFixed(2));
         $( "#ambprice2" ).val(parseFloat(formuladict(document.getElementsByName("OutPatientRadio_perc")[0].value)).toFixed(2));
@@ -631,11 +629,11 @@ input[id*='price']{
         $( "#ambprice6" ).val(parseFloat(formuladict(document.getElementsByName("HomeHealth_perc")[0].value)).toFixed(2));
         $( "#ambprice7" ).val(parseFloat(formuladict(document.getElementsByName("Hospice_perc")[0].value)).toFixed(2));
         ambtotalcalc()
-        $( "#ltcsprice1" ).val(parseFloat(formuladict(document.getElementsByName("LTAC_perc")[0].value)).toFixed(2));
-        $( "#ltcsprice2" ).val(parseFloat(formuladict(document.getElementsByName("SkilledNursing_perc")[0].value)).toFixed(2));
-        $( "#ltcsprice3" ).val(parseFloat(formuladict(document.getElementsByName("NursingHome_perc")[0].value)).toFixed(2));
-        $( "#ltcsprice4" ).val(parseFloat(formuladict(document.getElementsByName("AsstLiving_perc")[0].value)).toFixed(2));
-        $( "#ltcsprice5" ).val(parseFloat(formuladict(document.getElementsByName("IndLiving_perc")[0].value)).toFixed(2));
+        $( "#ltcsprice1" ).val(parseFloat(formuladict2(document.getElementsByName("LTAC_perc")[0].value)).toFixed(2));
+        $( "#ltcsprice2" ).val(parseFloat(formuladict2(document.getElementsByName("SkilledNursing_perc")[0].value)).toFixed(2));
+        $( "#ltcsprice3" ).val(parseFloat(formuladict2(document.getElementsByName("NursingHome_perc")[0].value)).toFixed(2));
+        $( "#ltcsprice4" ).val(parseFloat(formuladict2(document.getElementsByName("AsstLiving_perc")[0].value)).toFixed(2));
+        $( "#ltcsprice5" ).val(parseFloat(formuladict2(document.getElementsByName("IndLiving_perc")[0].value)).toFixed(2));
         ltcstotalcalc()
         $( "#pharmprice1" ).val(parseFloat(formuladict3(document.getElementsByName("NameBrand_perc")[0].value)).toFixed(2));
         $( "#pharmprice2" ).val(parseFloat(formuladict3(document.getElementsByName("GenDrugs_perc")[0].value)).toFixed(2));
@@ -647,7 +645,20 @@ input[id*='price']{
         $( "#taxprice3" ).val(parseFloat(formuladict4(document.getElementsByName("FattyFoods_perc")[0].value)).toFixed(2));
         $( "#taxprice4" ).val(parseFloat(formuladict4(document.getElementsByName("SugFoods_perc")[0].value)).toFixed(2));
         taxtotalcalc()
-        expensestotal()}
+        expensestotal()
+        remainingtotal()
+        document.getElementById("initial_budget").innerHTML = formatter.format(document.getElementById("initial_budget").innerHTML.replace(/\$/g, ''));}
+        
+    function remainingtotal(){
+        var budget = document.getElementById("initial_budget").innerHTML.replace(/\$/g, '').replace(/\,/g, '').replace(/\-/g, '');
+        var expenses = document.getElementById('exptotal').innerHTML.replace(/\$/g, '').replace(/\,/g, '').replace(/\-/g, '');
+        var taxes = document.getElementById('taxtotalcost').innerHTML.replace(/\$/g, '').replace(/\,/g, '').replace(/\+/g, '');
+        document.getElementById('remainingbud').innerHTML = Number(budget) - Number(expenses) + Number(taxes);
+        document.getElementById('remainingbud').innerHTML = formatter.format(document.getElementById('remainingbud').innerHTML);
+
+        
+        
+    }
     function expensestotal() {
         var a = document.getElementById("prevtotalcost").innerHTML.replace(/\$/g, '').replace(/\,/g, '').replace(/\-/g, '');
         var b=document.getElementById("acutetotalcost").innerHTML.replace(/\$/g, '').replace(/\,/g, '').replace(/\-/g, '');
@@ -659,27 +670,34 @@ input[id*='price']{
     function prevtotalcalc() {  
         let prevtotal = Number(prevprice1.value) + Number(prevprice2.value) + Number(prevprice3.value) + Number(prevprice4.value) + Number(prevprice5.value) + Number(prevprice6.value) + Number(prevprice7.value);
         document.getElementById('prevtotalcost').innerHTML = ("-" + formatter.format(prevtotal));
+        remainingtotal()
         }
     
     function acutetotalcalc() {  
         let acutetotal = Number(acuteprice1.value) + Number(acuteprice2.value) + Number(acuteprice3.value);
-        document.getElementById('acutetotalcost').innerHTML = ("-" + formatter.format(acutetotal));}
+        document.getElementById('acutetotalcost').innerHTML = ("-" + formatter.format(acutetotal));
+        remainingtotal()}
         
     function ambtotalcalc() {  
         let ambtotal = Number(ambprice1.value) + Number(ambprice2.value) + Number(ambprice3.value) + Number(ambprice4.value) + Number(ambprice5.value) + Number(ambprice6.value)+ Number(ambprice7.value);
-        document.getElementById('ambtotalcost').innerHTML = ("-" + formatter.format(ambtotal));}
+        document.getElementById('ambtotalcost').innerHTML = ("-" + formatter.format(ambtotal));
+        remainingtotal()}
         
     function ltcstotalcalc() {  
         let ltcstotal = Number(ltcsprice1.value) + Number(ltcsprice2.value) + Number(ltcsprice3.value) + Number(ltcsprice4.value) + Number(ltcsprice5.value);
-        document.getElementById('ltcstotalcost').innerHTML = ("-" + formatter.format(ltcstotal));}
+        document.getElementById('ltcstotalcost').innerHTML = ("-" + formatter.format(ltcstotal));
+        remainingtotal()}
         
     function pharmtotalcalc() {  
         let pharmtotal = Number(pharmprice1.value) + Number(pharmprice2.value) + Number(pharmprice3.value) + Number(pharmprice4.value);
-        document.getElementById('pharmtotalcost').innerHTML = ("-" + formatter.format(pharmtotal));}
+        document.getElementById('pharmtotalcost').innerHTML = ("-" + formatter.format(pharmtotal));
+        remainingtotal()}
         
     function taxtotalcalc() {  
         let taxtotal = Number(taxprice1.value) + Number(taxprice2.value) + Number(taxprice3.value) + Number(taxprice4.value);
-        document.getElementById('taxtotalcost').innerHTML = ("-" + formatter.format(taxtotal));}
+        document.getElementById('taxtotalcost').innerHTML = ("+" + formatter.format(taxtotal));
+        document.getElementById('taxtotalcost1').innerHTML = ("+" + formatter.format(taxtotal));
+        remainingtotal()}
     
     
 
@@ -1192,16 +1210,15 @@ $( "#taxslider1" ).slider({
 	    min: 0,
 	    max: 10,
     slide: function( event, ui ) {
-        $( '[name="TobTax_perc"]' ).val(ui.value);
-        $( "#taxprice1" ).val(parseFloat(formuladict4(ui.value)).toFixed(2));
+        $( '[name="TobTax_perc"]' ).val(ui.value.toFixed(1));
+    $( "#taxprice1" ).val(formuladict4(document.getElementsByName("TobTax_perc")[0].value).toFixed(2));
         taxtotalcalc()
     var taxprice1 = formuladict4(ui.value);}});
     $('[name="TobTax_perc"]').change(function () {
-    $("#taxslider1").slider("value", parseInt(this.value));
-    $( "#taxprice1" ).val(parseFloat(formuladict4(this.value)).toFixed(2));
+    $("#taxslider1").slider("value", parseFloat(this.value)); 
+    $( "#taxprice1" ).val(formuladict4(document.getElementsByName("TobTax_perc")[0].value).toFixed(2));
     var taxprice1 = formuladict4(this.value);
         taxtotalcalc()
-        expensestotal()
         
 });
 	$( "#taxslider2" ).slider({
@@ -1211,13 +1228,13 @@ $( "#taxslider1" ).slider({
 	    min: 0,
 	    max: 10,
     slide: function( event, ui ) {
-        $( '[name="Alcohol_perc"]' ).val(ui.value);
-        $( "#taxprice2" ).val(parseFloat(formuladict4(ui.value)).toFixed(2));
+        $( '[name="Alcohol_perc"]' ).val(ui.value.toFixed(1));
+    $( "#taxprice2" ).val(formuladict4(document.getElementsByName("Alcohol_perc")[0].value).toFixed(2));
         taxtotalcalc()
     var taxprice2 = formuladict4(ui.value);}});
     $('[name="Alcohol_perc"]').change(function () {
-    $("#taxslider2").slider("value", parseInt(this.value));
-    $( "#taxprice2" ).val(parseFloat(formuladict4(this.value)).toFixed(2));
+    $("#taxslider2").slider("value", this.value);
+    $( "#taxprice2" ).val(formuladict4(document.getElementsByName("Alcohol_perc")[0].value).toFixed(2));
     var taxprice2 = formuladict4(this.value);
         taxtotalcalc()
         
@@ -1229,31 +1246,31 @@ $( "#taxslider1" ).slider({
 	    min: 0,
 	    max: 10,
     slide: function( event, ui ) {
-        $( '[name="FattyFoods_perc"]' ).val(ui.value);
-        $( "#taxprice3" ).val(parseFloat(formuladict4(ui.value)).toFixed(2));
+        $( '[name="FattyFoods_perc"]' ).val(ui.value.toFixed(1));
+    $( "#taxprice3" ).val(formuladict4(document.getElementsByName("FattyFoods_perc")[0].value).toFixed(2));
         taxtotalcalc()
     var taxprice3 = formuladict4(ui.value);}});
     $('[name="FattyFoods_perc"]').change(function () {
-    $("#taxslider3").slider("value", parseInt(this.value));
-    $( "#taxprice3" ).val(parseFloat(formuladict4(this.value)).toFixed(2));
+    $("#taxslider3").slider("value", this.value);
+    $( "#taxprice3" ).val(formuladict4(document.getElementsByName("FattyFoods_perc")[0].value).toFixed(2));
     var taxprice3 = formuladict4(this.value);
         taxtotalcalc()
         });
         
-        $( "#taxslider4" ).slider({
+    $( "#taxslider4" ).slider({
 		range: "min",
 	    value: document.getElementsByName("SugFoods_perc")[0].value,
 	    step: .1,
 	    min: 0,
 	    max: 10,
     slide: function( event, ui ) {
-        $( '[name="SugFoods_perc"]' ).val(ui.value);
-        $( "#taxprice4" ).val(parseFloat(formuladict4(ui.value)).toFixed(2));
+        $( '[name="SugFoods_perc"]' ).val(ui.value.toFixed(1));
+    $( "#taxprice4" ).val(formuladict4(document.getElementsByName("SugFoods_perc")[0].value).toFixed(2));
         taxtotalcalc()
     var taxprice4 = formuladict4(ui.value);}});
     $('[name="SugFoods_perc"]').change(function () {
-    $("#taxslider4").slider("value", parseInt(this.value));
-    $( "#taxprice4" ).val(parseFloat(formuladict4(this.value)).toFixed(2));
+    $("#taxslider4").slider("value", parseFloat(this.value));
+    $( "#taxprice4" ).val(formuladict4(document.getElementsByName("SugFoods_perc")[0].value).toFixed(2));
     var taxprice4 = formuladict4(this.value);
         taxtotalcalc()
         
@@ -1310,14 +1327,15 @@ function formuladict3(value){
 // formula to calculate tax amount
 function formuladict4(value){
     var dict4 = {};
-    dict4[0] = 0;
+    dict4['0.0'] = 0;
     var y4 = 500000;
     var x4 = 0.1;
     dict4[x4] = y4;
     while(x4<=10){
       y4 = y4 * 1.05;
-      x4 = x4 + .1;
-      dict4[x4] = y4;}
+      x4 += .1;
+      dict4[x4.toFixed(1)] = y4;
+    }
     return dict4[value];}
     </script>
     {% endblock %}
