@@ -5,8 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 from game.models import Game, Session
 from django.views.generic import ListView, DetailView, CreateView, View, UpdateView
-from game.forms import SessionForm
-from student.forms import GameCreateForm
+from .forms import SessionCreateForm
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.contrib.auth.forms import UserChangeForm
@@ -19,7 +18,6 @@ class studentDashboard(ListView):
 
 	def get_queryset(self):
 		return Session.objects.filter(student=self.request.user).order_by('session')
-	
 
 class calender(View):
 	template_name = 'studentCalendar.html'
@@ -28,14 +26,27 @@ class calender(View):
 
 class studentgamecreate(CreateView):
 	user = User
-	model = Session
 	fields = ('game_tag',)
 	success_url = "mysessions"
-	def form_valid(self, form):
-		form.instance.student = self.request.user
-		return super(studentgamecreate, self).form_valid(form)
 	template_name = 'studentgamecreate.html'
+	def get(self, request, pk=None):
+		form = SessionCreateForm()
+		ctx = {'form': form}
+		return render(request, self.template_name, ctx)
 
+	def post(self, request, pk=None):
+		form = SessionCreateForm(request.POST, request.FILES or None)
+
+		if not form.is_valid():
+			ctx = {'form': form}
+			return render(request, self.template_name, ctx)
+
+        # Add owner to the model before saving
+		Session = form.save(commit=False)
+		Session.student = self.request.user
+		Session.game_tag = form.get('game_text')
+		Session.save()
+		return redirect(self.success_url)
 
 class gameInput(UserPassesTestMixin, UpdateView):
 	model = Session
@@ -62,15 +73,17 @@ class gameedit(UserPassesTestMixin, UpdateView):
 class studentGameOverview(ListView):
 	model = Session
 	template_name = 'studentGameOverview.html'
-	context_object_name = 'mysessions'
+	context_object_name = 'sessions'
 
 	def get_queryset(self):
-		return Session.objects.filter(student=self.request.user).order_by('session')
-	
+		sessions =  Session.objects.filter(student=self.request.user).order_by('session')
+		for session in sessions:
+			session.game = Game.objects.filter(join_tag = session)
+		return sessions
 
 class profile(UpdateView):
 	model = User
-	fields = ['first_name', 'last_name', 'username', 'email']
+	fields = ['first_name', 'last_name']
 	template_name = 'studentprofile.html'
 	slug_field = 'username'
 	slug_url_kwarg = 'slug'

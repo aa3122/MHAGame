@@ -81,7 +81,7 @@
                                     <th>Baseline Budget</th>
                                     <th>Lifestyle Behavior Taxes</th>
                                     <th>Total Budget</th>  
-                                    <th>Surplus</th>                                 
+                                    <th>Surplus/Shortage</th>                                 
                                 </tr>
                             </thead>
                             <tfoot>
@@ -89,7 +89,7 @@
                                     <th>Baseline Budget</th>
                                     <th>Lifestyle Behavior Taxes</th>
                                     <th>Total Budget</th>
-                                    <th>Surplus</th>                                                                    
+                                    <th>Surplus/Shortage</th>                                                                    
                                 </tr>
                             </tfoot>
                             <tbody>
@@ -276,7 +276,14 @@
         document.getElementById('totalbud').innerHTML = Number(budget) + Number(taxes);
         document.getElementById('totalbud').innerHTML = formatter.format(document.getElementById('totalbud').innerHTML);
         document.getElementById('remainingbud').innerHTML = Number(budget) - Number(expenses) + Number(taxes);
-        document.getElementById('remainingbud').innerHTML = formatter.format(document.getElementById('remainingbud').innerHTML);}
+        document.getElementById('remainingbud').innerHTML = formatter.format(document.getElementById('remainingbud').innerHTML);
+        var remainingbud = document.getElementById('remainingbud').innerHTML.replace(/\$/g, '').replace(/\,/g, '');
+        if(remainingbud < 0){
+            document.getElementById("remainingbud").style.color = "red";
+        }
+        else{
+            document.getElementById("remainingbud").style.color = "green";
+        }}
         
     function expensestotal() {
         var a = document.getElementById("prevtotalcost").innerHTML.replace(/\$/g, '').replace(/\,/g, '').replace(/\-/g, '');

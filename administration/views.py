@@ -22,6 +22,19 @@ class AdminStaffRequiredMixin(LoginRequiredMixin, UserPassesTestMixin):
 
     def handle_no_permission(self):
         return HttpResponseRedirect(reverse('studentDashboard'))
+
+class adminViewGameStats(AdminStaffRequiredMixin, DetailView):
+	template_name = 'adminViewGameStats.html'
+	model = Game
+	success_url = '/administration/viewGameStats'
+
+
+	def get_context_data(self, **kwargs):
+		context = super(adminViewGameStats, self).get_context_data(**kwargs)
+		
+		context['session'] = Session.objects.all()
+		
+		return context        
            
 
 class adminViewStudents(AdminStaffRequiredMixin, DetailView):

@@ -1,18 +1,28 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from django.core.validators import MaxValueValidator, MinValueValidator
+# from money import Money
+# from moneyfield import MoneyField
+from djmoney.models.fields import MoneyField
+from django.utils import timezone
+from datetime import datetime, timedelta
 
 # Create your models here.
 
-
 class Game(models.Model):
     game = models.AutoField(primary_key=True)
-    join_tag = models.CharField(default=1, max_length=100, unique=True)
+    join_tag = models.CharField(max_length=100, unique=True, null = True)
     Instructor = models.ForeignKey(User,null=True, on_delete=models.CASCADE, limit_choices_to={'is_staff': True},)
     game_name = models.CharField(db_column='game_name', max_length=100)
     initial_population = models.IntegerField(blank=False, null=False, default=0)
-    initial_budget = models.DecimalField(max_digits = 13, decimal_places = 2, blank=False, null=False, default=0)
+    initial_budget = MoneyField(max_digits=14, decimal_places=2, default_currency='USD',validators=[MinValueValidator(150000000)], default = 150000000, null=False)
     course  = models.CharField(max_length = 240, null=True)
+    def return_date_time():
+        now = timezone.now()
+        return now + timedelta(days=7)
+    deadline = models.DateField(default=return_date_time)
+    
+
 
     class Meta:
         managed = True

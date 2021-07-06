@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'extra_views',
+    'djmoney',
     'multiforloop',
     'student',
     'game',

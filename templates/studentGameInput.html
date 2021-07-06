@@ -40,8 +40,9 @@ input[id*='price']{
     {% csrf_token %}
     
                             <!-- style="background:#ff3333;" -->
+                            
                                 <div class="row">
-                            <div class="col">
+                            <div style = 'float:left;position:absolute;width:66%'class="col">
 							<div class="card">
 								<div class="card-header">
 									<h4 class="card-title">Healthcare Expenses</h4>
@@ -516,7 +517,7 @@ input[id*='price']{
 								</div>
 							</div>
                                 </div></div>
-        <div class="col">
+        <div style='overflow:visible;float:right;width:30%;position:fixed;right:0' class="col">
                                 <div class="card card-stats card-success card-round">
 								<div class="card-body ">
 									<div class="row">
@@ -568,7 +569,7 @@ input[id*='price']{
 									</div>
 								</div>
 							</div>
-                            <div class="card card-stats card-success card-round">
+                            <div id='rembud' class="card card-stats card-success card-round">
 								<div class="card-body ">
 									<div class="row">
 										<div class="col-5">
@@ -655,7 +656,13 @@ input[id*='price']{
         var taxes = document.getElementById('taxtotalcost').innerHTML.replace(/\$/g, '').replace(/\,/g, '').replace(/\+/g, '');
         document.getElementById('remainingbud').innerHTML = Number(budget) - Number(expenses) + Number(taxes);
         document.getElementById('remainingbud').innerHTML = formatter.format(document.getElementById('remainingbud').innerHTML);
-
+        var remainingbud = document.getElementById('remainingbud').innerHTML.replace(/\$/g, '').replace(/\,/g, '');
+        if(remainingbud < 0){
+            document.getElementById('rembud').className = 'card card-stats card-danger card-round';
+        }
+        else{
+            document.getElementById('rembud').className = 'card card-stats card-success card-round';
+        }
         
         
     }
@@ -666,7 +673,9 @@ input[id*='price']{
         var d=document.getElementById("ltcstotalcost").innerHTML.replace(/\$/g, '').replace(/\,/g, '').replace(/\-/g, '');
         var e=document.getElementById("pharmtotalcost").innerHTML.replace(/\$/g, '').replace(/\,/g, '').replace(/\-/g, '');
         var exptot = Number(a) + Number(b) + Number(c) + Number(d) + Number(e);
-        document.getElementById('exptotal').innerHTML = (formatter.format(exptot));}
+        document.getElementById('exptotal').innerHTML = (formatter.format(exptot));
+    
+    };
     function prevtotalcalc() {  
         let prevtotal = Number(prevprice1.value) + Number(prevprice2.value) + Number(prevprice3.value) + Number(prevprice4.value) + Number(prevprice5.value) + Number(prevprice6.value) + Number(prevprice7.value);
         document.getElementById('prevtotalcost').innerHTML = ("-" + formatter.format(prevtotal));
