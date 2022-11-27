@@ -5,10 +5,10 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 from game.models import Game, Session
 from django.views.generic import ListView, DetailView, CreateView, View, UpdateView
-from .forms import SessionCreateForm
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.contrib.auth.forms import UserChangeForm
+from django.contrib import messages
 
 
 class studentDashboard(ListView):
@@ -24,29 +24,27 @@ class calender(View):
 	def get(self, request):
 		return HttpResponse(render(request, 'studentCalendar.html'))
 
-class studentgamecreate(CreateView):
-	user = User
-	fields = ('game_tag',)
+class studentgamecreate(View):
 	success_url = "mysessions"
+	failure_url = 'studentgamecreate'
 	template_name = 'studentgamecreate.html'
+	template_name2 = 'studentgamecreate2.html'
 	def get(self, request, pk=None):
-		form = SessionCreateForm()
-		ctx = {'form': form}
-		return render(request, self.template_name, ctx)
+		return render(request, self.template_name)
 
 	def post(self, request, pk=None):
-		form = SessionCreateForm(request.POST, request.FILES or None)
-
-		if not form.is_valid():
-			ctx = {'form': form}
-			return render(request, self.template_name, ctx)
-
+		game_tag = request.POST.get("game_txt")
         # Add owner to the model before saving
-		Session = form.save(commit=False)
-		Session.student = self.request.user
-		Session.game_tag = form.get('game_text')
-		Session.save()
-		return redirect(self.success_url)
+		try:
+			game = Game.objects.get(join_tag = game_tag)
+			#Error checking goes here
+			session = Session.objects.create(game_tag = game)
+			session.student = self.request.user
+			session.save()
+			return redirect(self.success_url)
+		except Game.DoesNotExist:
+			comment = 'Please enter a valid join code.'
+			return render(request, self.template_name2)
 
 class gameInput(UserPassesTestMixin, UpdateView):
 	model = Session
@@ -91,6 +89,12 @@ class profile(UpdateView):
 
 	def get_object(self):
 		return self.request.user
+	def get_context_data(self, **kwargs):
+		context = super(profile, self).get_context_data(**kwargs)
+
+		context['user'] = User.objects.all()
+
+		return context
 
 def logout(request):
     logout(request)

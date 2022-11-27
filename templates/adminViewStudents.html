@@ -10,6 +10,12 @@
     <i class="flaticon-right-arrow"></i>
 </li>
 <li class="nav-item">
+    <a href="{% url 'adminViewGame'%}">View Games</a>
+</li>
+<li class="separator">
+    <i class="flaticon-right-arrow"></i>
+</li>
+<li class="nav-item">
     <a href="{% url 'adminViewStudents' object.pk %}">Students</a>
 </li>
 {% endblock %}
@@ -17,6 +23,14 @@
 <h4 class="page-title">Student Roster</h4>
 {% endblock %}
 {% block content %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+
 <div class="card-body">
     <div class="table-responsive">
         <table id="basic-datatables" class="table table-bordered table-head-bg-info table-bordered-bd-info mt-4" >
@@ -27,55 +41,39 @@
                     <th>Course</th>
                     <th>Instructor</th>
                     <th>Student Stats</th>
+                    <th>Delete</th>
                 </tr>
             </thead>
             <tbody>
+
+                {% for session in session %}
+                {% if session.game_tag.game_name == object.game_name %}
                 <tr>
-                    {% for session in session %}
-                        {% if session.game_tag.game_name == object.game_name %}
-                    <tr>
-                    
-                        <td id="test">{{session.student}}</td>
-                        <td>{{session.game_tag.game_name}}</td>
-                        <td>{{session.game_tag.course}}</td>
-                        <td>{{session.game_tag.Instructor}}</td>
-                        <td><a href="{% url 'adminManageGameView' session.pk %}"><i class="fas fa-user-cog"></i> View Stats</td>
-                    </tr>
-                </tr>
-                {% endif %}
-            {% endfor %}
-            </tbody>
-        </table>
-            <div class="card card-stats card-warning card-round" id="card" style="visibility: hidden">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-5">
-                            <div class="icon-big text-center">
-                                <i class="flaticon-exclamation"></i>
-                            </div>
-                        </div>
-                        <div class="col col-stats">
-                            <div class="numbers">
-                                <h1 id="empty"></h1>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
+                    <td id="test">{{session.student}}</td>
+                    <td>{{session.game_tag.game_name}}</td>
+                    <td>{{session.game_tag.course}}</td>
+                    <td>{{session.game_tag.Instructor}}</td>
+                    <td><a href="{% url 'adminManageGameView' session.pk %}"><i class="fas fa-user-cog"></i> View Stats</td>
+                        <td><a href="{% url 'adminDeleteStudents' session.pk %}"><i class="fas fa-user-slash"></i> Delete Student</td>
+                        </tr>
+
+                        {% endif %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+                
+         
+        <script type="text/javascript">
+
+            $(document).ready( function () {
+                $('#basic-datatables').DataTable();
+            } );
+
+        </script>
+        
+           </div>
         </div>
-    </div>
-</div>
-<script>
-    if (document.getElementById("test") == null) {
-        document.getElementById("empty").innerHTML = "No students enrolled!";
-        document.getElementById("card").style.visibility = "visible";
-    }
+        {% endblock %}
 
-
-
-</script>
-
-
- 
-{% endblock %}
-
-</html>
+        </html>

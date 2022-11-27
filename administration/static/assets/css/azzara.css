@@ -7595,7 +7595,7 @@ div.table-responsive > div.dataTables_wrapper > div.row {
     padding: 20px; } }
 /*     	Page 404     */
 .page-not-found {
-  background-image: url("../img/bg-404.jpeg");
+  background-image: url("../img/clinical.jpg");
   background-size: cover;
   background-position: center;
   image-rendering: pixelated; }

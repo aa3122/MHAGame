@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 {% extends 'base.html' %}
 {% load static %}
+{% load humanize %}
 
 <html lang="en">
 {% block breadcrumb %}
@@ -9,11 +10,11 @@
     <i class="flaticon-right-arrow"></i>
   </li>
   <li class="nav-item">
-    <a href="/administration/creategame">Game Parameters</a>
+    <a href="/administration/creategame">Create New Game</a>
   </li>
   {% endblock %}
   {% block title %}
-  <h4 class="page-title">Game Parameters</h4>
+  <h4 class="page-title">Create New Game</h4>
   {% endblock %}
   {% block content %}
   <div class="main-panel">
@@ -53,7 +54,7 @@
                       </div>
                     </div>
 
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-auto">
                       <label for="name_game" >Name Your Game <i class="fas fa-info-circle" data-toggle="tooltip" data-placement="right" title="This can be anything you want!">
                       </i></label>
                       <div class="col-md-9 p-0">
@@ -63,7 +64,7 @@
                     </div>
 
 
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-auto">
                      <label for="initial_pop" >Initial Population <i class="fas fa-info-circle" data-toggle="tooltip" data-placement="right" title="This will be your population for your game">
                      </i></label>
                      <div class="col-md-9 p-0">
@@ -73,18 +74,26 @@
                    </div>
 
 
-                   <div class="form-group col-md-6">
-                     <label for="budget" >Initial Budget <i class="fas fa-info-circle" data-toggle="tooltip" data-placement="right" title="The minimum budget is $150,000,000">
+                   <div class="form-group col-auto">
+                     <label for="budget" >Initial Budget <i class="fas fa-info-circle" data-toggle="tooltip" data-placement="right" title="The minimum budget is $500,000,000">
                      </i></label>
                      <div class="col-md-9 p-0">
 
+                      
+                      <div id="initial_budget">{{form.initial_budget}}</div>
+                     <script>
+                         
+                        var formatter = new Intl.NumberFormat('en-US', {style: 'currency',currency: 'USD',});
+                       budget = document.getElementById("initial_budget").value;
+                        // alert(budget);
+                         // document.getElementById("initial_budget").innerHTML = formatter.format(document.getElementById("initial_budget").innerHTML);
 
-                       {{form.initial_budget}}
+                       </script>
 
                      </div>
                    </div>
-                   <div class="form-group col-md-6">
-                     <label for="budget" >Deadline <i class="fas fa-info-circle" data-toggle="tooltip" data-placement="right" title="You can set the deadline here">
+                   <div class="form-group col-auto">
+                     <label for="budget" >Deadline <i class="fas fa-info-circle" data-toggle="tooltip" data-placement="right" title="The deadline is automatically set from a week from today.">
                      </i></label>
                      <div class="col-md-9 p-0">
 

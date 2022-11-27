@@ -15,7 +15,7 @@ class Game(models.Model):
     Instructor = models.ForeignKey(User,null=True, on_delete=models.CASCADE, limit_choices_to={'is_staff': True},)
     game_name = models.CharField(db_column='game_name', max_length=100)
     initial_population = models.IntegerField(blank=False, null=False, default=0)
-    initial_budget = MoneyField(max_digits=14, decimal_places=2, default_currency='USD',validators=[MinValueValidator(150000000)], default = 150000000, null=False)
+    initial_budget = models.IntegerField(validators=[MinValueValidator(500000000)], default = 500000000, null=False)
     course  = models.CharField(max_length = 240, null=True)
     def return_date_time():
         now = timezone.now()

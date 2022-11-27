@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<title>Sign Up</title>
+	<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
+	<link rel="icon" href="{% static '/assets/img/icon.ico" type="image/x-icon"/>
+
+	<!-- Fonts and icons -->
+	<script src="{% static '/assets/js/plugin/webfont/webfont.min.js' %}"></script>
+	<script>
+		WebFont.load({
+			google: {"families":["Open+Sans:300,400,600,700"]},
+			custom: {"families":["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands"], urls: ["{% static '/assets/css/fonts.css' %}"]},
+			active: function() {
+				sessionStorage.fonts = true;
+			}
+		});
+	</script>
+	<script type="text/javascript">
+
+  // polyfill for RegExp.escape
+        if(!RegExp.escape) {
+                RegExp.escape = function(s) {
+                    return String(s).replace(/[\\^$*+?.()|[\]{}]/g, '\\$&');
+    };
+  }
+
+</script>
+	<!-- CSS Files -->
+	<link rel="stylesheet" href="{% static '/assets/css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static '/assets/css/azzara.min.css' %}">
+</head>
+<div class="page-not-found">
+<body class="login" method="post">
+	<div class="wrapper wrapper-login">
+		<div style = "background : white"class="container">
+			<h3 class="text-center">User Agreement</h3>
+            <center><p>
+<div class="card-header">
+<div class="card-title">
+Privacy Policy</div>
+
+<br>Your privacy is critically important to us.
+
+<br>Last Updated — July 9, 2021
+
+<br>INTRODUCTION<br>
+
+TBD Software, Inc. (“we” or “us” or “our”) respects the privacy of our users (“user” or “you”). This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit the website https://arcservmhs.uncw.edu/. Please read this privacy policy carefully. If you do not agree with the terms of this privacy policy, please do not access the site.
+
+We reserve the right to make changes to this Privacy Policy at any time and for any reason. We will alert you about any changes by updating the “Last Updated” date of this Privacy Policy. Any changes or modifications will be effective immediately upon posting the updated Privacy Policy on the Site, and you waive the right to receive specific notice of each such change or modification.
+
+You are encouraged to periodically review this Privacy Policy to stay informed of updates. You will be deemed to have been made aware of, will be subject to, and will be deemed to have accepted the changes in any revised Privacy Policy by your continued use of the Site after the date such revised Privacy Policy is posted.
+
+<br>COLLECTION AND DISCLOSURE OF YOUR INFORMATION<br>
+
+TBD Software, Inc. conforms to a few fundamental principles:
+
+· We don’t ask you for personal information unless we truly need it.
+
+· We don’t share your personal information with anyone except to comply with the law, develop our products, or protect our rights.
+
+· We don’t store personal information on our servers unless required for the on-going operation of one of our services.
+
+<br>SECURITY OF YOUR INFORMATION<br>
+
+We use administrative, technical, and physical security measures to help protect your personal information. While we have taken reasonable steps to secure the personal information you provide to us, please be aware that despite our efforts, no security measures are perfect or impenetrable, and no method of data transmission can be guaranteed against any interception or other type of misuse. Any information disclosed online is vulnerable to interception and misuse by unauthorized parties. Therefore, we cannot guarantee complete security if you provide personal information.
+
+<br>CONTACT US<br>
+
+If you have questions or comments about this Privacy Policy, please contact us. </div></p><a type = 'submit' class="btn btn-primary btn-rounded btn-login" href = "{% url 'signup' %}">Return to Sign Up</a></center>
+	</div>
+	</div>
+	<script src="{% static '/assets/js/core/jquery.3.2.1.min.js' %}"></script>
+	<script src="{% static '/assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js' %}"></script>
+	<script src="{% static '/assets/js/core/popper.min.js' %}"></script>
+	<script src="{% static '/assets/js/core/bootstrap.min.js' %}"></script>
+	<script src="{% static '/assets/js/ready.js' %}"></script>
+    </body>
+</div>

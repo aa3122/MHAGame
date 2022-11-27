@@ -6,104 +6,130 @@
     <i class="flaticon-right-arrow"></i>
 </li>
 <li class="nav-item">
-    <a href="/administration/viewgames">Current Games</a>
+    <a href="/administration/viewgames">View Existing Games</a>
 </li>
 {% endblock %}
 {% block title %}
 <h4 class="page-title">Existing Games</h4>
 {% endblock %}
 {% block content %}
-        {% for i in object_list %}
-        <div id= "display" class="row row-card-no-pd">
-            <div class="col-sm-6 col-md-3">
-                <div class="card card-stats card-round">
-                    <div class="card-body ">
-                        <div class="row">
-                            <div class="col">
-                                <div class="icon-big text-center">
-                                    <i class="flaticon-game-controller text-warning"></i>
-                                </div>
-                            </div>
-                            <div class="col col-stats">
-                                <div class="numbers">
-                                    <p class="card-category">Game: </p>
-                                    <h4 class="card-title">{{i.game_name}}</h4>
-                                </div>
-                            </div>
+{% for i in object_list %}
+<div id= "display" class="row row-card-no-pd">
+    <div class="col">
+        <div class="card card-stats card-round">
+            <div class="card-body ">
+                <div class="row">
+                    <div class="col">
+                        <div class="icon-big text-center">
+                            <i class="flaticon-game-controller text-warning"></i>
                         </div>
-                        <button class="btn btn-primary btn-border btn-round">
-                            <span class="btn-label">
-                                <i class="fas fa-cog"></i>
-                            </span>
-                            <a href="{% url 'adminGameEdit' i.pk %}">Manage Game</a>
-                        </button>
-                         <button class="btn btn-primary btn-border btn-round">
-                            <span class="btn-label">
-                                <i class="fas fa-cog"></i>
-                            </span>
-                            <a href="{% url 'adminViewStudents' i.pk %}">Student Roster</a>
-                        </button>
+                    </div>
+                    <div class="col col-stats">
+                        <div class="numbers">
+                            <p class="card-category">Game: </p>
+                            <h4 class="card-title">{{i.game_name}}</h4>
+                        </div>
                     </div>
                 </div>
+                <button class="btn btn-primary btn-border btn-round">
+                    <span class="btn-label">
+                        <i class="fas fa-cog"></i>
+                    </span>
+                    <a href="{% url 'adminGameEdit' i.pk %}">Manage Game</a>
+                </button>
+                <button class="btn btn-primary btn-border btn-round">
+                    <span class="btn-label">
+                        <i class="fas fa-cog"></i>
+                    </span>
+                    <a href="{% url 'adminViewStudents' i.pk %}">Student Roster</a>
+                </button>
             </div>
-            <div class="col-sm-6 col-md-3">
-                <div class="card card-stats card-round">
-                    <div class="card-body ">
-                        <div class="row">
-                            <div class="col">
-                                <div class="icon-big text-center">
-                                    <i class="flaticon-profile text-danger"></i>
-                                </div>
-                            </div>
-                            <div class="col col-stats">
-                                <div class="numbers">
-                                    <p class="card-category">Instructor: </p>
-                                    <h4 class="card-title">{{i.Instructor}}</h4>
-                                </div>
-                            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card card-stats card-round">
+            <div class="card-body ">
+                <div class="row">
+                    <div class="col">
+                        <div class="icon-big text-center">
+                            <i class="flaticon-profile text-danger"></i>
+                        </div>
+                    </div>
+                    <div class="col col-stats">
+                        <div class="numbers">
+                            <p class="card-category">Instructor: </p>
+                            <h4 class="card-title">{{i.Instructor}}</h4>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6 col-md-3">
-                <div class="card card-stats card-round">
-                    <div class="card-body ">
-                        <div class="row">
-                            <div class="col">
-                                <div class="icon-big text-center">
-                                    <i class="flaticon-message text-info"></i>
-                                </div>
-                            </div>
-                            <div class="col col-stats">
-                                <div class="numbers">
-                                    <p class="card-category">Join Code: </p>
-                                    <h4 class="card-title">{{i.join_tag}}</h4>
-                                </div>
-                            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card card-stats card-round">
+            <div class="card-body ">
+                <div class="row">
+                    <div class="col">
+                        <div class="icon-big text-center">
+                            <i class="flaticon-message text-info"></i>
+                        </div>
+                    </div>
+                    <div class="col col-stats">
+                        <div class="numbers">
+                            <p class="card-category">Join Code: </p>
+                            <h4 class="card-title">{{i.join_tag}}</h4>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6 col-md-3">
-                <div class="card card-stats card-round">
-                    <div class="card-body ">
-                        <div class="row">
-                            <div class="col">
-                                <div class="icon-big text-center">
-                                    <i class="flaticon-coins text-success"></i>
-                                </div>
-                            </div>
-                            <div class="col col-stats">
-                                <div class="numbers">
-                                    <p class="card-category">Initial Budget</p>
-                                    <h4 class="card-title">{{i.initial_budget}}</h4>
-                                </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card card-stats card-round">
+            <div class="card-body ">
+                <div class="row">
+                    <div class="col">
+                        <div class="icon-big text-center">
+                            <i class="flaticon-coins text-success"></i>
+                        </div>
+                    </div>
+                    <div class="col col-stats">
+                        <div class="numbers">
+                            <p class="card-category">Initial Budget</p>
+                            <h4 class="card-title"><div id="initial_budget{{ forloop.counter }}">{{i.initial_budget}}</div></h4>
+                                <script>
+
+                                    var id_suffix = "{{ forloop.counter }}";
+                                    var formatter = new Intl.NumberFormat('en-US', {style: 'currency',currency: 'USD',});
+                                    document.getElementById("initial_budget"+id_suffix).innerHTML = formatter.format(document.getElementById("initial_budget"+id_suffix).innerHTML);
+                              
+                                </script>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        {% endfor %}
+        <div class="col">
+            <div class="card card-stats card-round">
+                <div class="card-body ">
+                    <div class="row">
+                        <div class="col">
+                            <div class="icon-big text-center">
+                                <i class="flaticon-calendar text-secondary"></i>
+                            </div>
+                        </div>
+                        <div class="col col-stats">
+                            <div class="numbers">
+                                <p class="card-category">Deadline</p>
+                                <h4 class="card-title">{{i.deadline}}</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
     {% endblock %}
     </html><a href="{% url 'appname.nameOfFunctionInViews' %}">Click here</a>

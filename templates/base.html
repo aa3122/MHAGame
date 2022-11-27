@@ -23,6 +23,9 @@
 	<link rel="stylesheet" href="{% static '/assets/css/bootstrap.min.css' %}">
 	<link rel="stylesheet" href="{% static '/assets/css/azzara.min.css' %}">
 
+	<!-- datatables css -->
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css">
+
 	<!-- CSS Just for demo purpose, don't include it in your project -->
 	<link rel="stylesheet" href="{% static '/assets/css/demo.css' %}">
 </head>
@@ -201,12 +204,12 @@ document.getElementById("initial").innerHTML = initials;
 								<ul class="nav nav-collapse">
 									<li>
 										<a href="/administration/creategame">
-											<span class="sub-item">Create Game</span>
+											<span class="sub-item">Create New Game</span>
 										</a>
 									</li>
 									<li>
 										<a href="/administration/viewgames">
-											<span class="sub-item">View Games</span> 
+											<span class="sub-item">View Existing Games</span> 
 										</a>
 									</li>
 								</ul>
@@ -260,7 +263,9 @@ document.getElementById("initial").innerHTML = initials;
 <script src="{% static '/assets/js/plugin/chart-circle/circles.min.js' %}"></script>
 
 <!-- Datatables -->
-<script src="{% static '/assets/js/plugin/datatables/datatables.min.js' %}"></script>
+<!-- <script src="{% static '/assets/js/plugin/datatables/datatables.min.js' %}"></script> -->
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap4.min.js"></script>
 
 <!-- Bootstrap Notify -->
 <script src="{% static '/assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js' %}"></script>

@@ -22,14 +22,24 @@
 	<!-- CSS Files -->
 	<link rel="stylesheet" href="{% static '/assets/css/bootstrap.min.css' %}">
 	<link rel="stylesheet" href="{% static '/assets/css/azzara.min.css' %}">
+
+	<style> 
+	.errorlist{
+		list-style-type: none;
+		color: red;
+	}
+	</style>
 </head>
 <div  class="page-not-found">  
+
+   
 <body class="login" method="post">
 	<div class="wrapper wrapper-login">
 		<div class="container container-login animated fadeIn">
 			<h3 class="text-center">Log In</h3>
 			<form method ="post" >
 				{% csrf_token %}
+				{{  form.non_field_errors }}
 				<div class="form-group form-floating-label" method="post">
 					<input id="username" name="username" type="text" class="form-control input-border-bottom" required>
 					<label for="username" class="placeholder">Username</label>

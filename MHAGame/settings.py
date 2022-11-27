@@ -43,7 +43,9 @@ INSTALLED_APPS = [
     'student',
     'game',
     'login',
-    'administration'
+    'django.contrib.humanize',
+    'administration',
+    
 ]
 
 MIDDLEWARE = [

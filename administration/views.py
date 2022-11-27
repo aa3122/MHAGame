@@ -6,11 +6,12 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
 from game.models import Game, Session
 from student.models import Class, CourseSection
-from django.views.generic import ListView, DetailView, CreateView, View, TemplateView,UpdateView
+from django.views.generic import ListView, DetailView, CreateView, View, TemplateView,UpdateView, DeleteView
 from extra_views import CreateWithInlinesView, InlineFormSet
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.conf import settings
 from django.contrib.auth.views import redirect_to_login
+from django.urls import reverse_lazy
 
 from django.shortcuts import get_object_or_404
 
@@ -50,6 +51,58 @@ class adminViewStudents(AdminStaffRequiredMixin, DetailView):
 		
 		return context
 
+class adminManageGameView(AdminStaffRequiredMixin, DetailView):
+	model = Session
+	models = Session.objects.all()
+	template_name = 'adminManageGame.html'
+	
+
+	def get_context_data(self, **kwargs):
+		context = super(adminManageGameView, self).get_context_data(**kwargs)
+		
+		context['session'] = Session.objects.all()
+		
+		return context
+
+class adminDeleteStudents(AdminStaffRequiredMixin, DeleteView):
+	model = Session
+	models = Session.objects.all()
+	template_name = 'adminConfirmDelete.html'
+	# success_url = '/administration/adminViewGame'
+
+	def get_context_data(self, **kwargs):
+		context = super(adminDeleteStudents, self).get_context_data(**kwargs)
+		
+		context['session'] = Session.objects.all()
+		context['game'] = Game.objects.all()
+		context['user'] = User.objects.all()
+
+		return context
+
+	def get_object(self):
+		id_ = self.kwargs.get("pk")
+		return get_object_or_404(Session, pk=id_)
+
+	def get_success_url(self):
+		return ('/administration/viewgames')
+
+
+
+class adminCreateGameView(AdminStaffRequiredMixin, CreateView):
+	model = Game
+	fields = 'game', 'join_tag', 'course','game_name', 'initial_population', 'initial_budget', 'deadline'
+	success_url = 'viewgames'
+	def form_valid(self, form):
+		form.instance.Instructor = self.request.user
+		return super(adminCreateGameView, self).form_valid(form)
+	template_name = 'adminCreateGame.html'
+
+class adminGameEdit(AdminStaffRequiredMixin, UpdateView):
+	model = Game
+	fields = 'game', 'join_tag', 'course','game_name', 'initial_population', 'initial_budget', 'deadline'
+	success_url = '/administration/viewgames'
+	template_name = 'adminCreateGame.html'
+
 
 
 class adminDashboard(AdminStaffRequiredMixin, ListView):
@@ -63,22 +116,6 @@ class adminDashboard(AdminStaffRequiredMixin, ListView):
 	def get_queryset(self):
 		return Game.objects.filter(Instructor_id=self.request.user).order_by('course')
 
-class adminCreateGameView(AdminStaffRequiredMixin, CreateView):
-	model = Game
-	fields = 'game', 'join_tag', 'course','game_name', 'initial_population', 'initial_budget'
-	success_url = 'viewgames'
-	def form_valid(self, form):
-		form.instance.Instructor = self.request.user
-		return super(adminCreateGameView, self).form_valid(form)
-	template_name = 'adminCreateGame.html'
-
-class adminGameEdit(AdminStaffRequiredMixin, UpdateView):
-	model = Game
-	fields = 'game', 'join_tag', 'course','game_name', 'initial_population', 'initial_budget'
-	success_url = '/administration/viewgames'
-	template_name = 'adminCreateGame.html'
-
-
 
 
 class adminViewGame(AdminStaffRequiredMixin, ListView):
@@ -89,18 +126,6 @@ class adminViewGame(AdminStaffRequiredMixin, ListView):
 		return Game.objects.filter(Instructor_id=self.request.user)
 
 	
-class adminManageGameView(AdminStaffRequiredMixin, DetailView):
-	model = Session
-	models = Session.objects.all()
-	template_name = 'adminManageGame.html'
-	
-
-	def get_context_data(self, **kwargs):
-		context = super(adminManageGameView, self).get_context_data(**kwargs)
-		
-		context['session'] = Session.objects.all()
-		
-		return context
 class profile(DetailView):
 	model = User
 	def get(self,request):

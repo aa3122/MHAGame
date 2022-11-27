@@ -32,5 +32,7 @@ urlpatterns = [
     path('administration/', include('administration.urls')),
     path('student/', include('django.contrib.auth.urls')),
     path('', TemplateView.as_view(template_name='home.html'), name='home'),
+    path('accounts/signup/termsandcond', TemplateView.as_view(template_name='termsandcond.html'), name='termsandcond'),
+    path('accounts/signup/useragreement', TemplateView.as_view(template_name='useragreement.html'), name='useragreement'),
     path('accounts/signup/', views.register, name='signup'),
 ]

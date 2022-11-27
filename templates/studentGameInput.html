@@ -43,7 +43,20 @@ input[id*='price']{
                             
                                 <div class="row">
                             <div style = 'float:left;position:absolute;width:66%'class="col">
+                                <div class="col">
 							<div class="card">
+								<div class="card-body">
+									<ul class="nav nav-pills" id="pills-tab" role="tablist">
+										<li class="nav-item">
+											<a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Healthcare Expenses</a>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Healthcare Income</a>
+										</li>
+									</ul>
+									<div class="tab-content mt-2 mb-3" id="pills-tabContent">
+										<div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                                            <div>
 								<div class="card-header">
 									<h4 class="card-title">Healthcare Expenses</h4>
 								</div>
@@ -76,7 +89,7 @@ input[id*='price']{
 
 											<div class="card-body">
 												<h5 class="card-title mb-3">Immunization</h5>
-												<div onchange = "prevtotalcalc()" data-toggle="tooltip" data-placement="right" title="This, is the percentage the patient is responsible for paying." id="prevslider1" class="slider-primary"></div>
+												<div onchange = "prevtotalcalc()" data-toggle="tooltip" data-placement="right" title="This is the percentage the patient is responsible for paying." id="prevslider1" class="slider-primary"></div>
 												<p></p>
                                             	<span class="valuePadding">{{form.immunization_perc}}%</span>
                                                 <p></p>
@@ -86,7 +99,7 @@ input[id*='price']{
 
 	                                        <div class="card-body">
 	                                            <h5 class="card-title mb-3"> Education Program (Smoking Cessation)</h5>
-	                                            <div onchange = "prevtotalcalc()" data-toggle="tooltip" data-placement="right" title="This, is the percentage the patient is responsible for paying."id="prevslider2" class="slider-primary"></div>
+	                                            <div onchange = "prevtotalcalc()" data-toggle="tooltip" data-placement="right" title="This is the percentage the patient is responsible for paying."id="prevslider2" class="slider-primary"></div>
 	                                            <p></p>
 	                                            <span class="valuePadding">{{form.EDUSmoking_perc}}%</span>
 	                                            <p></p>
@@ -95,7 +108,7 @@ input[id*='price']{
 
                                             <div class="card-body">
 	                                            <h5 class="card-title mb-3"> Education Programs (Disease Management, Prevention)</h5>
-	                                            <div onchange = "prevtotalcalc()" data-toggle="tooltip" data-placement="right" title="This, is the percentage the patient is responsible for paying."id="prevslider3" class="slider-primary"></div>
+	                                            <div onchange = "prevtotalcalc()" data-toggle="tooltip" data-placement="right" title="This is the percentage the patient is responsible for paying."id="prevslider3" class="slider-primary"></div>
 	                                            <p></p>
 	                                            <span class="valuePadding">{{form.EDUDisease_perc}}%</span>
 	                                            <p></p>
@@ -104,7 +117,7 @@ input[id*='price']{
 
                                             <div class="card-body">
 	                                            <h5 class="card-title mb-3"> Screening (Radiological/Surgical)</h5>
-	                                            <div onchange = "prevtotalcalc()" data-toggle="tooltip" data-placement="right" title="This, is the percentage the patient is responsible for paying."id="prevslider4" class="slider-primary"></div>
+	                                            <div onchange = "prevtotalcalc()" data-toggle="tooltip" data-placement="right" title="This is the percentage the patient is responsible for paying."id="prevslider4" class="slider-primary"></div>
 	                                            <p></p>
 	                                            <span class="valuePadding">{{form.Screening_perc}}%</span>
 	                                            <p></p>
@@ -113,7 +126,7 @@ input[id*='price']{
 
                                             <div class="card-body">
 	                                            <h5 class="card-title mb-3"> Testing (Lab/Bloodwork)</h5>
-	                                            <div onchange = "prevtotalcalc()" data-toggle="tooltip" data-placement="right" title="This, is the percentage the patient is responsible for paying."id="prevslider5" class="slider-primary"></div>
+	                                            <div onchange = "prevtotalcalc()" data-toggle="tooltip" data-placement="right" title="This is the percentage the patient is responsible for paying."id="prevslider5" class="slider-primary"></div>
 	                                            <p></p>
 	                                            <span class="valuePadding">{{form.TestingLab_perc}}%</span>
 	                                            <p></p>
@@ -122,7 +135,7 @@ input[id*='price']{
 
                                             <div class="card-body">
 	                                            <h5 class="card-title mb-3"> Testing (Pharmogenomics)</h5>
-	                                            <div onchange = "prevtotalcalc()" data-toggle="tooltip" data-placement="right" title="This, is the percentage the patient is responsible for paying."id="prevslider6" class="slider-primary"></div>
+	                                            <div onchange = "prevtotalcalc()" data-toggle="tooltip" data-placement="right" title="This is the percentage the patient is responsible for paying."id="prevslider6" class="slider-primary"></div>
 	                                            <p></p>
 	                                            <span class="valuePadding">{{form.TestingPharmo_perc}}%</span>
 	                                            <p></p>
@@ -131,7 +144,7 @@ input[id*='price']{
 
                                             <div class="card-body">
 	                                            <h5 class="card-title mb-3"> Annual Exam with PCP</h5>
-	                                            <div onchange = "prevtotalcalc()" data-toggle="tooltip" data-placement="right" title="This, is the percentage the patient is responsible for paying."id="prevslider7" class="slider-primary"></div>
+	                                            <div onchange = "prevtotalcalc()" data-toggle="tooltip" data-placement="right" title="This is the percentage the patient is responsible for paying."id="prevslider7" class="slider-primary"></div>
 	                                            <p></p>
 	                                            <span class="valuePadding">{{form.AnnualPCP_perc}}%</span>
 	                                            <p></p>
@@ -167,7 +180,7 @@ input[id*='price']{
 											<h2>Patient Responsibility Percent</h2>
 											<div class="card-body">
 												<h5 class="card-title mb-3"> Hospital Care</h5>
-	                                            <div data-toggle="tooltip" data-placement="right" title="This, is the percentage the patient is responsible for paying."id="acuteslider1" class="slider-primary"></div>
+	                                            <div data-toggle="tooltip" data-placement="right" title="This is the percentage the patient is responsible for paying."id="acuteslider1" class="slider-primary"></div>
 	                                            <p></p>
 	                                            <span class="valuePadding">{{form.HospitalCare_perc}}%</span>
 	                                            <p></p>
@@ -175,7 +188,7 @@ input[id*='price']{
                                         	</div>
                                             <div class="card-body">
 	                                            <h5 class="card-title mb-3"> Mental Health</h5>
-	                                            <div data-toggle="tooltip" data-placement="right" title="This, is the percentage the patient is responsible for paying."id="acuteslider2" class="slider-primary"></div>
+	                                            <div data-toggle="tooltip" data-placement="right" title="This is the percentage the patient is responsible for paying."id="acuteslider2" class="slider-primary"></div>
 	                                            <p></p>
 	                                            <span class="valuePadding">{{form.MentalHealth_perc}}%</span>
 	                                            <p></p>
@@ -183,7 +196,7 @@ input[id*='price']{
 	                                        </div>
                                             <div class="card-body">
 	                                            <h5 class="card-title mb-3"> Emergency Care</h5>
-	                                            <div data-toggle="tooltip" data-placement="right" title="This, is the percentage the patient is responsible for paying."id="acuteslider3" class="slider-primary"></div>
+	                                            <div data-toggle="tooltip" data-placement="right" title="This is the percentage the patient is responsible for paying."id="acuteslider3" class="slider-primary"></div>
 	                                            <p></p>
 	                                            <span class="valuePadding">{{form.EmergencyCare_perc}}%</span>
 	                                            <p></p>
@@ -219,7 +232,7 @@ input[id*='price']{
 											<h2 >Patient Responsibility Percent</h2>
 											<div class="card-body">
 												<h5 class="card-title mb-3"> Outpatient Surgery</h5>
-	                                            <div data-toggle="tooltip" data-placement="right" title="This, is the percentage the patient is responsible for paying." id="ambslider1" class="slider-primary"></div>
+	                                            <div data-toggle="tooltip" data-placement="right" title="This is the percentage the patient is responsible for paying." id="ambslider1" class="slider-primary"></div>
 	                                            <p></p>
 	                                            <span class="valuePadding">{{form.OutPatientSurg_perc}}%</span>
 	                                            <p></p>
@@ -228,7 +241,7 @@ input[id*='price']{
 	                                        </div>
                                             <div class="card-body">
 	                                            <h5 class="card-title mb-3"> Outpatient Radiology</h5>
-	                                            <div data-toggle="tooltip" data-placement="right" title="This, is the percentage the patient is responsible for paying."id="ambslider2" class="slider-primary"></div>
+	                                            <div data-toggle="tooltip" data-placement="right" title="This is the percentage the patient is responsible for paying."id="ambslider2" class="slider-primary"></div>
 	                                            <p></p>
 	                                            <span class="valuePadding">{{form.OutPatientRadio_perc}}%</span>
 	                                            <p></p>
@@ -237,7 +250,7 @@ input[id*='price']{
 	                                        </div>
                                             <div class="card-body">
 	                                            <h5 class="card-title mb-3"> Physician Services (PCP)</h5>
-	                                            <div data-toggle="tooltip" data-placement="right" title="This, is the percentage the patient is responsible for paying."id="ambslider3" class="slider-primary"></div>
+	                                            <div data-toggle="tooltip" data-placement="right" title="This is the percentage the patient is responsible for paying."id="ambslider3" class="slider-primary"></div>
 	                                            <p></p>
 	                                            <span class="valuePadding">{{form.PhysicianPCP_perc}}%</span>
 	                                            <p></p>
@@ -246,7 +259,7 @@ input[id*='price']{
 	                                        </div>
                                             <div class="card-body">
 	                                            <h5 class="card-title mb-3"> Physician Services (Specialist)</h5>
-	                                            <div data-toggle="tooltip" data-placement="right" title="This, is the percentage the patient is responsible for paying."id="ambslider4" class="slider-primary"></div>
+	                                            <div data-toggle="tooltip" data-placement="right" title="This is the percentage the patient is responsible for paying."id="ambslider4" class="slider-primary"></div>
 	                                            <p></p>
 	                                            <span class="valuePadding">{{form.PhysicianSpec_perc}}%</span>
 	                                            <p></p>
@@ -255,7 +268,7 @@ input[id*='price']{
 	                                        </div>
                                             <div class="card-body">
 	                                            <h5 class="card-title mb-3"> Urgent Care Services</h5>
-	                                            <div data-toggle="tooltip" data-placement="right" title="This, is the percentage the patient is responsible for paying."id="ambslider5" class="slider-primary"></div>
+	                                            <div data-toggle="tooltip" data-placement="right" title="This is the percentage the patient is responsible for paying."id="ambslider5" class="slider-primary"></div>
 	                                            <p></p>
 	                                            <span class="valuePadding">{{form.UrgentCare_perc}}%</span>
 	                                            <p></p>
@@ -264,7 +277,7 @@ input[id*='price']{
 	                                        </div>
                                             <div class="card-body">
 	                                            <h5 class="card-title mb-3"> Home Health</h5>
-	                                            <div data-toggle="tooltip" data-placement="right" title="This, is the percentage the patient is responsible for paying."id="ambslider6" class="slider-primary"></div>
+	                                            <div data-toggle="tooltip" data-placement="right" title="This is the percentage the patient is responsible for paying."id="ambslider6" class="slider-primary"></div>
 	                                            <p></p>
 	                                            <span class="valuePadding">{{form.HomeHealth_perc}}%</span>
 	                                            <p></p>
@@ -273,7 +286,7 @@ input[id*='price']{
 	                                        </div>
                                             <div class="card-body">
 	                                            <h5 class="card-title mb-3"> Hospice</h5>
-	                                            <div data-toggle="tooltip" data-placement="right" title="This, is the percentage the patient is responsible for paying."id="ambslider7" class="slider-primary"></div>
+	                                            <div data-toggle="tooltip" data-placement="right" title="This is the percentage the patient is responsible for paying."id="ambslider7" class="slider-primary"></div>
 	                                            <p></p>
 	                                            <span class="valuePadding">{{form.Hospice_perc}}%</span>
 	                                            <p></p>
@@ -310,7 +323,7 @@ input[id*='price']{
 											<h2>Patient Responsibility Percent</h2>
 											<div class="card-body">
 												<h5 class="card-title mb-3"> Long Term Acute Care (LTAC)</h5>
-	                                            <div data-toggle="tooltip" data-placement="right" title="This, is the percentage the patient is responsible for paying." id="ltcsslider1" class="slider-primary"></div>
+	                                            <div data-toggle="tooltip" data-placement="right" title="This is the percentage the patient is responsible for paying." id="ltcsslider1" class="slider-primary"></div>
 	                                            <p></p>
 	                                            <span class="valuePadding">{{form.LTAC_perc}}%</span>
 	                                            <p></p>
@@ -319,7 +332,7 @@ input[id*='price']{
 	                                        </div>
                                             <div class="card-body">
 	                                            <h5 class="card-title mb-3"> Skilled Nursing (SNF)</h5>
-	                                            <div data-toggle="tooltip" data-placement="right" title="This, is the percentage the patient is responsible for paying."id="ltcsslider2" class="slider-primary"></div>
+	                                            <div data-toggle="tooltip" data-placement="right" title="This is the percentage the patient is responsible for paying."id="ltcsslider2" class="slider-primary"></div>
 	                                            <p></p>
 	                                            <span class="valuePadding">{{form.SkilledNursing_perc}}%</span>
 	                                            <p></p>
@@ -328,7 +341,7 @@ input[id*='price']{
 	                                        </div>
                                             <div class="card-body">
 	                                            <h5 class="card-title mb-3"> Nursing Home</h5>
-	                                            <div data-toggle="tooltip" data-placement="right" title="This, is the percentage the patient is responsible for paying."id="ltcsslider3" class="slider-primary"></div>
+	                                            <div data-toggle="tooltip" data-placement="right" title="This is the percentage the patient is responsible for paying."id="ltcsslider3" class="slider-primary"></div>
 	                                            <p></p>
 	                                            <span class="valuePadding">{{form.NursingHome_perc}}%</span>
 	                                            <p></p>
@@ -337,7 +350,7 @@ input[id*='price']{
 	                                        </div>
                                             <div class="card-body">
 	                                            <h5 class="card-title mb-3"> Assisted Living</h5>
-	                                            <div data-toggle="tooltip" data-placement="right" title="This, is the percentage the patient is responsible for paying."id="ltcsslider4" class="slider-primary"></div>
+	                                            <div data-toggle="tooltip" data-placement="right" title="This is the percentage the patient is responsible for paying."id="ltcsslider4" class="slider-primary"></div>
 	                                            <p></p>
 	                                            <span class="valuePadding">{{form.AsstLiving_perc}}%</span>
 	                                            <p></p>
@@ -346,7 +359,7 @@ input[id*='price']{
 	                                        </div>
                                             <div class="card-body">
 	                                            <h5 class="card-title mb-3"> Independant Living</h5>
-	                                            <div data-toggle="tooltip" data-placement="right" title="This, is the percentage the patient is responsible for paying."id="ltcsslider5" class="slider-primary"></div>
+	                                            <div data-toggle="tooltip" data-placement="right" title="This is the percentage the patient is responsible for paying."id="ltcsslider5" class="slider-primary"></div>
 	                                            <p></p>
 	                                            <span class="valuePadding">{{form.IndLiving_perc}}%</span>
 	                                            <p></p>
@@ -382,7 +395,7 @@ input[id*='price']{
 											<h2 >Patient Responsibility Percent</h2>
 											<div class="card-body">
 												<h5 class="card-title mb-3"> Name Brand Drugs</h5>
-	                                            <div data-toggle="tooltip" data-placement="right" title="This, is the percentage the patient is responsible for paying." id="pharmslider1" class="slider-primary"></div>
+	                                            <div data-toggle="tooltip" data-placement="right" title="This is the percentage the patient is responsible for paying." id="pharmslider1" class="slider-primary"></div>
 	                                            <p></p>
 	                                            <span class="valuePadding">{{form.NameBrand_perc}}%</span>
 	                                            <p></p>
@@ -391,7 +404,7 @@ input[id*='price']{
 	                                        </div>
                                             <div class="card-body">
 	                                            <h5 class="card-title mb-3"> Generic Drugs</h5>
-	                                            <div data-toggle="tooltip" data-placement="right" title="This, is the percentage the patient is responsible for paying."id="pharmslider2" class="slider-primary"></div>
+	                                            <div data-toggle="tooltip" data-placement="right" title="This is the percentage the patient is responsible for paying."id="pharmslider2" class="slider-primary"></div>
 	                                            <p></p>
 	                                            <span class="valuePadding">{{form.GenDrugs_perc}}%</span>
 	                                            <p></p>
@@ -400,20 +413,22 @@ input[id*='price']{
 	                                        </div>
                                             <div class="card-body">
                                             <h5 class="card-title mb-3"> Specialty Drugs</h5>
-                                            <div data-toggle="tooltip" data-placement="right" title="This, is the percentage the patient is responsible for paying."id="pharmslider3" class="slider-primary"></div>
+                                            <div data-toggle="tooltip" data-placement="right" title="This is the percentage the patient is responsible for paying."id="pharmslider3" class="slider-primary"></div>
                                             <p></p>
                                             <span class="valuePadding">{{form.SpecialtyDrugs_perc}}%</span>
                                             <p></p>
                                                 <span data-toggle="tooltip" data-placement="right" title="This is the negative effect on your budget." class="valuePadding">$<input   style="pointer-events: none;" id="pharmprice3" value=0.00></span>
                                                 <p></p>
+                                            </div>
                                             <div class="card-body">
 	                                            <h5 class="card-title mb-3"> Durable Medical Equipment (DME)</h5>
-	                                            <div data-toggle="tooltip" data-placement="right" title="This, is the percentage the patient is responsible for paying."id="pharmslider4" class="slider-primary"></div>
+	                                            <div data-toggle="tooltip" data-placement="right" title="This is the percentage the patient is responsible for paying."id="pharmslider4" class="slider-primary"></div>
 	                                            <p></p>
 	                                            <span class="valuePadding">{{form.DurableMedEqu_perc}}%</span>
 	                                            <p></p>
                                                 <span data-toggle="tooltip" data-placement="right" title="This is the negative effect on your budget." class="valuePadding">$<input   style="pointer-events: none;" id="pharmprice4" value=0.00></span>
                                                 <p></p>
+                                            </div>
                                                 <div class="col">
                                                     <div class="card card-stats card-round">
                                                         <div class="card-body ">
@@ -438,7 +453,8 @@ input[id*='price']{
 									</div>
 								</div>
 							</div>
-                            <div class="card">
+                                        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                                            <div>
 								<div class="card-header">
 									<h4 class="card-title">Healthcare Budget and Taxes</h4>
 								</div>
@@ -447,25 +463,22 @@ input[id*='price']{
 										<li class="nav-item">
 											<a class="nav-link active" id="pills-tax-tab-nobd" data-toggle="pill" href="#pills-tax-nobd" role="tab" aria-controls="pills-tax-nobd" aria-selected="true">Lifestyle Behavior Taxes</a>
 										</li>
-                                        <li class="nav-item">
-											<a class="nav-link" id="pills-total-tab-nobd" data-toggle="pill" href="#pills-total-nobd" role="tab" aria-controls="pills-total-nobd" aria-selected="false">Total Budget</a>
-										</li>
 									</ul>
 									<div class="tab-content mt-2 mb-3" id="pills-without-border-tabContent">
 										<div class="tab-pane fade show active" id="pills-tax-nobd" role="tabpanel" aria-labelledby="pills-tax-tab-nobd">
 											<h2 >Category Taxed Percent</h2>
 											<div class="card-body">
 												<h5 class="card-title mb-3"> Tobacco Products (ie. cigarettes, chew)</h5>
-	                                            <div data-toggle="tooltip" data-placement="right" title="This, is the percentage this type of item will be taxed when purchased." id="taxslider1" class="slider-primary"></div>
+	                                            <div data-toggle="tooltip" data-placement="right" title="This is the percentage this type of item will be taxed when purchased." id="taxslider1" class="slider-primary"></div>
 	                                            <p></p>
-	                                            <span class="valuePadding">{{form.TobTax_perc}}%</span>
+	                                            <span onchange="setTwoNumberDecimal" class="valuePadding">{{form.TobTax_perc}}%</span>
 	                                            <p></p>
                                                 <span data-toggle="tooltip" data-placement="right" title="This is the amount of money added to your budget." class="valuePadding">$<input   style="pointer-events: none;" id="taxprice1" value=0.00></span>
                                                 <p></p>
 	                                        </div>
                                             <div class="card-body">
 	                                            <h5 class="card-title mb-3"> Alcohol (ie. beer, wine, or bourbon)</h5>
-	                                            <div data-toggle="tooltip" data-placement="right" title="This, is the percentage this type of item will be taxed when purchased."id="taxslider2" class="slider-primary"></div>
+	                                            <div data-toggle="tooltip" data-placement="right" title="This is the percentage this type of item will be taxed when purchased."id="taxslider2" class="slider-primary"></div>
 	                                            <p></p>
 	                                            <span class="valuePadding">{{form.Alcohol_perc}}%</span>
 	                                            <p></p>
@@ -474,7 +487,7 @@ input[id*='price']{
 	                                        </div>
                                             <div class="card-body">
 	                                            <h5 class="card-title mb-3"> Fatty Foods</h5>
-	                                            <div data-toggle="tooltip" data-placement="right" title="This, is the percentage this type of item will be taxed when purchased."id="taxslider3" class="slider-primary"></div>
+	                                            <div data-toggle="tooltip" data-placement="right" title="This is the percentage this type of item will be taxed when purchased."id="taxslider3" class="slider-primary"></div>
 	                                            <p></p>
 	                                            <span class="valuePadding">{{form.FattyFoods_perc}}%</span>
 	                                            <p></p>
@@ -483,7 +496,7 @@ input[id*='price']{
 	                                        </div>
                                             <div class="card-body">
 	                                            <h5 class="card-title mb-3"> Sugary Foods</h5>
-	                                            <div data-toggle="tooltip" data-placement="right" title="This, is the percentage this type of item will be taxed when purchased."id="taxslider4" class="slider-primary"></div>
+	                                            <div data-toggle="tooltip" data-placement="right" title="This is the percentage this type of item will be taxed when purchased."id="taxslider4" class="slider-primary"></div>
 	                                            <p></p>
 	                                            <span class="valuePadding">{{form.SugFoods_perc}}%</span>
 	                                            <p></p>
@@ -516,7 +529,18 @@ input[id*='price']{
 									</div>
 								</div>
 							</div>
-                                </div></div>
+										</div>
+                                </div>
+										</div>
+										
+										<div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+                                            
+										</div>
+									</div>
+								</div>
+							</div>
+                                </div>
+				</div>
         <div style='overflow:visible;float:right;width:30%;position:fixed;right:0' class="col">
                                 <div class="card card-stats card-success card-round">
 								<div class="card-body ">
@@ -586,7 +610,7 @@ input[id*='price']{
 									</div>
 								</div>
 							</div>
-							<div class="card card-stats card-secondary card-round">
+							<button type="submit" class="card card-stats card-secondary card-round">
 								<div class="card-body ">
 									<div class="row">
 										<div class="col-5">
@@ -596,17 +620,17 @@ input[id*='price']{
 										</div>
 										<div class="col col-stats">
 											<div class="numbers">
-                                                <button class="btn btn-secondary" type="submit">
+                                                <div class="btn btn-secondary">
 											<span class="btn-label">
 												<i class="fas fa-hand-holding-usd"></i>
 											</span>
 											Save Budget
-                                    </button>
+                                    </div>
 											</div>
 										</div>
 									</div>
 								</div>
-                                    </div></div></div></form>
+                                    </button></div></div></form>
     <script>
     var formatter = new Intl.NumberFormat('en-US', {style: 'currency',currency: 'USD',});
     function loader(){
@@ -663,9 +687,12 @@ input[id*='price']{
         else{
             document.getElementById('rembud').className = 'card card-stats card-success card-round';
         }
-        
+    
         
     }
+        function setTwoNumberDecimal(event) {
+    this.value = parseFloat(this.value).toFixed(2);
+}
     function expensestotal() {
         var a = document.getElementById("prevtotalcost").innerHTML.replace(/\$/g, '').replace(/\,/g, '').replace(/\-/g, '');
         var b=document.getElementById("acutetotalcost").innerHTML.replace(/\$/g, '').replace(/\,/g, '').replace(/\-/g, '');
@@ -679,33 +706,39 @@ input[id*='price']{
     function prevtotalcalc() {  
         let prevtotal = Number(prevprice1.value) + Number(prevprice2.value) + Number(prevprice3.value) + Number(prevprice4.value) + Number(prevprice5.value) + Number(prevprice6.value) + Number(prevprice7.value);
         document.getElementById('prevtotalcost').innerHTML = ("-" + formatter.format(prevtotal));
+        expensestotal()
         remainingtotal()
         }
     
     function acutetotalcalc() {  
         let acutetotal = Number(acuteprice1.value) + Number(acuteprice2.value) + Number(acuteprice3.value);
         document.getElementById('acutetotalcost').innerHTML = ("-" + formatter.format(acutetotal));
+        expensestotal()
         remainingtotal()}
         
     function ambtotalcalc() {  
         let ambtotal = Number(ambprice1.value) + Number(ambprice2.value) + Number(ambprice3.value) + Number(ambprice4.value) + Number(ambprice5.value) + Number(ambprice6.value)+ Number(ambprice7.value);
         document.getElementById('ambtotalcost').innerHTML = ("-" + formatter.format(ambtotal));
+       expensestotal()
         remainingtotal()}
         
     function ltcstotalcalc() {  
         let ltcstotal = Number(ltcsprice1.value) + Number(ltcsprice2.value) + Number(ltcsprice3.value) + Number(ltcsprice4.value) + Number(ltcsprice5.value);
         document.getElementById('ltcstotalcost').innerHTML = ("-" + formatter.format(ltcstotal));
+        expensestotal()
         remainingtotal()}
         
     function pharmtotalcalc() {  
         let pharmtotal = Number(pharmprice1.value) + Number(pharmprice2.value) + Number(pharmprice3.value) + Number(pharmprice4.value);
         document.getElementById('pharmtotalcost').innerHTML = ("-" + formatter.format(pharmtotal));
+        expensestotal()
         remainingtotal()}
         
     function taxtotalcalc() {  
         let taxtotal = Number(taxprice1.value) + Number(taxprice2.value) + Number(taxprice3.value) + Number(taxprice4.value);
         document.getElementById('taxtotalcost').innerHTML = ("+" + formatter.format(taxtotal));
         document.getElementById('taxtotalcost1').innerHTML = ("+" + formatter.format(taxtotal));
+        expensestotal()
         remainingtotal()}
     
     

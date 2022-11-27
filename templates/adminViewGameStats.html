@@ -7,7 +7,7 @@
     <i class="flaticon-right-arrow"></i>
 </li>
 <li class="nav-item">
-    <a href="{% url 'adminManageGameView' object.pk %}">View Stats</a>
+    <a href="{% url 'adminViewGameStats' object.pk %}">View Stats</a>
 </li>
 {% endblock %}
 
@@ -15,6 +15,14 @@
 <h4 class="page-title">Student Roster</h4>
 {% endblock %}
 {% block content %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+ 
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+  
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+
 <div class="card-body">
     <div class="table-responsive">
         <table id="basic-datatables" class="display table table-striped table-hover" >
@@ -31,21 +39,21 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                
                     <tr>
                      {% for session in session %}
                      {% if session.game_tag.game_name == object.game_name %}
                      <td id="test">{{session.student}}</td>
 
-                     <td id='initial_budget'> {{ session.game_tag.initial_budget }}</td>
+                     <td id='initial_budget{{ forloop.counter }}'> {{ session.game_tag.initial_budget }}</td>
                      <td id='totalbud{{ forloop.counter }}'></td>   
                      <td id='exptotal{{ forloop.counter }}'></td>
 
                      <div id='rembud'><td id='remainingbud{{ forloop.counter }}'></td> </div>
-                     
+
                      <td id='overallsatscore{{ forloop.counter }}'></td>
                  </tr>
-             </tr>
+             
              <!-- attempting to initialize all elements for the js -->
 
 
@@ -91,8 +99,8 @@
                 var taxprice4 = parseFloat(formuladict4({{session.SugFoods_perc}}.toFixed(1)).toFixed(2));
 
                 function loader(){
-                    document.getElementById("initial_budget").innerHTML = document.getElementById("initial_budget").innerHTML.replace(/\$/g, '').replace(/\,/g, '').replace(/\-/g, '');
-                    document.getElementById("initial_budget").innerHTML = formatter.format(document.getElementById("initial_budget").innerHTML);
+                    document.getElementById("initial_budget"+id_suffix).innerHTML = document.getElementById("initial_budget"+id_suffix).innerHTML.replace(/\$/g, '').replace(/\,/g, '').replace(/\-/g, '');
+                    document.getElementById("initial_budget"+id_suffix).innerHTML = formatter.format(document.getElementById("initial_budget"+id_suffix).innerHTML);
     // prevtotalcalc()
     // acutetotalcalc()
     // ambtotalcalc()
@@ -112,7 +120,7 @@
 
 function remainingtotal(){
 
-    var budget = document.getElementById("initial_budget").innerHTML.replace(/\$/g, '').replace(/\,/g, '').replace(/\-/g, '');
+    var budget = document.getElementById("initial_budget"+id_suffix).innerHTML.replace(/\$/g, '').replace(/\,/g, '').replace(/\-/g, '');
     
     var taxes = Number(taxprice1) + Number(taxprice2) + Number(taxprice3) + Number(taxprice4);
     
@@ -150,7 +158,7 @@ function remainingtotal(){
 
         // document.getElementById('taxtotalcost').innerHTML = ("+" + formatter.format(taxtotal));
         // document.getElementById('taxtotalcost1').innerHTML = ("+" + formatter.format(taxtotal));
-        
+
         var a = prevtotalcost.replace(/\$/g, '').replace(/\,/g, '').replace(/\-/g, '');
         var b= acutetotalcost.replace(/\$/g, '').replace(/\,/g, '').replace(/\-/g, '');
         // var c= ambtotalcost.replace(/\,/g, '').replace(/\-/g, '').replace(/\-/g, '');
@@ -161,10 +169,10 @@ function remainingtotal(){
         document.getElementById('exptotal'+id_suffix).innerHTML = (formatter.format(exptot));}
 
 
-        
-        
 
-        
+
+
+
         loader()
 //formula to calculate preventative and ambulatory
 function formuladict(value){
@@ -327,11 +335,19 @@ document.getElementById('overallsatscore' + id_suffix).innerHTML = overallsatsco
 
 </script>
 
-<script src="{% static '/assets/js/plugin/datatables/datatables.min.js' %}"></script>
-<script type="text/javascript"> 
-   $(document).ready(function() {
-            $('#basic-datatables').DataTable({
-            });
+<!-- <script src="{% static '/assets/js/plugin/datatables/datatables.min.js' %}"></script> -->
+
+
+
+
+
+    
+<script type="text/javascript">
+    
+    $(document).ready( function () {
+    $('#basic-datatables').DataTable();
+} );
+
 </script>
 
 </div>

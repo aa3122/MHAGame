@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+<html lang="en">
+{% block breadcrumb %}
+<li class="separator">
+    <i class="flaticon-right-arrow"></i>
+</li>
+<li class="nav-item">
+    <a href="/administration/viewgames">Current Games</a>
+</li>
+{% endblock %}
+{% block title %}
+<h4 class="page-title">Confirm Delete</h4>
+{% endblock %}
+{% block content %}
+
+
+
+
+
+{% for session in session %}
+    {% if session.pk == object.pk %}
+<!--  {{object.pk}}
+ {{session.pk}}
+ {{user.pk}}
+ {{session.game_tag.pk}} -->
+<form method="post">
+    {% csrf_token %}
+     <p>Are you sure you want to delete "{{session.student.username}}"?</p>
+     <input type="submit" value="Delete">
+     <p><a href="{% url 'adminViewStudents' session.game_tag.pk %}">Cancel</a></p>
+</form>
+{% endif %}
+{% endfor %}
+    {% endblock %}
+    </html>

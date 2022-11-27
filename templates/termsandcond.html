@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<title>Sign Up</title>
+	<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
+	<link rel="icon" href="{% static '/assets/img/icon.ico" type="image/x-icon"/>
+
+	<!-- Fonts and icons -->
+	<script src="{% static '/assets/js/plugin/webfont/webfont.min.js' %}"></script>
+	<script>
+		WebFont.load({
+			google: {"families":["Open+Sans:300,400,600,700"]},
+			custom: {"families":["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands"], urls: ["{% static '/assets/css/fonts.css' %}"]},
+			active: function() {
+				sessionStorage.fonts = true;
+			}
+		});
+	</script>
+	<script type="text/javascript">
+
+  // polyfill for RegExp.escape
+        if(!RegExp.escape) {
+                RegExp.escape = function(s) {
+                    return String(s).replace(/[\\^$*+?.()|[\]{}]/g, '\\$&');
+    };
+  }
+
+</script>
+	<!-- CSS Files -->
+	<link rel="stylesheet" href="{% static '/assets/css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static '/assets/css/azzara.min.css' %}">
+</head>
+<div class="page-not-found">
+<body class="login" method="post">
+	<div class="wrapper wrapper-login">
+		<div style = "background : white"class="container">
+			<h3 class="text-center">Terms and Conditions</h3>
+            <center>
+ <p>
+ <div class="card-header">
+<div class="card-title">Website Terms and Conditions of Use</div>
+
+<br>MHA Game website and all content
+
+<br>Last Updated — July 9, 2021
+
+<br>These Terms and Conditions (“the Terms and Conditions”) govern your (“the User”) use of the MHA Game by TBD Software, Inc. (“Provider”) website located at the domain name https://arcservmhs.uncw.edu (“the Website”). By accessing and using the Website, the User agrees to be bound by the Terms and Conditions set out in this legal notice. The User may not access, display, use, download, and/or otherwise copy or distribute Content obtained on the website for marketing and other purposes without the consent of the Provider.
+<br>YOUR ACCOUNT<br>
+
+If you create an account on the Website, you are responsible for maintaining the security of your account, and you are fully responsible for all activities that occur under the account and any other actions taken in connection with running the MHA Game. You must immediately notify Provider of any unauthorized uses of your account, or any other breaches of security. Provider will not be liable for any acts or omissions by You, including any damages of any kind incurred because of such acts or omissions.
+
+<br>ELECTRONIC COMMUNICATIONS<br>
+
+By using this Website or communicating with the Provider by electronic means, the user consents and acknowledges that any and all agreements, notices, disclosures, or any other communication satisfies any legal requirement, including but not limited to the requirement that such communications should be in writing.
+
+The Provider cannot be held responsible for security breaches occurring on the User’s electronic device (Personal Computer or other electronic device used to browse the Website), which may result due to the lack of adequate virus protection software or spyware that the User may inadvertently have installed on his/her device.
+
+<br>UPDATING OF THESE TERMS AND CONDITIONS<br>
+
+Provider reserves the rights to change, modify, add, or remove from portions or the whole of these Terms and Conditions from time to time. Changes to these Terms and Conditions will become effective upon such changes being posted to this Website. It is the User’s obligation to periodically check these Terms and Conditions at the Website for changes or updates. The User’s continued use of this Website following the posting of changes or updates will be considered notice of the User’s acceptance to abide by and be bound by these Terms and Conditions, including such changes or updates.
+
+<br>COPYRIGHT AND INTELLECTUAL PROPERTY RIGHTS<br>
+
+Provider provides certain information at the Website. Content currently or anticipated to be displayed at this Website is provided by Provider, its affiliates and/or subsidiary, or any other
+
+third party owners of such content, and includes but is not limited to Literary Works, Musical Works, Artistic Works, Sound Recordings, Cinematograph Films, Sound and Television Broadcasts, Program-Carrying Signals, Published Editions and Computer Programs (“the Content”). All such proprietary works, and the compilation of the proprietary works, are copyright the Provider, its affiliates or subsidiary, or any other third party owner of such rights (“the Owners”), and is protected by United States and international copyright laws. The Providers reserve the right to make any changes to the Website, the Content, or to products and/or services offered through the Website at any times and without notice. All rights in and to the Content is reserved and retained by the Owners. Except as specified in these Terms and Conditions, the User is not granted a license or any other right including without limitation under Copyright, Trademark, Patent, or other Intellectual Property Rights in or to the Content.
+
+<br>LIMITATION OF LIABILITY<br>
+
+The Website and all Content on the Website, including any current or future offer of new services, are provided on an “as is” basis, and may include inaccuracies or typographical errors. The Owners make no warranty or representation as to the availability, accuracy, or completeness of the Content. Neither Provider nor any holding company, affiliate or subsidiary of Provider, shall be held responsible for any direct or indirect special, consequential or other damage of any kind whatsoever suffered or incurred, related to the use of, or the inability to access or use the Content or the Website or any functionality thereof, or of any linked website, even if Provider is expressly advised thereof.
+
+<br>CHOICE OF LAW<br>
+
+This Website is controlled, operated, and administered by Provider from its offices at the University of North Carolina Wilmington. Access to the Website from territories or countries where the Content on the Website is illegal is prohibited. The User may not use this Website in violation of United States export laws and regulations. If the User accesses this Website from locations outside of the United States, that User is responsible for compliance with all local laws.
+
+                These Terms and Conditions shall be governed by the laws of the state of North Carolina in the event of any dispute. If any of the provisions of these Terms and Conditions are found by a court to be invalid or unenforceable, that provision shall be enforced to the maximum extent permissible so as to give effect to the intent of these Terms and Conditions, and the remainder of these Terms and Conditions shall continue in full force and effect. These Terms and Conditions constitute the entire agreement between the Provider and the User about the use of the Content and this Website.</div></p><a type = 'submit' class="btn btn-primary btn-rounded btn-login" href = "{% url 'signup' %}">Return to Sign Up</a></center>
+
+	</div>
+	</div>
+	<script src="{% static '/assets/js/core/jquery.3.2.1.min.js' %}"></script>
+	<script src="{% static '/assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js' %}"></script>
+	<script src="{% static '/assets/js/core/popper.min.js' %}"></script>
+	<script src="{% static '/assets/js/core/bootstrap.min.js' %}"></script>
+	<script src="{% static '/assets/js/ready.js' %}"></script>
+    </body>
+</div>
+</html>

@@ -3,12 +3,18 @@
 {% load static %}
 <html lang="en">
 {% block breadcrumb %}
-        <!-- <li class="separator">
+        <li class="separator">
             <i class="flaticon-right-arrow"></i>
         </li>
         <li class="nav-item">
-            <a href="{% url 'adminViewStudents' object.pk %}">Students</a>
-        </li> -->
+            <a href="{% url 'adminViewGame'%}">View Games</a>
+        </li>
+        <li class="separator">
+            <i class="flaticon-right-arrow"></i>
+        </li>
+        <li class="nav-item">
+            <a href="{% url 'adminViewStudents' object.game_tag.pk %}">Students</a>
+        </li>
         <li class="separator">
             <i class="flaticon-right-arrow"></i>
         </li>
@@ -27,433 +33,437 @@
 
     {% for session in session %}
     {% if session.pk == object.pk %}
-  
-        <div class="col">
-            <div class="card">
-                <div class="card-body">
-                    Student: {{session.student.first_name}} {{session.student.last_name}} | Game: {{session.game_tag.game_name}} | Instructor: {{session.game_tag.Instructor}}</a><br/>
-                </div>
-            </div>
+
         <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">Satisfaction Score</h4>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table id="basic-datatables" class="display table table-striped table-hover" >
-                                <thead>
-                                    <tr>
-                                        <th>Preventive Services</th>
-                                        <th>Acute Care Services</th>
-                                        <th>Ambulatory Care Services</th>
-                                        <th>Long Term Care Services</th>
-                                        <th>Pharmacy Benefits</th>      
-                                        <th>Taxes</th>
-                                        <th>Overall</th>                
-                                    </tr>
-                                </thead>
-                                <tfoot>
-                                    <tr>
-                                        <th>Preventive Services</th>
-                                        <th>Acute Care Services</th>
-                                        <th>Ambulatory Care Services</th>
-                                        <th>Long Term Care Services</th>
-                                        <th>Pharmacy Benefits</th>
-                                        <th>Taxes</th>     
-                                        <th>Overall</th>                                                              
-                                    </tr>
-                                </tfoot>
-                                <tbody>
-                                    <tr>
-                                        <td id='prevsatscore'></td>
-                                        <td id='acutesatscore'></td>
-                                        <td id='ambsatscore'></td>
-                                        <td id='ltcssatscore'></td>
-                                        <td id='pharmsatscore'></td>   
-                                        <td id='taxsatscore'></td>     
-                                        <td id='overallsatscore'></td>                                   
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Satisfaction Score</h4>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="basic-datatables" class="display table table-striped table-hover" >
+                        <thead>
+                            <tr>
+                                <th>Preventive Services</th>
+                                <th>Acute Care Services</th>
+                                <th>Ambulatory Care Services</th>
+                                <th>Long Term Care Services</th>
+                                <th>Pharmacy Benefits</th>      
+                                <th>Taxes</th>
+                                <th>Overall</th>                
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>Preventive Services</th>
+                                <th>Acute Care Services</th>
+                                <th>Ambulatory Care Services</th>
+                                <th>Long Term Care Services</th>
+                                <th>Pharmacy Benefits</th>
+                                <th>Taxes</th>     
+                                <th>Overall</th>                                                              
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            <tr>
+                                <td id='prevsatscore{{ forloop.counter }}'></td>
+                                <td id='acutesatscore{{ forloop.counter }}'></td>
+                                <td id='ambsatscore{{ forloop.counter }}'></td>
+                                <td id='ltcssatscore{{ forloop.counter }}'></td>
+                                <td id='pharmsatscore{{ forloop.counter }}'></td>   
+                                <td id='taxsatscore{{ forloop.counter }}'></td>     
+                                <td id='overallsatscore{{ forloop.counter }}'></td>                                   
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">Budget</h4>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table id="basic-datatables" class="display table table-striped table-hover" >
-                                <thead>
-                                    <tr>
-                                        <th>Baseline Budget</th>
-                                        <th>Lifestyle Behavior Taxes</th>
-                                        <th>Total Budget</th>  
-                                        <th>Surplus</th>                                 
-                                    </tr>
-                                </thead>
-                                <tfoot>
-                                    <tr>
-                                        <th>Baseline Budget</th>
-                                        <th>Lifestyle Behavior Taxes</th>
-                                        <th>Total Budget</th>
-                                        <th>Surplus</th>                                                                    
-                                    </tr>
-                                </tfoot>
-                                <tbody>
-                                    <tr>
-                                        <td id='initial_budget'>${{session.game_tag.initial_budget}}</td>
-                                        <td id ='taxtotalcost'></td>
-                                        <td id='totalbud'></td>   
-                                        <td id='remainingbud'></td>                                           
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Budget</h4>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="basic-datatables" class="display table table-striped table-hover" >
+                        <thead>
+                            <tr>
+                                <th>Baseline Budget</th>
+                                <th>Lifestyle Behavior Taxes</th>
+                                <th>Total Budget</th>  
+                                <th>Surplus/Shortage</th>                                 
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>Baseline Budget</th>
+                                <th>Lifestyle Behavior Taxes</th>
+                                <th>Total Budget</th>
+                                <th>Surplus/Shortage</th>                                                                    
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            <tr>
+                                <td id='initial_budget'>${{session.game_tag.initial_budget}}</td>
+                                <td id ='taxtotalcost{{ forloop.counter }}'></td>
+                                <td id='totalbud{{ forloop.counter }}'></td>   
+                                <td id='remainingbud{{ forloop.counter }}'></td>                                           
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">Expenses</h4>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table id="basic-datatables" class="display table table-striped table-hover" >
-                                <thead>
-                                    <tr>
-                                        <th>Preventive Services</th>
-                                        <th>Acute Care Services</th>
-                                        <th>Ambulatory Care Services</th>
-                                        <th>Long Term Care Services</th>
-                                        <th>Pharmacy Benefits</th>
-                                        <th>Total Expenses</th>
-                                    </tr>
-                                </thead>
-                                <tfoot>
-                                    <tr>
-                                        <th>Preventive Services</th>
-                                        <th>Acute Care Services</th>
-                                        <th>Ambulatory Care Services</th>
-                                        <th>Long Term Care Services</th>
-                                        <th>Pharmacy Benefits</th>    
-                                        <th>Total Expenses</th>                              
-                                    </tr>
-                                </tfoot>
-                                <tbody>
-                                    <tr>
-                                        <td id='prevtotalcost'></td>
-                                        <td id ='acutetotalcost'></td>
-                                        <td id='ambtotalcost'></td>
-                                        <td id='ltcstotalcost'></td>
-                                        <td id='pharmtotalcost'></td>   
-                                        <td id='exptotal'></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Expenses</h4>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="basic-datatables" class="display table table-striped table-hover" >
+                        <thead>
+                            <tr>
+                                <th>Preventive Services</th>
+                                <th>Acute Care Services</th>
+                                <th>Ambulatory Care Services</th>
+                                <th>Long Term Care Services</th>
+                                <th>Pharmacy Benefits</th>
+                                <th>Total Expenses</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>Preventive Services</th>
+                                <th>Acute Care Services</th>
+                                <th>Ambulatory Care Services</th>
+                                <th>Long Term Care Services</th>
+                                <th>Pharmacy Benefits</th>    
+                                <th>Total Expenses</th>                              
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            <tr>
+                                <td id='prevtotalcost{{ forloop.counter }}'></td>
+                                <td id ='acutetotalcost{{ forloop.counter }}'></td>
+                                <td id='ambtotalcost{{ forloop.counter }}'></td>
+                                <td id='ltcstotalcost{{ forloop.counter }}'></td>
+                                <td id='pharmtotalcost{{ forloop.counter }}'></td>   
+                                <td id='exptotal{{ forloop.counter }}'></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-                 <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">Expense & Tax Percents (Patient Responsiblity)</h4>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table id="basic-datatables" class="display table table-striped table-hover" >
-                                <tbody>
-                                    <tr>
-                                        <th>Preventative Percentages</th>
-                                        <td name ="immunization_perc">{{session.immunization_perc}}%</td>
-                                        <td name ="EDUSmoking_perc">{{session.EDUSmoking_perc}}%</td>
-                                        <td name ="EDUDisease_perc">{{session.EDUDisease_perc}}%</td>
-                                        <td name ="Screening_perc">{{session.Screening_perc}}%</td>   
-                                        <td name ="TestingLab_perc">{{session.TestingLab_perc}}%</td>
-                                        <td name ="TestingPharmo_perc">{{session.TestingPharmo_perc}}%</td>   
-                                        <td name ="AnnualPCP_perc">{{session.AnnualPCP_perc}}%</td>
-                                    </tr>
-                                    <tr>
-                                        <th name ="">Acute Percentages</th>
-                                        <td name ="HospitalCare_perc">{{session.HospitalCare_perc}}%</td>
-                                        <td name ="MentalHealth_perc">{{session.MentalHealth_perc}}%</td>
-                                        <td name ="EmergencyCare_perc">{{session.EmergencyCare_perc}}%</td>
-                                    </tr>
-                                    <tr>
-                                        <th name ="">Ambulatory Percentages</th>
-                                        <td name ="OutPatientSurg_perc">{{session.OutPatientSurg_perc}}%</td>
-                                        <td name ="OutPatientRadio_perc">{{session.OutPatientRadio_perc}}%</td>
-                                        <td name ="PhysicianPCP_perc">{{session.PhysicianPCP_perc}}%</td>
-                                        <td name ="PhysicianSpec_perc">{{session.PhysicianSpec_perc}}%</td>   
-                                        <td name ="UrgentCare_perc">{{session.UrgentCare_perc}}%</td>
-                                        <td name ="HomeHealth_perc">{{session.HomeHealth_perc}}%</td>   
-                                        <td name ="Hospice_perc">{{session.Hospice_perc}}%</td>
-                                    </tr>
-                                    <tr>
-                                        <th name ="">Long Term Care Percentages</th>
-                                        <td name ="LTAC_perc">{{session.LTAC_perc}}%</td>
-                                        <td name ="SkilledNursing_perc">{{session.SkilledNursing_perc}}%</td>
-                                        <td name ="NursingHome_perc">{{session.NursingHome_perc}}%</td>
-                                        <td name ="AsstLiving_perc">{{session.AsstLiving_perc}}%</td>   
-                                        <td name ="IndLiving_perc">{{session.IndLiving_perc}}%</td>
-                                    </tr>
-                                    <tr>
-                                        <th name ="">Pharmacy Benefits Percentages</th>
-                                        <td name ="NameBrand_perc">{{session.NameBrand_perc}}%</td>
-                                        <td name ="GenDrugs_perc">{{session.GenDrugs_perc}}%</td>
-                                        <td name ="SpecialtyDrugs_perc">{{session.SpecialtyDrugs_perc}}%</td>
-                                        <td name ="DurableMedEqu_perc">{{session.DurableMedEqu_perc}}%</td>   
-                                    </tr>
-                                    <tr>
-                                        <th name ="">Tax Percentages</th>
-                                        <td name ="TobTax_perc">{{session.TobTax_perc}}%</td>
-                                        <td name ="Alcohol_perc">{{session.Alcohol_perc}}%</td>
-                                        <td name ="FattyFoods_perc">{{session.FattyFoods_perc}}%</td>
-                                        <td name ="SugFoods_perc">{{session.SugFoods_perc}}%</td>   
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Expense & Tax Percents (Patient Responsiblity)</h4>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="basic-datatables" class="display table table-striped table-hover" >
+                        <tbody>
+                            <tr>
+                                <th>Preventative Percentages</th>
+                                <td name ="immunization_perc">{{session.immunization_perc}}%</td>
+                                <td name ="EDUSmoking_perc">{{session.EDUSmoking_perc}}%</td>
+                                <td name ="EDUDisease_perc">{{session.EDUDisease_perc}}%</td>
+                                <td name ="Screening_perc">{{session.Screening_perc}}%</td>   
+                                <td name ="TestingLab_perc">{{session.TestingLab_perc}}%</td>
+                                <td name ="TestingPharmo_perc">{{session.TestingPharmo_perc}}%</td>   
+                                <td name ="AnnualPCP_perc">{{session.AnnualPCP_perc}}%</td>
+                            </tr>
+                            <tr>
+                                <th name ="">Acute Percentages</th>
+                                <td name ="HospitalCare_perc">{{session.HospitalCare_perc}}%</td>
+                                <td name ="MentalHealth_perc">{{session.MentalHealth_perc}}%</td>
+                                <td name ="EmergencyCare_perc">{{session.EmergencyCare_perc}}%</td>
+                            </tr>
+                            <tr>
+                                <th name ="">Ambulatory Percentages</th>
+                                <td name ="OutPatientSurg_perc">{{session.OutPatientSurg_perc}}%</td>
+                                <td name ="OutPatientRadio_perc">{{session.OutPatientRadio_perc}}%</td>
+                                <td name ="PhysicianPCP_perc">{{session.PhysicianPCP_perc}}%</td>
+                                <td name ="PhysicianSpec_perc">{{session.PhysicianSpec_perc}}%</td>   
+                                <td name ="UrgentCare_perc">{{session.UrgentCare_perc}}%</td>
+                                <td name ="HomeHealth_perc">{{session.HomeHealth_perc}}%</td>   
+                                <td name ="Hospice_perc">{{session.Hospice_perc}}%</td>
+                            </tr>
+                            <tr>
+                                <th name ="">Long Term Care Percentages</th>
+                                <td name ="LTAC_perc">{{session.LTAC_perc}}%</td>
+                                <td name ="SkilledNursing_perc">{{session.SkilledNursing_perc}}%</td>
+                                <td name ="NursingHome_perc">{{session.NursingHome_perc}}%</td>
+                                <td name ="AsstLiving_perc">{{session.AsstLiving_perc}}%</td>   
+                                <td name ="IndLiving_perc">{{session.IndLiving_perc}}%</td>
+                            </tr>
+                            <tr>
+                                <th name ="">Pharmacy Benefits Percentages</th>
+                                <td name ="NameBrand_perc">{{session.NameBrand_perc}}%</td>
+                                <td name ="GenDrugs_perc">{{session.GenDrugs_perc}}%</td>
+                                <td name ="SpecialtyDrugs_perc">{{session.SpecialtyDrugs_perc}}%</td>
+                                <td name ="DurableMedEqu_perc">{{session.DurableMedEqu_perc}}%</td>   
+                            </tr>
+                            <tr>
+                                <th name ="">Tax Percentages</th>
+                                <td name ="TobTax_perc">{{session.TobTax_perc}}%</td>
+                                <td name ="Alcohol_perc">{{session.Alcohol_perc}}%</td>
+                                <td name ="FattyFoods_perc">{{session.FattyFoods_perc}}%</td>
+                                <td name ="SugFoods_perc">{{session.SugFoods_perc}}%</td>   
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
+        </div>
+    </div>
     <script>
-        var formatter = new Intl.NumberFormat('en-US', {style: 'currency',currency: 'USD',});
-        var prevprice1 = parseFloat(formuladict({{session.immunization_perc}}).toFixed(2));
-        var prevprice2 = parseFloat(formuladict({{session.EDUSmoking_perc}}).toFixed(2));
-        var prevprice3 = parseFloat(formuladict({{session.EDUDisease_perc}}).toFixed(2));
-        var prevprice4 = parseFloat(formuladict({{session.Screening_perc}}).toFixed(2));
-        var prevprice5 = parseFloat(formuladict({{session.TestingLab_perc}}).toFixed(2));
-        var prevprice6 = parseFloat(formuladict({{session.TestingPharmo_perc}}).toFixed(2));
-        var prevprice7 = parseFloat(formuladict({{session.AnnualPCP_perc}}).toFixed(2));
-        
-        var acuteprice1 = parseFloat(formuladict1({{session.HospitalCare_perc}}).toFixed(2));
-        var acuteprice2 = parseFloat(formuladict1({{session.MentalHealth_perc}}).toFixed(2));
-        var acuteprice3 = parseFloat(formuladict1({{session.EmergencyCare_perc}}).toFixed(2));
-        
-        var ambprice1 = parseFloat(formuladict({{session.OutPatientSurg_perc}}).toFixed(2));
-        var ambprice2 = parseFloat(formuladict({{session.OutPatientRadio_perc}}).toFixed(2));
-        var ambprice3 = parseFloat(formuladict({{session.PhysicianPCP_perc}}).toFixed(2));
-        var ambprice4 = parseFloat(formuladict({{session.PhysicianSpec_perc}}).toFixed(2));
-        var ambprice5 = parseFloat(formuladict({{session.UrgentCare_perc}}).toFixed(2));
-        var ambprice6 = parseFloat(formuladict({{session.HomeHealth_perc}}).toFixed(2));
-        var ambprice7 = parseFloat(formuladict({{session.Hospice_perc}}).toFixed(2));
-        
-        var ltcsprice1 = parseFloat(formuladict2({{session.LTAC_perc}}).toFixed(2));
-        var ltcsprice2 = parseFloat(formuladict2({{session.SkilledNursing_perc}}).toFixed(2));
-        var ltcsprice3 = parseFloat(formuladict2({{session.NursingHome_perc}}).toFixed(2));
-        var ltcsprice4 = parseFloat(formuladict2({{session.AsstLiving_perc}}).toFixed(2));
-        var ltcsprice5 = parseFloat(formuladict2({{session.IndLiving_perc}}).toFixed(2));
-        
-        var pharmprice1 = parseFloat(formuladict3({{session.NameBrand_perc}}).toFixed(2));
-        var pharmprice2 = parseFloat(formuladict3({{session.GenDrugs_perc}}).toFixed(2));
-        var pharmprice3 = parseFloat(formuladict3({{session.SpecialtyDrugs_perc}}).toFixed(2));
-        var pharmprice4 = parseFloat(formuladict3({{session.DurableMedEqu_perc}}).toFixed(2));
-        
-        var taxprice1 = parseFloat(formuladict4({{session.TobTax_perc}}.toFixed(1)).toFixed(2));
-        var taxprice2 = parseFloat(formuladict4({{session.Alcohol_perc}}.toFixed(1)).toFixed(2));
-        var taxprice3 = parseFloat(formuladict4({{session.FattyFoods_perc}}.toFixed(1)).toFixed(2));
-        var taxprice4 = parseFloat(formuladict4({{session.SugFoods_perc}}.toFixed(1)).toFixed(2));
-        
-        function loader(){
-            document.getElementById("initial_budget").innerHTML = document.getElementById("initial_budget").innerHTML.replace(/\$/g, '').replace(/\,/g, '').replace(/\-/g, '');
-            document.getElementById("initial_budget").innerHTML = formatter.format(document.getElementById("initial_budget").innerHTML);
-            prevtotalcalc()
-            acutetotalcalc()
-            ambtotalcalc()
-            ltcstotalcalc()
-            pharmtotalcalc()
-            expensestotal()
-            taxtotalcalc()
-            remainingtotal()
-            prevsatscore()
-            acutesatscore()
-            ambsatscore()
-            ltcssatscore()
-            pharmsatscore()
-            taxsatscore()
-            overallsatscore()
-            }
-        
-        function remainingtotal(){
-            var budget = document.getElementById("initial_budget").innerHTML.replace(/\$/g, '').replace(/\,/g, '').replace(/\-/g, '');
-            var expenses = document.getElementById('exptotal').innerHTML.replace(/\$/g, '').replace(/\,/g, '').replace(/\-/g, '');
-            var taxes = document.getElementById('taxtotalcost').innerHTML.replace(/\$/g, '').replace(/\,/g, '').replace(/\+/g, '');
-            document.getElementById('totalbud').innerHTML = Number(budget) + Number(taxes);
-            document.getElementById('totalbud').innerHTML = formatter.format(document.getElementById('totalbud').innerHTML);
-            document.getElementById('remainingbud').innerHTML = Number(budget) - Number(expenses) + Number(taxes);
-            document.getElementById('remainingbud').innerHTML = formatter.format(document.getElementById('remainingbud').innerHTML);}
-            
-        function expensestotal() {
-            var a = document.getElementById("prevtotalcost").innerHTML.replace(/\$/g, '').replace(/\,/g, '').replace(/\-/g, '');
-            var b=document.getElementById("acutetotalcost").innerHTML.replace(/\$/g, '').replace(/\,/g, '').replace(/\-/g, '');
-            var c=document.getElementById("ambtotalcost").innerHTML.replace(/\$/g, '').replace(/\,/g, '').replace(/\-/g, '');
-            var d=document.getElementById("ltcstotalcost").innerHTML.replace(/\$/g, '').replace(/\,/g, '').replace(/\-/g, '');
-            var e=document.getElementById("pharmtotalcost").innerHTML.replace(/\$/g, '').replace(/\,/g, '').replace(/\-/g, '');
-            var exptot = Number(a) + Number(b) + Number(c) + Number(d) + Number(e);
-            document.getElementById('exptotal').innerHTML = (formatter.format(exptot));}
-        function prevtotalcalc() {  
-            let prevtotal = Number(prevprice1) + Number(prevprice2) + Number(prevprice3) + Number(prevprice4) + Number(prevprice5) + Number(prevprice6) + Number(prevprice7);
-            document.getElementById('prevtotalcost').innerHTML = ("-" + formatter.format(prevtotal));
-            }
-        
-        function acutetotalcalc() {  
-            let acutetotal = Number(acuteprice1) + Number(acuteprice2) + Number(acuteprice3);
-            document.getElementById('acutetotalcost').innerHTML = ("-" + formatter.format(acutetotal));}
-            
-        function ambtotalcalc() {  
-            let ambtotal = Number(ambprice1) + Number(ambprice2) + Number(ambprice3) + Number(ambprice4) + Number(ambprice5) + Number(ambprice6) + Number(ambprice7);
-            document.getElementById('ambtotalcost').innerHTML = ("-" + formatter.format(ambtotal));}
-            
-        function ltcstotalcalc() {  
-            let ltcstotal = Number(ltcsprice1) + Number(ltcsprice2) + Number(ltcsprice3) + Number(ltcsprice4) + Number(ltcsprice5);
-            document.getElementById('ltcstotalcost').innerHTML = ("-" + formatter.format(ltcstotal));}
-            
-        function pharmtotalcalc() {  
-            let pharmtotal = Number(pharmprice1) + Number(pharmprice2) + Number(pharmprice3) + Number(pharmprice4);
-            document.getElementById('pharmtotalcost').innerHTML = ("-" + formatter.format(pharmtotal));}
-            
-        function taxtotalcalc() {  
-            let taxtotal = Number(taxprice1) + Number(taxprice2) + Number(taxprice3) + Number(taxprice4);
-            document.getElementById('taxtotalcost').innerHTML = ("+" + formatter.format(taxtotal));}
-        
-        loader()
-    //formula to calculate preventative and ambulatory
-    function formuladict(value){
-        var dict = {};
-        dict[100] = 0;
-        var y = 500000;
-        var x = 99;
-        dict[x] = y;
-        while(x>0){
-          y = y * 1.05;
-          x -= 1;
-          dict[x] = y;}
-        return dict[value];}
-    //formula to calculate Acute Care
-    function formuladict1(value1){
-        var dict1 = {};
-        dict1[100] = 0;
-        var y1 = 2500000;
-        var x1 = 99;
-        dict1[x1] = y1;
-        while(x1>0){
-          y1 = y1 * 1.05;
-          x1 -= 1;
-          dict1[x1] = y1;}
-        return dict1[value1];}
-    //formula to calculate long term
-    function formuladict2(value){
-        var dict2 = {};
-        dict2[100] = 0;
-        var y2 = 750000;
-        var x2 = 99;
-        dict2[x2] = y2;
-        while(x2>0){
-          y2 = y2 * 1.05;
-          x2 -= 1;
-          dict2[x2] = y2;}
-        return dict2[value];}
-    //formula to calculate pharmacy
-    function formuladict3(value){
-        var dict3 = {};
-        dict3[100] = 0;
-        var y3 = 1000000;
-        var x3 = 99;
-        dict3[x3] = y3;
-        while(x3>0){
-          y3 = y3 * 1.05;
-          x3 -= 1;
-          dict3[x3] = y3;}
-        return dict3[value];}
-    // formula to calculate tax amount
-    function formuladict4(value){
-        var dict4 = {};
-        dict4['0.0'] = 0;
-        var y4 = 500000;
-        var x4 = 0.1;
-        dict4[x4] = y4;
-        while(x4<=10){
-          y4 = y4 * 1.05;
-          x4 += .1;
-          dict4[x4.toFixed(1)] = y4;
+       var id_suffix = "{{ forloop.counter }}"
+
+
+       var formatter = new Intl.NumberFormat('en-US', {style: 'currency',currency: 'USD',});
+       var prevprice1 = parseFloat(formuladict({{session.immunization_perc}}).toFixed(2));
+       var prevprice2 = parseFloat(formuladict({{session.EDUSmoking_perc}}).toFixed(2));
+       var prevprice3 = parseFloat(formuladict({{session.EDUDisease_perc}}).toFixed(2));
+       var prevprice4 = parseFloat(formuladict({{session.Screening_perc}}).toFixed(2));
+       var prevprice5 = parseFloat(formuladict({{session.TestingLab_perc}}).toFixed(2));
+       var prevprice6 = parseFloat(formuladict({{session.TestingPharmo_perc}}).toFixed(2));
+       var prevprice7 = parseFloat(formuladict({{session.AnnualPCP_perc}}).toFixed(2));
+       
+       var acuteprice1 = parseFloat(formuladict1({{session.HospitalCare_perc}}).toFixed(2));
+       var acuteprice2 = parseFloat(formuladict1({{session.MentalHealth_perc}}).toFixed(2));
+       var acuteprice3 = parseFloat(formuladict1({{session.EmergencyCare_perc}}).toFixed(2));
+       
+       var ambprice1 = parseFloat(formuladict({{session.OutPatientSurg_perc}}).toFixed(2));
+       var ambprice2 = parseFloat(formuladict({{session.OutPatientRadio_perc}}).toFixed(2));
+       var ambprice3 = parseFloat(formuladict({{session.PhysicianPCP_perc}}).toFixed(2));
+       var ambprice4 = parseFloat(formuladict({{session.PhysicianSpec_perc}}).toFixed(2));
+       var ambprice5 = parseFloat(formuladict({{session.UrgentCare_perc}}).toFixed(2));
+       var ambprice6 = parseFloat(formuladict({{session.HomeHealth_perc}}).toFixed(2));
+       var ambprice7 = parseFloat(formuladict({{session.Hospice_perc}}).toFixed(2));
+       
+       var ltcsprice1 = parseFloat(formuladict2({{session.LTAC_perc}}).toFixed(2));
+       var ltcsprice2 = parseFloat(formuladict2({{session.SkilledNursing_perc}}).toFixed(2));
+       var ltcsprice3 = parseFloat(formuladict2({{session.NursingHome_perc}}).toFixed(2));
+       var ltcsprice4 = parseFloat(formuladict2({{session.AsstLiving_perc}}).toFixed(2));
+       var ltcsprice5 = parseFloat(formuladict2({{session.IndLiving_perc}}).toFixed(2));
+       
+       var pharmprice1 = parseFloat(formuladict3({{session.NameBrand_perc}}).toFixed(2));
+       var pharmprice2 = parseFloat(formuladict3({{session.GenDrugs_perc}}).toFixed(2));
+       var pharmprice3 = parseFloat(formuladict3({{session.SpecialtyDrugs_perc}}).toFixed(2));
+       var pharmprice4 = parseFloat(formuladict3({{session.DurableMedEqu_perc}}).toFixed(2));
+       
+       var taxprice1 = parseFloat(formuladict4({{session.TobTax_perc}}.toFixed(1)).toFixed(2));
+       var taxprice2 = parseFloat(formuladict4({{session.Alcohol_perc}}.toFixed(1)).toFixed(2));
+       var taxprice3 = parseFloat(formuladict4({{session.FattyFoods_perc}}.toFixed(1)).toFixed(2));
+       var taxprice4 = parseFloat(formuladict4({{session.SugFoods_perc}}.toFixed(1)).toFixed(2));
+       
+       function loader(){
+        document.getElementById("initial_budget").innerHTML = document.getElementById("initial_budget").innerHTML.replace(/\$/g, '').replace(/\,/g, '').replace(/\-/g, '');
+        document.getElementById("initial_budget").innerHTML = formatter.format(document.getElementById("initial_budget").innerHTML);
+        prevtotalcalc()
+        acutetotalcalc()
+        ambtotalcalc()
+        ltcstotalcalc()
+        pharmtotalcalc()
+        expensestotal()
+        taxtotalcalc()
+        remainingtotal()
+        prevsatscore()
+        acutesatscore()
+        ambsatscore()
+        ltcssatscore()
+        pharmsatscore()
+        taxsatscore()
+        overallsatscore()
+    }
+    
+    function remainingtotal(){
+        var budget = document.getElementById("initial_budget").innerHTML.replace(/\$/g, '').replace(/\,/g, '').replace(/\-/g, '');
+        var expenses = document.getElementById('exptotal'+id_suffix).innerHTML.replace(/\$/g, '').replace(/\,/g, '').replace(/\-/g, '');
+        var taxes = document.getElementById('taxtotalcost'+id_suffix).innerHTML.replace(/\$/g, '').replace(/\,/g, '').replace(/\+/g, '');
+        document.getElementById('totalbud'+id_suffix).innerHTML = Number(budget) + Number(taxes);
+        document.getElementById('totalbud'+id_suffix).innerHTML = formatter.format(document.getElementById('totalbud'+id_suffix).innerHTML);
+        document.getElementById('remainingbud'+id_suffix).innerHTML = Number(budget) - Number(expenses) + Number(taxes);
+        document.getElementById('remainingbud'+id_suffix).innerHTML = formatter.format(document.getElementById('remainingbud'+id_suffix).innerHTML);
+        var remainingbud = document.getElementById('remainingbud'+id_suffix).innerHTML.replace(/\$/g, '').replace(/\,/g, '');
+        if(remainingbud < 0){
+            document.getElementById("remainingbud"+id_suffix).style.color = "red";
         }
-        return dict4[value];}
-    
-    // formula to calculate satisfaction score from preventative services
-    function prevsatscore() {
-        var immunization = 100 - {{session.immunization_perc}};
-        var EDUSmoking = 100 - {{session.EDUSmoking_perc}};
-        var EDUDisease = 100 - {{session.EDUDisease_perc}};
-        var Screening = 100 - {{session.Screening_perc}};
-        var TestingLab = 100 - {{session.TestingLab_perc}};
-        var TestingPharmo = 100 - {{session.TestingPharmo_perc}};
-        var AnnualPCP = 100 - {{session.AnnualPCP_perc}};
-        document.getElementById('prevsatscore').innerHTML = ((immunization + EDUSmoking + EDUDisease + Screening + TestingLab + TestingPharmo + AnnualPCP) / 7).toFixed(2);
-    }
-    
-    // formula to calculate satisfaction score from acute care services
-    function acutesatscore() {
-        var HospitalCare = 100 - {{session.HospitalCare_perc}};
-        var MentalHealth = 100 - {{session.MentalHealth_perc}};
-        var EmergencyCare = 100 - {{session.EmergencyCare_perc}};
-        document.getElementById('acutesatscore').innerHTML = ((HospitalCare + MentalHealth + EmergencyCare) / 3).toFixed(2);
-    }
-    // formula to calculate satisfaction score from ambulatory care services
-    function ambsatscore() {
-        var OutPatientSurg = 100 - {{session.OutPatientSurg_perc}};
-        var OutPatientRadio = 100 - {{session.OutPatientRadio_perc}};
-        var PhysicianPCP = 100 - {{session.PhysicianPCP_perc}};
-        var PhysicianSpec = 100 - {{session.PhysicianSpec_perc}};
-        var UrgentCare = 100 - {{session.UrgentCare_perc}};
-        var HomeHealth = 100 - {{session.HomeHealth_perc}};
-        var Hospice = 100 - {{session.Hospice_perc}};
-        document.getElementById('ambsatscore').innerHTML = ((OutPatientSurg + OutPatientRadio + PhysicianPCP + PhysicianSpec + UrgentCare + HomeHealth + Hospice) / 7).toFixed(2);
-    }
-    // formula to calculate satisfaction score from long term care services
-    function ltcssatscore() {
-        var LTAC = 100 - {{session.LTAC_perc}};
-        var SkilledNursing = 100 - {{session.SkilledNursing_perc}};
-        var NursingHome = 100 - {{session.NursingHome_perc}};
-        var AsstLiving = 100 - {{session.AsstLiving_perc}};
-        var IndLiving = 100 - {{session.IndLiving_perc}};
-        document.getElementById('ltcssatscore').innerHTML = ((LTAC + SkilledNursing + NursingHome + AsstLiving + IndLiving) / 5).toFixed(2);
-    }
-    // formula to calculate satisfaction score from pharmacy benefits
-    function pharmsatscore() {
-        var NameBrand = 100 - {{session.NameBrand_perc}};
-        var GenDrugs = 100 - {{session.GenDrugs_perc}};
-        var SpecialtyDrugs = 100 - {{session.SpecialtyDrugs_perc}};
-        var DurableMedEqu = 100 - {{session.DurableMedEqu_perc}};
-        document.getElementById('pharmsatscore').innerHTML = ((NameBrand + GenDrugs + SpecialtyDrugs + DurableMedEqu) / 4).toFixed(2);
-    }
-    // formula to calculate satisfaction score from taxes
-    function taxsatscore() {
-        var TobTax = (10 - {{session.TobTax_perc}}) * 10; 
-        var Alcohol = (10 - {{session.Alcohol_perc}}) * 10;
-        var FattyFoods = (10 - {{session.FattyFoods_perc}}) * 10;
-        var SugFoods = (10 - {{session.SugFoods_perc}}) * 10;
-        document.getElementById('taxsatscore').innerHTML = ((TobTax + Alcohol + FattyFoods + SugFoods) / 4).toFixed(2);
-    }
-    // formula to calculate overall satisfaction score
-    function overallsatscore() {
-        var prevsat = parseFloat(document.getElementById('prevsatscore').innerHTML);
-        var acutesat = parseFloat(document.getElementById('acutesatscore').innerHTML);
-        var ambsat = parseFloat(document.getElementById('ambsatscore').innerHTML);
-        var ltcssat = parseFloat(document.getElementById('ltcssatscore').innerHTML);
-        var pharmsat = parseFloat(document.getElementById('pharmsatscore').innerHTML);
-        var taxsat = parseFloat(document.getElementById('taxsatscore').innerHTML);
-        document.getElementById('overallsatscore').innerHTML = ((prevsat + acutesat + ambsat + ltcssat + pharmsat + taxsat) / 6).toFixed(2);
-    }
-        </script>
-        {% endif %}
-        {% endfor %}
-        {% endblock %}
-    </html>
+        else{
+            document.getElementById("remainingbud"+id_suffix).style.color = "green";
+        }}
+        
+        function expensestotal() {
+            var a = document.getElementById("prevtotalcost"+id_suffix).innerHTML.replace(/\$/g, '').replace(/\,/g, '').replace(/\-/g, '');
+            var b=document.getElementById("acutetotalcost"+id_suffix).innerHTML.replace(/\$/g, '').replace(/\,/g, '').replace(/\-/g, '');
+            var c=document.getElementById("ambtotalcost"+id_suffix).innerHTML.replace(/\$/g, '').replace(/\,/g, '').replace(/\-/g, '');
+            var d=document.getElementById("ltcstotalcost"+id_suffix).innerHTML.replace(/\$/g, '').replace(/\,/g, '').replace(/\-/g, '');
+            var e=document.getElementById("pharmtotalcost"+id_suffix).innerHTML.replace(/\$/g, '').replace(/\,/g, '').replace(/\-/g, '');
+            var exptot = Number(a) + Number(b) + Number(c) + Number(d) + Number(e);
+            document.getElementById('exptotal'+id_suffix).innerHTML = (formatter.format(exptot));}
+            function prevtotalcalc() {  
+                let prevtotal = Number(prevprice1) + Number(prevprice2) + Number(prevprice3) + Number(prevprice4) + Number(prevprice5) + Number(prevprice6) + Number(prevprice7);
+                document.getElementById('prevtotalcost'+id_suffix).innerHTML = ("-" + formatter.format(prevtotal));
+            }
+            
+            function acutetotalcalc() {  
+                let acutetotal = Number(acuteprice1) + Number(acuteprice2) + Number(acuteprice3);
+                document.getElementById('acutetotalcost'+id_suffix).innerHTML = ("-" + formatter.format(acutetotal));}
+                
+                function ambtotalcalc() {  
+                    let ambtotal = Number(ambprice1) + Number(ambprice2) + Number(ambprice3) + Number(ambprice4) + Number(ambprice5) + Number(ambprice6) + Number(ambprice7);
+                    document.getElementById('ambtotalcost'+id_suffix).innerHTML = ("-" + formatter.format(ambtotal));}
+                    
+                    function ltcstotalcalc() {  
+                        let ltcstotal = Number(ltcsprice1) + Number(ltcsprice2) + Number(ltcsprice3) + Number(ltcsprice4) + Number(ltcsprice5);
+                        document.getElementById('ltcstotalcost'+id_suffix).innerHTML = ("-" + formatter.format(ltcstotal));}
+                        
+                        function pharmtotalcalc() {  
+                            let pharmtotal = Number(pharmprice1) + Number(pharmprice2) + Number(pharmprice3) + Number(pharmprice4);
+                            document.getElementById('pharmtotalcost'+id_suffix).innerHTML = ("-" + formatter.format(pharmtotal));}
+                            
+                            function taxtotalcalc() {  
+                                let taxtotal = Number(taxprice1) + Number(taxprice2) + Number(taxprice3) + Number(taxprice4);
+                                document.getElementById('taxtotalcost'+id_suffix).innerHTML = ("+" + formatter.format(taxtotal));}
+                                
+                                loader()
+//formula to calculate preventative and ambulatory
+function formuladict(value){
+    var dict = {};
+    dict[100] = 0;
+    var y = 500000;
+    var x = 99;
+    dict[x] = y;
+    while(x>0){
+      y = y * 1.05;
+      x -= 1;
+      dict[x] = y;}
+      return dict[value];}
+//formula to calculate Acute Care
+function formuladict1(value1){
+    var dict1 = {};
+    dict1[100] = 0;
+    var y1 = 2500000;
+    var x1 = 99;
+    dict1[x1] = y1;
+    while(x1>0){
+      y1 = y1 * 1.05;
+      x1 -= 1;
+      dict1[x1] = y1;}
+      return dict1[value1];}
+//formula to calculate long term
+function formuladict2(value){
+    var dict2 = {};
+    dict2[100] = 0;
+    var y2 = 750000;
+    var x2 = 99;
+    dict2[x2] = y2;
+    while(x2>0){
+      y2 = y2 * 1.05;
+      x2 -= 1;
+      dict2[x2] = y2;}
+      return dict2[value];}
+//formula to calculate pharmacy
+function formuladict3(value){
+    var dict3 = {};
+    dict3[100] = 0;
+    var y3 = 1000000;
+    var x3 = 99;
+    dict3[x3] = y3;
+    while(x3>0){
+      y3 = y3 * 1.05;
+      x3 -= 1;
+      dict3[x3] = y3;}
+      return dict3[value];}
+// formula to calculate tax amount
+function formuladict4(value){
+    var dict4 = {};
+    dict4['0.0'] = 0;
+    var y4 = 500000;
+    var x4 = 0.1;
+    dict4[x4] = y4;
+    while(x4<=10){
+      y4 = y4 * 1.05;
+      x4 += .1;
+      dict4[x4.toFixed(1)] = y4;
+  }
+  return dict4[value];}
+
+// formula to calculate satisfaction score from preventative services
+function prevsatscore() {
+    var immunization = 100 - {{session.immunization_perc}};
+    var EDUSmoking = 100 - {{session.EDUSmoking_perc}};
+    var EDUDisease = 100 - {{session.EDUDisease_perc}};
+    var Screening = 100 - {{session.Screening_perc}};
+    var TestingLab = 100 - {{session.TestingLab_perc}};
+    var TestingPharmo = 100 - {{session.TestingPharmo_perc}};
+    var AnnualPCP = 100 - {{session.AnnualPCP_perc}};
+    document.getElementById('prevsatscore'+id_suffix).innerHTML = ((immunization + EDUSmoking + EDUDisease + Screening + TestingLab + TestingPharmo + AnnualPCP) / 7).toFixed(2);
+}
+
+// formula to calculate satisfaction score from acute care services
+function acutesatscore() {
+    var HospitalCare = 100 - {{session.HospitalCare_perc}};
+    var MentalHealth = 100 - {{session.MentalHealth_perc}};
+    var EmergencyCare = 100 - {{session.EmergencyCare_perc}};
+    document.getElementById('acutesatscore'+id_suffix).innerHTML = ((HospitalCare + MentalHealth + EmergencyCare) / 3).toFixed(2);
+}
+// formula to calculate satisfaction score from ambulatory care services
+function ambsatscore() {
+    var OutPatientSurg = 100 - {{session.OutPatientSurg_perc}};
+    var OutPatientRadio = 100 - {{session.OutPatientRadio_perc}};
+    var PhysicianPCP = 100 - {{session.PhysicianPCP_perc}};
+    var PhysicianSpec = 100 - {{session.PhysicianSpec_perc}};
+    var UrgentCare = 100 - {{session.UrgentCare_perc}};
+    var HomeHealth = 100 - {{session.HomeHealth_perc}};
+    var Hospice = 100 - {{session.Hospice_perc}};
+    document.getElementById('ambsatscore'+id_suffix).innerHTML = ((OutPatientSurg + OutPatientRadio + PhysicianPCP + PhysicianSpec + UrgentCare + HomeHealth + Hospice) / 7).toFixed(2);
+}
+// formula to calculate satisfaction score from long term care services
+function ltcssatscore() {
+    var LTAC = 100 - {{session.LTAC_perc}};
+    var SkilledNursing = 100 - {{session.SkilledNursing_perc}};
+    var NursingHome = 100 - {{session.NursingHome_perc}};
+    var AsstLiving = 100 - {{session.AsstLiving_perc}};
+    var IndLiving = 100 - {{session.IndLiving_perc}};
+    document.getElementById('ltcssatscore'+id_suffix).innerHTML = ((LTAC + SkilledNursing + NursingHome + AsstLiving + IndLiving) / 5).toFixed(2);
+}
+// formula to calculate satisfaction score from pharmacy benefits
+function pharmsatscore() {
+    var NameBrand = 100 - {{session.NameBrand_perc}};
+    var GenDrugs = 100 - {{session.GenDrugs_perc}};
+    var SpecialtyDrugs = 100 - {{session.SpecialtyDrugs_perc}};
+    var DurableMedEqu = 100 - {{session.DurableMedEqu_perc}};
+    document.getElementById('pharmsatscore'+id_suffix).innerHTML = ((NameBrand + GenDrugs + SpecialtyDrugs + DurableMedEqu) / 4).toFixed(2);
+}
+// formula to calculate satisfaction score from taxes
+function taxsatscore() {
+    var TobTax = (10 - {{session.TobTax_perc}}) * 10; 
+    var Alcohol = (10 - {{session.Alcohol_perc}}) * 10;
+    var FattyFoods = (10 - {{session.FattyFoods_perc}}) * 10;
+    var SugFoods = (10 - {{session.SugFoods_perc}}) * 10;
+    document.getElementById('taxsatscore'+id_suffix).innerHTML = ((TobTax + Alcohol + FattyFoods + SugFoods) / 4).toFixed(2);
+}
+// formula to calculate overall satisfaction score
+function overallsatscore() {
+    var prevsat = parseFloat(document.getElementById('prevsatscore'+id_suffix).innerHTML);
+    var acutesat = parseFloat(document.getElementById('acutesatscore'+id_suffix).innerHTML);
+    var ambsat = parseFloat(document.getElementById('ambsatscore'+id_suffix).innerHTML);
+    var ltcssat = parseFloat(document.getElementById('ltcssatscore'+id_suffix).innerHTML);
+    var pharmsat = parseFloat(document.getElementById('pharmsatscore'+id_suffix).innerHTML);
+    var taxsat = parseFloat(document.getElementById('taxsatscore'+id_suffix).innerHTML);
+    document.getElementById('overallsatscore'+id_suffix).innerHTML = ((prevsat + acutesat + ambsat + ltcssat + pharmsat + taxsat) / 6).toFixed(2);
+}
+</script>
+{% endif %}
+{% endfor %}
+{% endblock %}
+</html>
